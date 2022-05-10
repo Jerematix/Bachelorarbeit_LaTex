@@ -1,18 +1,83 @@
-%! Author = jerem
-%! Date = 10/05/2022
+\documentclass[12pt, onecolumn]{article}
 
-% Preamble
-\documentclass[11pt]{article}
+\title{Analyzing the Effects of Public Transit Schedules on Shared Mobility Usage}
+\author{Jeremy Meidinger\\[0.5cm]{Supervisor: Janik Muires\\[0.5cm]{Chair for Information Systems for Sustainable Society\\[0.5cm]{University of Cologne}}}} % Sets authors name
+\date{\today} % Sets date for date compiled
 
-% Packages
-\usepackage{amsmath}
+\usepackage[backend=biblatex, giveninits=true, style=authoryear-icomp, maxcitenames=2, ibidtracker=false]{biblatex}
+\addbibresource{main.bib}
 
-% Document
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\usepackage{titling}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{longtable} % for 'longtable' environment
+\usepackage{pdflscape} % for 'longtable' environment
+\usepackage{graphicx} % for 'landscape' environment
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+
 \begin{document}
 
-    Hallo Welt
 
-    \bibliography{main}
-    \bibliographystyle{plain}
+    \pagenumbering{roman}
+
+    \begin{titlepage}
+        \maketitle
+        \thispagestyle{empty}
+    \end{titlepage}
+
+    \pagebreak
+
+    \setcounter{tocdepth}{3}
+    \tableofcontents
+    \thispagestyle{empty}
+    \pagebreak
+
+    \pagenumbering {arabic}
+    \setcounter{page}{3}
+
+
+    \section{Problem Statement}
+    Public transit is a very important factor in urban mobility.
+    It is a very efficient way to transport many people in a short amount of time, but a lot of people do not use it, because of it's shortcomings.
+    One of these shortcomings is that it is not always possible to use public transit, because of the public transit schedule.
+    If one wants to travel from point A to point B, he/she has to wait for the public transit to arrive.
+    Another option is to use a shared mobility system, which is essentially a combination of public transit and other modes of transport.
+    These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the provider demands.
+    This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedule.
+    Shared mobility has many modes of transport some of them are: bike, car, kick scooter, and scooter.
+    Though there has been research linking public transit to shared mobility, there is still a lot of research missing, most of it is focused on the last mile of public transit.
+    There has been no concurrent research on the effects of public transit schedules on shared mobility usage.
+
+
+    \section{Research Objective}
+
+    The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
+    To do that, we got historical data from the public transit schedules and shared mobility usage.
+    To reach the objective, I divide it in the following substeps:
+    \begin{enumerate}
+        \item Get the data in shape to use for analysis.
+        \item Analyze the data and try to find influencing factors in the public transit schedules that lead to higher/lower shared mobility usage.
+        \item Set up a model that can be used to predict the usage of shared mobility based on the public transit schedules.
+        \item Test the model and see if it can answer the question.
+    \end{enumerate}
+
+    \section{Theoretical Background}
+
+
+
+    \pagebreak
+
+    \printbibliography[heading=bibintoc]
 
 \end{document}
