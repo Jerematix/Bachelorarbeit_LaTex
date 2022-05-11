@@ -64,12 +64,13 @@
 
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
     To evaluate that, we got historical data from the public transit schedules and shared mobility usage.
-    To reach the objective, the research will be divided it in the following substeps:
+    The research question could be phrased as "Will a lower scheduled public transport lead to more shared mobility usage?".
+    To reach the to answer the question, the research will be divided it in the following substeps:
     \begin{enumerate}
         \item Get the data in shape to use for analysis.
         \item Analyze the data and try to find influencing factors in the public transit schedules that lead to higher/lower shared mobility usage.
         \item Set up a model that can be used to predict the usage of shared mobility based on the public transit schedules.
-        \item Test the model and see if it can answer the question.
+        \item Test the model and see if it can answer the research question.
     \end{enumerate}
 
 
@@ -112,19 +113,34 @@
         \item Discussion (2 pages)
         \item Conclusion (2 page)
     \end{enumerate}
-    \pagebreak
-
 
     \section{Research Method}
 
-    \subsection{Research Design}
-
     \subsection{Data Collection Procedures}
+
+    The data of the public transit and the shared mobility usage is provided by the chair.
+    The public transit data is provided in the so-called GTFS format, GTFS is a standard for transportation data, which is used by thousands of public transportation providers. (\url{https://gtfs.org/})
+    Furthermore weather data is collected from the DWD (\url{https://dwd.de}), because weather data is an important factor for example mentioned by \cite{Babar2017} and \cite{Oeschger2020}
 
     \subsection{Data Analysis Procedures}
 
+    The programming language Python (\url{https://www.python.org/}) is used for the data analysis.
+    The following packages are used:
+    \begin{itemize}
+        \item Pandas (\url{https://pandas.pydata.org/})
+        \item Numpy (\url{https://numpy.org/})
+        \item Matplotlib (\url{https://matplotlib.org/})
+        \item Seaborn (\url{https://seaborn.pydata.org/})
+        \item Sklearn (\url{https://scikit-learn.org/})
+        \item Statsmodels (\url{https://statsmodels.org/})
+        \item GTFSTK (\url{https://github.com/mrcagney/gtfstk})
+    \end{itemize}
+    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFSTK (\url{https://github.com/mrcagney/gtfstk}) is used to handle the data, and make the data easily usable for the analysis.
+
 
     \section{Expected Results}
+    The result of the research is expected to be a model that links public transit schedules to the shared mobility usage.
+    The model will contain several factors of public transit schedule and will try to factor out other factors such as weather, so the relationship between the two can be examined as purely as possible.
 
     \pagebreak
 
