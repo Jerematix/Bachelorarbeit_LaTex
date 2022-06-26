@@ -1,6 +1,6 @@
 \documentclass[12pt, onecolumn]{article}
 
-\title{Bachelor Thesis - Analyzing the Effects of Public Transit Schedules on Shared Mobility Usage}
+\title{Study Protocol - Analyzing the Effects of Public Transit Schedules on Shared Mobility Usage}
 \author{Jeremy Meidinger\\[0.5cm]{Supervisor: Prof. Wolfgang Ketter\\[0.5cm]{Second Supervisor: Msc. Janik Muires\\[0.5cm]{Chair for Information Systems for Sustainable Society\\[0.5cm]{University of Cologne}}}}} % Sets authors name
 \date{\today} % Sets date for date compiled
 
@@ -47,14 +47,11 @@
     \setcounter{page}{3}
 
 
-    \section{Introduction}
-
-    \subsection{Problem Statement}
-
+    \section{Problem Statement}
     Public transit is an important factor in urban mobility.
     It is an efficient way to transport many people in a short amount of time, but a lot of people do not use it, because of its shortcomings.
     One of these shortcomings is that it is not always possible to use public transit, because of its schedule.
-    If one wants to travel from point A to point B, they have to wait for the public transit to arrive.
+    If one wants to travel from point A to point B, he/she has to wait for the public transit to arrive.
     Another option is to use a shared mobility system, which is a platform that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
     This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedule.
@@ -64,7 +61,8 @@
     This research could help public transit providers to improve their schedules, and thus improve efficiency.
     Furthermore, it could help shared mobility providers to learn more about the interconnection of public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
 
-    \subsubsection{Research Objective}
+
+    \section{Research Objective}
 
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
     To evaluate that, I got historical data from the public transit schedules and shared mobility usage.
@@ -91,18 +89,42 @@
     On the other hand the current research has not been successful at "has on society, the economy and the environment"(\cite{Oeschger2020}, p. 17).
     In short, this means that what the people using shared mobility and public transit is well known, but the effects it has are not.
 
-    \subsection{Urban Mobility}
 
-    \subsection{Public Transit Usage}
+    \section{Structure of the Paper}
 
-    \subsection{Shared Mobility Usage}
+    \begin{enumerate}
+        \item Introduction (3 pages)
+        \begin{enumerate}
+            \item[1.1] Problem Statement (2 pages)
+            \item[1.2] Research Objective (1 page)
+        \end{enumerate}
+        \item Theoretical Background (8 pages)
+        \begin{enumerate}
+            \item[2.1] Urban Mobility (2 pages)
+            \item[2.2] Public Transit Usage (2 pages)
+            \item[2.3] Shared Mobility Usage (2 pages)
+            \item[2.4] Similar Research (2 pages)
+        \end{enumerate}
+        \item Method (6 pages)
+        \begin{enumerate}
+            \item[3.1] Data Description (2 page)
+            \item[3.2] Data Preparation (1 pages)
+            \item[3.3] Data Analysis (1 pages)
+            \item[3.4] Model Development (2 pages)
+        \end{enumerate}
+        \item Results (12 pages)
+        \begin{enumerate}
+            \item[4.1] Model Evaluation (6 pages)
+            \item[4.2] Hypothesis Discussion (6 pages)
+        \end{enumerate}
+        \item Discussion (3 pages)
+        \item Conclusion (1 page)
+    \end{enumerate}
 
-    \subsection{Similar Research}
 
+    \section{Research Method}
 
-    \section{Method}
-
-    \subsection{Data Description and Collection}
+    \subsection{Data Collection Procedures}
 
     The data of the public transit and the shared mobility usage is provided by the chair.
     The public transit data is provided in the so-called GTFS format, GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\url{https://gtfs.org/}).
@@ -110,27 +132,26 @@
     The paper from \cite{Oeschger2020} also provides valuable data that will be used for forward & backward analysis.
     The papers found this way, will then be used to further refine this research, from a methodological perspective and will also help to get a deeper understanding of the topic at hand.
 
-    \subsection{Data Preparation}
+    \subsection{Data Analysis Procedures}
 
     The programming language Python (\url{https://www.python.org/}) is used for the data analysis.
+    The following packages are used:
+    \begin{itemize}
+        \item Pandas (\url{https://pandas.pydata.org/})
+        \item Numpy (\url{https://numpy.org/})
+        \item Matplotlib (\url{https://matplotlib.org/})
+        \item Seaborn (\url{https://seaborn.pydata.org/})
+        \item Sklearn (\url{https://scikit-learn.org/})
+        \item Statsmodels (\url{https://statsmodels.org/})
+        \item GTFSTK (\url{https://github.com/mrcagney/gtfstk})
+    \end{itemize}
     Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFSTK (\url{https://github.com/mrcagney/gtfstk}) is used to handle the data, and make the data easily usable for the analysis.
 
-    \subsection{Data Analysis}
 
-    \subsection{Model Development}
-
-
-    \section{Results}
-
-    \subsection{Model Evaluation}
-
-    \subsection{Hypothesis Discussion}
-
-
-    \section{Discussion}
-
-
-    \section{Conclusion}
+    \section{Expected Results}
+    The result of the research is expected to be a model that links public transit schedules to the shared mobility usage.
+    The model will contain several factors of public transit schedule and will try to factor out other factors such as weather, so the relationship between the two can be examined as purely as possible.
+    With this model the paper will be able to answer the question, if the public transit schedules have an impact on shared mobility usage.
 
     \pagebreak
 
