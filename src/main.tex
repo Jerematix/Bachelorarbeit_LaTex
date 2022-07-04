@@ -51,11 +51,18 @@
 
     \subsection{Problem Statement}
 
+    Sustainability concerns are getting much more important in today's times as effects like climate change and pollution are advancing and risking of making the earth an uninhabitable space.
+    According to the \cite{EEA2021} the transportation sector is one of the biggest contributor to greenhouse gas emissions and thus climate change.
+    Pollution in cities is a major factor in making cities uninhabitable (CIT:NEEDED)
+    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (CIT:NEEDED)
+    To solve these challenges that have to be faced, society has to look, at new, alternative ways for transportation
     Public transit is an important factor in urban mobility.
-    It is an efficient way to transport many people in a short amount of time, but a lot of people do not use it, because of its shortcomings.
-    One of these shortcomings is that it is not always possible to use public transit, because of its schedule.
+    It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked.
+    One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations, that delay transportation that would have otherwise happened.
     If one wants to travel from point A to point B, they have to wait for the public transit to arrive.
+
     Another option is to use a shared mobility system, which is a platform that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
+    These systems will be called free floating vehicles (FFVs) in the following text.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
     This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedule.
     Shared mobility has many modes of transportation, some of them are: bike, car, kick scooter, and scooter.
@@ -106,6 +113,10 @@
 
     The data of the public transit and the shared mobility usage is provided by the chair.
     The public transit data is provided in the so-called GTFS format, GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\url{https://gtfs.org/}).
+    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 - 14.12.2019 and the other one 14.12.2019-12.12.2020.
+    The ride data is 05.11.2019-29.02.2019 with exceptions from the 06.11.2019-17.11.2019 and 15.01.2019-16.01.2019 for a total of 103 days.
+    It was scraped via the API of different FFV providers, in an interval of every 5 minutes.
+
     Furthermore weather data is collected from the DWD (\url{https://dwd.de}), because it is an important factor for example mentioned by \cite{Babar2017}.
     The paper from \cite{Oeschger2020} also provides valuable data that will be used for forward & backward analysis.
     The papers found this way, will then be used to further refine this research, from a methodological perspective and will also help to get a deeper understanding of the topic at hand.
@@ -114,6 +125,21 @@
 
     The programming language Python (\url{https://www.python.org/}) is used for the data analysis.
     Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFSTK (\url{https://github.com/mrcagney/gtfstk}) is used to handle the data, and make the data easily usable for the analysis.
+
+    Firstly I looked at a data to get a better understanding of it.
+    Some first key learnings were:
+
+    \begin{enumerate}
+        \item Lime is only present in the first month, and has a majority share there.
+        \item GTFS supports unusual time formats like 27:13:00
+        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019-16.01.2019.
+    \end{enumerate}
+
+    I fixed these issues by firstly removing Lime from the dataset, which is very unfortunate, but it will make it easier to compare the other days that way.
+    For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
+    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data. (CIT:NEEDED)?
+    For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
+
 
     \subsection{Data Analysis}
 
@@ -129,6 +155,20 @@
 
     \section{Discussion}
 
+    Although I conducted the research very thoroughly there are some points that remain unclear and need to be advanced.
+    Firstly I will going in to the points that are influenced by the data that I used for the research.
+
+    The GTFS data only contains plan data and no live data, which is a problem since delays and cancellations are a common occurence among public transportation (CIT:NEEDED) and it would have been especially interesting to analyze data that factors in delays and cancellations.
+    With this data it would be possible to learn if people switch spontaneously from their planned public transportation trip to an unplanned FFV trip and because of no actual data and just the plan data being there it's difficult to tell if the numbers are really accurate.
+
+    The trip data only contains winter months, and other research also shows that these comfort factors like temperature and precipitation can influence the amount of FFV usage, this effect is even stronger for uncovered vehicles. (\cite{Demircan2021}, p. 9)
+    It would be thus very interesting to have summer and winter data to compare, and see if in the summer passengers are more willing to use FFV platforms.
+    Furthermore, the trip data is only retrieved every 5 minutes from the different providers, which can especially for short trips make a big difference, but because only trips that are longer than 24 hours are removed from the dataset, this is not a big problem.
+
+    Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
+    Naturally as other reasearch has already shown, the demand for FFV is higher in the city centres and as Cologne only has one very clear city center, the demand tends to be the strongest there.
+    For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne.
+    This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping streety and the traffic that's there because Neumarkt is a traffic center.
 
     \section{Conclusion}
 
