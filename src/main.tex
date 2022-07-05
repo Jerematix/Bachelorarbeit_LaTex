@@ -1,12 +1,16 @@
-\documentclass[12pt, onecolumn]{article}
+\documentclass[a4paper, oneside, 12pt]{article}
 
-\title{Bachelor Thesis - Analyzing the Effects of Public Transit Schedules on Shared Mobility Usage}
-\author{Jeremy Meidinger\\[0.5cm]{Supervisor: Prof. Wolfgang Ketter\\[0.5cm]{Second Supervisor: Msc. Janik Muires\\[0.5cm]{Chair for Information Systems for Sustainable Society\\[0.5cm]{University of Cologne}}}}} % Sets authors name
-\date{\today} % Sets date for date compiled
-
-\usepackage[backend=biblatex, giveninits=true, style=authoryear-icomp, maxcitenames=2, ibidtracker=false]{biblatex}
-\addbibresource{main.bib}
-
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{titling}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{apacite}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -15,36 +19,123 @@
     linkcolor=black,
     urlcolor=blue
 }
-
-\usepackage{titling}
-\usepackage{amssymb}
-\usepackage{textcomp}
-\usepackage{booktabs}
-\usepackage{longtable} % for 'longtable' environment
-\usepackage{pdflscape} % for 'longtable' environment
-\usepackage{graphicx} % for 'landscape' environment
 \renewcommand\maketitlehooka{\null\mbox{}\vfill}
 \renewcommand\maketitlehookd{\vfill\null}
 
+% set margins for double-sided printing
+\usepackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm, bindingoffset=1.5cm, head=15pt]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+% set headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L,RO]{\textsl{\leftmark}}
+\fancyhead[R,LO]{\thesisauthor}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\usepackage[backend=biblatex, giveninits=true, style=apa, maxcitenames=2, ibidtracker=false]{biblatex}
+\addbibresource{main.bib}
+\pagenumbering{gobble}
+
+\title{Analyzing the Effects of Public Transit Schedules on Shared Mobility Usage}
+
+\newcommand{\thesisdate}{July 26, 2022}
+\newcommand{\thesisauthor}{Jeremy Meidinger}
+\newcommand{\studentID}{7364610}
+\newcommand{\thesistype}{Bachelor Thesis} % Set either to Bachelor or Master
+\newcommand{\supervisor}{Univ.-Prof. Dr. Wolfgang Ketter}
+\newcommand{\cosupervisor}{Janik Muires}
+
+
+
 \begin{document}
 
-
-    \pagenumbering{roman}
-
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TITLE PAGE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \makeatletter
     \begin{titlepage}
-        \maketitle
-        \thispagestyle{empty}
+        \begin{center}
+            \vspace*{1cm}
+
+            \Large
+            \textbf{\@title}
+
+            \vspace{1.5cm}
+
+            \thesistype{}
+
+            \vspace{1cm}
+
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[width=.5\linewidth]{./Figures/UoC_Logo}
+            \end{figure}
+
+            \vspace{1cm}
+
+            \large
+            \textbf{Author}: \thesisauthor{} (Student ID: \studentID{})\\
+            \large
+            \textbf{Supervisor}: \supervisor{}\\
+            \large
+            \textbf{Co-Supervisor}: \cosupervisor{}
+
+            \vspace{1cm}
+            \large
+            Department of Information Systems for Sustainable Society\\
+            Faculty of Management, Economics and Social Sciences\\
+            University of Cologne\\
+
+            \vspace{1cm}
+            \thesisdate
+
+        \end{center}
     \end{titlepage}
+    \makeatother
 
-    \pagebreak
-
-    \setcounter{tocdepth}{3}
-    \tableofcontents
+    \clearpage
     \thispagestyle{empty}
-    \pagebreak
+    \section*{Eidesstattliche Versicherung}
+    \label{sec:SOOA}
+
+    \vspace{2.5cm}
+
+    Hiermit versichere ich an Eides statt, dass ich die vorliegende Arbeit selbstständig und ohne die Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Alle Stellen, die wörtlich oder sinngemäß aus veröffentlichten und nicht veröffentlichten Schriften entnommen wurden, sind als solche kenntlich gemacht. Die Arbeit ist in gleicher oder ähnlicher Form oder auszugsweise im Rahmen einer anderen Prüfung noch nicht vorgelegt worden. Ich versichere, dass die eingereichte elektronische Fassung der eingereichten Druckfassung vollständig entspricht.
+
+    \vspace{1cm}
+
+    \noindent
+    Die Strafbarkeit einer falschen eidesstattlichen Versicherung ist mir bekannt, namentlich die Strafandrohung gemäß § 156 StGB bis zu drei Jahren Freiheitsstrafe oder Geldstrafe bei vorsätzlicher Begehung der Tat bzw. gemäß § 161 Abs. 1 StGB bis zu einem Jahr Freiheitsstrafe oder Geldstrafe bei fahrlässiger Begehung.
+
+    \vspace{3cm}
+    \noindent
+    \textbf{\thesisauthor{}}
+
+    \vspace{0.5cm}
+    \noindent
+    Köln, den 26.07.2022
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %TOC,TOF,TOT
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \clearpage
+    \pagenumbering{Roman}
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
+
+    \pagenumbering{arabic}
+
 
     \pagenumbering {arabic}
-    \setcounter{page}{3}
 
 
     \section{Introduction}
@@ -88,6 +179,9 @@
 
     \section{Theoretical Background}
 
+    The paper from \cite{Oeschger2020} also provides valuable data that will be used for forward & backward analysis.
+    The papers found this way, will then be used to further refine this research, from a methodological perspective and will also help to get a deeper understanding of the topic at hand.
+
     Others have gone into connected fields of research.
     \cite{Babar2017} investigated the effects of public transit on ride hailing services.
     They looked at which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
@@ -111,15 +205,22 @@
 
     \subsection{Data Description and Collection}
 
-    The data of the public transit and the shared mobility usage is provided by the chair.
-    The public transit data is provided in the so-called GTFS format, GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\url{https://gtfs.org/}).
-    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 - 14.12.2019 and the other one 14.12.2019-12.12.2020.
-    The ride data is 05.11.2019-29.02.2019 with exceptions from the 06.11.2019-17.11.2019 and 15.01.2019-16.01.2019 for a total of 103 days.
+    The data of the public transit, the shared mobility usage, as well as the cumulated service areas are provided by the chair.
+    The ride data is 05.11.2019-29.02.2019 with exceptions from the 06.11.2019 - 17.11.2019 and 15.01.2019 - 16.01.2019 for a total of 103 days.
     It was scraped via the API of different FFV providers, in an interval of every 5 minutes.
+    Because it was scraped by reverse engineering their providers API's unfortunately there is also incomplete data for some providers.
+    The final providers whose data was used for the model are Circ(Kick Scooters), Tier (Kick Scooters), KVB (Bikes), Fordpass (Bikes) and Car2Go (Cars).
+    After the cleaning step about 500000 rides remain which are on average roughly 5000 each day.
 
-    Furthermore weather data is collected from the DWD (\url{https://dwd.de}), because it is an important factor for example mentioned by \cite{Babar2017}.
-    The paper from \cite{Oeschger2020} also provides valuable data that will be used for forward & backward analysis.
-    The papers found this way, will then be used to further refine this research, from a methodological perspective and will also help to get a deeper understanding of the topic at hand.
+    The public transit data is provided in the GTFS(General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\url{https://gtfs.org/}).
+    Generally it's comprised of a database like structure that links the different entities for example stops, routes and trips together via unique IDs.
+    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 - 14.12.2019 and the other one 14.12.2019 - 12.12.2020.
+    The GTFS data comprises about 5000 stops, 500 routes and 100000 trips, although most of these are irrelevant, because there is only trip data for Cologne.
+
+    The service area data, is one GeoJSON file, that is a union of all the service areas for Cologne.
+    For reasons of simplicity, the trips are not evaluated against the service area of every single provider, but against this union.
+
+    Furthermore, temperature and precipitation data is collected from the DWD (\url{https://dwd.de}), because it is a relevant factor for the usage of micromobility as shown by other research (\cite{Babar2017}, p.18 and \cite{Demircan2021}, p.9).
 
     \subsection{Data Preparation}
 
@@ -130,16 +231,22 @@
     Some first key learnings were:
 
     \begin{enumerate}
-        \item Lime is only present in the first month, and has a majority share there.
+        \item Some of the provided data is really inconsistent, and has missing days
         \item GTFS supports unusual time formats like 27:13:00
-        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019-16.01.2019.
+        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019 - 16.01.2019.
     \end{enumerate}
 
-    I fixed these issues by firstly removing Lime from the dataset, which is very unfortunate, but it will make it easier to compare the other days that way.
+    I fixed these issues by firstly removing Lime, Bird, Driveby and Drivenow from the dataset, which is very unfortunate, because they had a lot of data points which are lost because of this, but it will make it easier to compare the other days that way.
+    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19, also their trip volume was 5 to 10 times larger than any other kickscooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
+    Bird only had datapoints in November so it made sense to remove it as well.
+    For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
+    Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties.
+
+    The reason for removing and cleaning all this data is, because the predicitive value fo the model goes down significantly, because the comparison between the days is too difficult, and especially when a lot of the data comes from one provider like with lime, it really skews the model.
+
     For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
     The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data. (CIT:NEEDED)?
     For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
-
 
     \subsection{Data Analysis}
 
@@ -170,10 +277,23 @@
     For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne.
     This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping streety and the traffic that's there because Neumarkt is a traffic center.
 
+
     \section{Conclusion}
 
     \pagebreak
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%APPENDICES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    \appendix
+    \renewcommand*{\thesection}{\Alph{section}}\textbf{}
+
+    % APPENDIX A
+    Appendix
+
+    \clearpage
     \printbibliography[heading=bibintoc]
 
 \end{document}
