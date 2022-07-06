@@ -43,6 +43,31 @@
   year    = {2021},
 }
 
+@Article{Willing_2017_ts,
+  author    = {Christoph Willing and Konstantin Klemmer and Tobias Brandt and Dirk Neumann},
+  journal   = {Decision Support Systems},
+  title     = {Moving in time and space {\textendash} Location intelligence for carsharing decision support},
+  year      = {2017},
+  month     = {jul},
+  pages     = {75--85},
+  volume    = {99},
+  doi       = {10.1016/j.dss.2017.05.005},
+  publisher = {Elsevier {BV}},
+}
+
+@Article{Willing_2017_im,
+  author    = {Christoph Willing and Tobias Brandt and Dirk Neumann},
+  journal   = {Business & Information Systems Engineering},
+  title     = {Intermodal Mobility},
+  year      = {2017},
+  month     = {apr},
+  number    = {3},
+  pages     = {173--179},
+  volume    = {59},
+  doi       = {10.1007/s12599-017-0471-7},
+  publisher = {Springer Science and Business Media {LLC}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 %! Author = jerem

@@ -11,6 +11,7 @@
 \usepackage{booktabs}
 \usepackage{pdflscape}
 \usepackage{apacite}
+\usepackage{adjustbox}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -194,6 +195,9 @@
 
     \subsection{Urban Mobility}
 
+    Urban mobility research is a common factor and there are many ways, to make urban mobility more eco friendly.
+    One of these ways mentioned by research is car-sharing and public transit usage (\cite{Lah2019}, p.142)
+
     \subsection{Public Transit Usage}
 
     \subsection{Shared Mobility Usage}
@@ -222,9 +226,31 @@
 
     Furthermore, temperature and precipitation data is collected from the DWD (\url{https://dwd.de}), because it is a relevant factor for the usage of micromobility as shown by other research (\cite{Babar2017}, p.18 and \cite{Demircan2021}, p.9).
 
+    \subsection{Model Development}
+
+    \subsubsection{Measuring FFV demand in Space and Time dimension}
+
+    Similar to the models of \cite{Willing_2017_ts}, the dependent variable will be set by spatio temporally.
+    Firstly, the data has to be sorted spatially, this is done with the help of a concept developed by Uber called h3 (\url{https://www.h3geo.org}), h3 divides the world in to hexagons, and mathematically a hexagon can always contain 7 smaller hexagons, and that's called h3 resolution.
+    For the project I chose the resolution h3 09, which has an area of roughly 0,1km2 with an edge length of about 0,17km, this was the resolution that made the most sense, because of the very short walking distances between public transit stops and FFVs.
+    FFVs are not a time efficient, if the walking distance gets to far.
+    The widely regarded walking distance is up to 500 meters, but I argue, that because Cologne having so dense stations, this walking distance only seldom needs to be that high, so h3 resolution 9 gives the most believable numbers, while minimizing the overlap between stations as you see with the ratio value of 90,97\% of Table \ref{tab:h3}.
+
+    \subsubsection{Public Transit Variables}
+
+    For every hex and every timeframe, there is a public transit variable, that says how many trips of every category took place in the timeframe.
+    The different modes of transport are light rail, bus and regional trains and the number of routes.
+    These variables serve as the indicator on to how much public transit was there at the time and at the place.
+
+    \subsubsection{Trip Comfort Factors}
+
+    Trip comfort factors are also a significant factor found in other research for example the resarch by \cite{Babar2017} has shown, that cold, hot, rainy and snowy days moderate the impact on city bus utilization of introducing ride hailing in a given city.
+
+    \subsubsection{Instantiation of Trip Purpose}
+
     \subsection{Data Preparation}
 
-    The programming language Python (\url{https://www.python.org/}) is used for the data analysis.
+    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\url{https://www.python.org/}) is used for the data preparation and analysis.
     Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFSTK (\url{https://github.com/mrcagney/gtfstk}) is used to handle the data, and make the data easily usable for the analysis.
 
     Firstly I looked at a data to get a better understanding of it.
@@ -248,9 +274,13 @@
     The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data. (CIT:NEEDED)?
     For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
 
-    \subsection{Data Analysis}
+    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regression.
+    Firstly, all of the stations were removed that are not in the service area, because they are not relevant to the analysis.
+    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event. This generates more data, and has the advantage, that trips, that only start or end on a station hex don't have to be removed fully.
+    To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed.
 
-    \subsection{Model Development}
+    Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
+    The data is then grouped first by h3 and then by time to achieve a geospatial model.
 
 
     \section{Results}
@@ -292,6 +322,24 @@
 
     % APPENDIX A
     Appendix
+
+    \begin{table}
+        \centering
+        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+            \begin{tabular}{lllrrl}
+                \toprule
+                \textbf{}        & \textbf{H3 Resolution Area} & \textbf{H3 Edge Length} & \textbf{Hexes with Trips} & \textbf{Number of Hexes with Stops} & \textbf{Percentage to stops} \\
+                \midrule
+                H3 Resolution 10 & 0,015km^2                   & 0,06km                  & 6516                      & 430                                 & 99,54\%                      \\
+                H3 Resolution 9  & 0,1km^2                     & 0,17km                  & 1201                      & 393                                 & 90,97\%                      \\
+                H3 Resolution 8  & 0,7km^2                     & 0,46km                  & 216                       & 175                                 & 40,51\%                      \\
+                H3 Resolution 7  & 5,2km^2                     & 1.22km                  & 51                        & 45                                  & 10,42\%                      \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{Comparison between different h3 resolutions, total of 432 stops in the service area}
+        \label{tab:h3}
+    \end{table}
 
     \clearpage
     \printbibliography[heading=bibintoc]
