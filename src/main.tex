@@ -136,9 +136,6 @@
     \pagenumbering{arabic}
 
 
-    \pagenumbering {arabic}
-
-
     \section{Introduction}
 
     \subsection{Problem Statement}
@@ -167,7 +164,7 @@
 
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
     To evaluate that, I got historical data from the public transit schedules and shared mobility usage.
-    The research question could be phrased as "Will a lower scheduled public transport lead to more shared mobility usage?".
+    The research question could be phrased as "Will a difference in public transit schedules lead to an incerease/decerease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?".
     To reach the to answer the question, the research will be divided it in the following substeps:
     \begin{enumerate}
         \item In addition to the provided data from the chair, search for more data, that helps to answer the question.
@@ -177,32 +174,42 @@
         \item Test the model and see if it can answer the research question.
     \end{enumerate}
 
+    %Wo Hypothesen einführen?
+    In addition to this general research question the goal is also to introduce some hypothesis, that will be answered using the available data.
+
 
     \section{Theoretical Background}
 
-    The paper from \cite{Oeschger2020} also provides valuable data that will be used for forward & backward analysis.
-    The papers found this way, will then be used to further refine this research, from a methodological perspective and will also help to get a deeper understanding of the topic at hand.
+    % Was muss sich an urban mobility ändern, näher auf Daten eingehen mit Fazit, dass sie grüner werden muss und sharing hilft
+    % Auch auf public transit an sich eingehen
+    %Auch auf die Änderung durch Shared Mobility plattformen eingehen
 
-    Others have gone into connected fields of research.
+    \subsection{Recent Changes to Urban Mobility}
+
+    Urban mobility is changing with new introductions to the mobility landscape, like shared mobility platforms and ride hailing.
     \cite{Babar2017} investigated the effects of public transit on ride hailing services.
-    They looked at which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
-    They found out that generally, the usage of buses decreases and the usage of trains increases.
-    \cite{Babar2017} developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
-    \cite{Oeschger2020} summarized the state of the art in the field of micromobility and shared transport integration.
-    They summarized 48 papers and summarized the state of research, they found out, that the research so far has been successful in finding out the "reasons, preferences and mobility patterns" (\cite{Oeschger2020}, p.17).
-    On the other hand the current research has not been successful at "has on society, the economy and the environment"(\cite{Oeschger2020}, p. 17).
-    In short, this means that what the people using shared mobility and public transit is well known, but the effects it has are not.
-
-    \subsection{Urban Mobility}
-
-    Urban mobility research is a common factor and there are many ways, to make urban mobility more eco friendly.
+    They researched about which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
+    To test that, they looked at 833 US cities, that introduced Uber's services and compared the public transit usage before and after.
+    They developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
+    They found out that generally, the usage of buses decreases and the usage of trains increases, but this effect also varies widely with some other factors.
+    Factors that generally lower bus usage like violent crimes, labor force, hot and snowy days lowered the effect of the introduction of ride hailing services, while the transit quality, the average trip length and gas prices positively moderated the effect ride hailing has on public transit (\cite{Babar2017}, p.28)
+    This research shows, that urban mobility is evolving and well established means of mobility like public transit get influenced by new advancements like ride hailing services.
     One of these ways mentioned by research is car-sharing and public transit usage (\cite{Lah2019}, p.142)
+    %Die jetzige Zeit ermöglicht durch die schnellere Entwicklung von IS die Möglichkeiten von vehicle sharing, vergleich zu früheren Papern
 
-    \subsection{Public Transit Usage}
+    \subsection{The need for information systems in shared mobility}
 
-    \subsection{Shared Mobility Usage}
+    %Paper von Boeker mentionenen wenn es darum geht, dass die FFV nutzung hoch geht, Beispiel wäre bestimmt auch Call a Bike
 
-    \subsection{Similar Research}
+    %Wie wurde public transit usage bisher mit ffv
+
+    \subsection{Connecting public transit usage with shared mobility and shared mobility platofrms}
+
+    Other researchers have also already tried connecting FFVS to public transit systems and have found interesting results.
+    In a paper already mentioned earlier by \cite{Boeker2020}, they show with data from the Norwegian city of Oslo, that the usage of bike rentals is mostly related to get to public transport, or shopping.
+    This connection of bikes to get to public transp
+
+    \subsection{Hypothesis development}
 
 
     \section{Method}
@@ -230,23 +237,35 @@
 
     \subsubsection{Measuring FFV demand in Space and Time dimension}
 
-    Similar to the models of \cite{Willing_2017_ts}, the dependent variable will be set by spatio temporally.
-    Firstly, the data has to be sorted spatially, this is done with the help of a concept developed by Uber called h3 (\url{https://www.h3geo.org}), h3 divides the world in to hexagons, and mathematically a hexagon can always contain 7 smaller hexagons, and that's called h3 resolution.
+    Similar to the models of \cite{Willing_2017_ts}, the dependent variable will be divided in spatio temporal units.
+    Firstly, the data has to be sorted spatially, this is done with the help of a concept developed by Uber called h3 (\cite{h3}).
+    h3 divides the world in to hexagons, and mathematically a hexagon can always contain 7 smaller hexagons, and that's called h3 resolution.
     For the project I chose the resolution h3 09, which has an area of roughly 0,1km2 with an edge length of about 0,17km, this was the resolution that made the most sense, because of the very short walking distances between public transit stops and FFVs.
-    FFVs are not a time efficient, if the walking distance gets to far.
+    FFVs are not a time efficient way of transport, if the walking distance gets to far.
     The widely regarded walking distance is up to 500 meters, but I argue, that because Cologne having so dense stations, this walking distance only seldom needs to be that high, so h3 resolution 9 gives the most believable numbers, while minimizing the overlap between stations as you see with the ratio value of 90,97\% of Table \ref{tab:h3}.
+    Now it is important to go in to detail as why the dependent variable is not only split up spatially, but also temporally.
+    Because we mainly want to explain to compare public transit schedules to FFV rentals, I want to have as clear of a picture as possible as to how these relate.
+    To factor out time dependent factors, which I introduce 6 timebuckets, that are 4 hours long each(0-4am, 4-8am, 8-12am, 12-4-pm, 4-8pm and 8-12pm).
+    This makes our regression coefficients more dependable, because our public transit variables, then do not have to explain time dependent factors.
+    In the following I will also show more of these independent variables, mostly focused on trip comfort and I will mention time dependent factors again.
 
     \subsubsection{Public Transit Variables}
 
-    For every hex and every timeframe, there is a public transit variable, that says how many trips of every category took place in the timeframe.
+    For every hex and every timeframe, there are four public transit variables, that says how many trips of every category took place in the timeframe.
     The different modes of transport are light rail, bus and regional trains and the number of routes.
-    These variables serve as the indicator on to how much public transit was there at the time and at the place.
+    These variables serve as the indicator on to how much public transit was there at the time and at the place, they will be the crucial variables I will look at in connection to hypothesis approval.
 
     \subsubsection{Trip Comfort Factors}
 
-    Trip comfort factors are also a significant factor found in other research for example the resarch by \cite{Babar2017} has shown, that cold, hot, rainy and snowy days moderate the impact on city bus utilization of introducing ride hailing in a given city.
+    Trip comfort factors are also a significant factor found in other research for example the research by \cite{Babar2017} has shown, that cold, hot, rainy and snowy days moderate the impact on city bus utilization of introducing ride hailing in a given city.
+    I added in the mean temperature as a factor, as well as precip and the sum of the amount of the precip in the given timespace.
+    Because precip and amount of precip have a high correlation, due to the sum of precip amount only being above zero, if there was precip at all, meaning the precip variable is 1, I will closely monitor them to see if I have to eliminate one of the variables.
 
-    \subsubsection{Instantiation of Trip Purpose}
+    \subsubsection{Time Dependent Factors}
+
+    For time dependent factors the time of the days were already mentioned, meaning the 6 timebuckets I established.
+    On top of that, I also established another time dependent variable based around weekdays.
+    It is a binary variable called if it is a weekday or not, from other research it has been shown, that which day it is, can have a big impact on FFVS demand. (\cite{Willing_2017_im}, p.79)
 
     \subsection{Data Preparation}
 
@@ -263,7 +282,7 @@
     \end{enumerate}
 
     I fixed these issues by firstly removing Lime, Bird, Driveby and Drivenow from the dataset, which is very unfortunate, because they had a lot of data points which are lost because of this, but it will make it easier to compare the other days that way.
-    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19, also their trip volume was 5 to 10 times larger than any other kickscooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
+    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19, also their trip volume was 5 to 10 times larger than any other kick scooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
     Bird only had datapoints in November so it made sense to remove it as well.
     For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
     Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties.
@@ -303,7 +322,7 @@
     Furthermore, the trip data is only retrieved every 5 minutes from the different providers, which can especially for short trips make a big difference, but because only trips that are longer than 24 hours are removed from the dataset, this is not a big problem.
 
     Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
-    Naturally as other reasearch has already shown, the demand for FFV is higher in the city centres and as Cologne only has one very clear city center, the demand tends to be the strongest there.
+    Naturally as other research has already shown, the demand for FFV is higher in the city centres and as Cologne only has one very clear city center, the demand tends to be the strongest there.
     For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne.
     This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping streety and the traffic that's there because Neumarkt is a traffic center.
 
@@ -313,8 +332,8 @@
     \pagebreak
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%APPENDICES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %APPENDICES
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
     \appendix
