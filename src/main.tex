@@ -12,6 +12,7 @@
 \usepackage{pdflscape}
 \usepackage{apacite}
 \usepackage{adjustbox}
+\usepackage{amsmath}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -39,6 +40,7 @@
 \renewcommand{\footrulewidth}{0pt}
 
 \usepackage[backend=biblatex, giveninits=true, style=apa, maxcitenames=2, ibidtracker=false]{biblatex}
+\usepackage{amsmath}
 \addbibresource{main.bib}
 \pagenumbering{gobble}
 
@@ -53,6 +55,7 @@
 
 
 
+%! language = Latex
 \begin{document}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +146,7 @@
     Sustainability concerns are getting much more important in today's times as effects like climate change and pollution are advancing and risking of making the earth an uninhabitable space.
     According to the \cite{EEA2021} the transportation sector is one of the biggest contributor to greenhouse gas emissions and thus climate change.
     Pollution in cities is a major factor in making cities uninhabitable (CIT:NEEDED)
-    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (CIT:NEEDED)
+    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (\cite{EEA2021})
     To solve these challenges that have to be faced, society has to look, at new, alternative ways for transportation
     Public transit is an important factor in urban mobility.
     It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked.
@@ -165,17 +168,22 @@
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
     To evaluate that, I got historical data from the public transit schedules and shared mobility usage.
     The research question could be phrased as "Will a difference in public transit schedules lead to an incerease/decerease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?".
+    To answer the research question and the hypotheses a model has to be developed.
+    I also have to note that I will develop a total of 12 models all following the following structure of dependent and independent variables.
+    Where they differ is by examining different modes of transport, there are 3 in total: car, kick scooter and bike and of course putting all together.
+    Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops seperately and in one model looking at them together.
+    See table \ref{tab:models} to get an overview of the 12 models we will have a look at in the following text.
     To reach the to answer the question, the research will be divided it in the following substeps:
     \begin{enumerate}
         \item In addition to the provided data from the chair, search for more data, that helps to answer the question.
         \item Get the data in shape to use for analysis.
         \item Analyze the data and try to find influencing factors in the public transit schedules that lead to higher/lower shared mobility usage.
-        \item Set up a model that can be used to predict the usage of shared mobility based on the public transit schedules.
-        \item Test the model and see if it can answer the research question.
+        \item Set up models that can be used to predict the usage of shared mobility based on the public transit schedules.
+        \item Test the models and see if it can answer the research question and compare the models to one another
     \end{enumerate}
 
-    %Wo Hypothesen einführen?
-    In addition to this general research question the goal is also to introduce some hypothesis, that will be answered using the available data.
+    %Wo hypothesen einführen?
+    In addition to this general research question the goal is also to introduce some hypotheses, that will be answered using the available data.
 
 
     \section{Theoretical Background}
@@ -184,30 +192,86 @@
     % Auch auf public transit an sich eingehen
     %Auch auf die Änderung durch Shared Mobility plattformen eingehen
 
-    \subsection{Recent Changes to Urban Mobility}
+    \subsection{The Interconnections between Public Transit and Shared Mobility Usage}
 
-    Urban mobility is changing with new introductions to the mobility landscape, like shared mobility platforms and ride hailing.
+    Generally there are a couple of possible alternatives when it comes to shared mobility.
+    Firstly there are bikes and e scooters, which are mostly the same except for bikes being used for slightly longer trips on average (\cite{Schellong2019}, p.3).
+    They are mostly used for very short trips, for last mile applications, and bikes are generally considered to be a greener option although this is a disputed question.
+    \cite{Hollingsworth2019} showed using monte carlo analyses that the chance for e-scooters being more eco friendly than dockless bikes is two thirds (\cite{Hollingsworth2019}, p.8), due to the high displacement costs of dockless bikes, which goes against the general notion, that they are more sustainable.
+    But it is important to note, that eco friendliness not only consists of the co^{2} emissions but also of the amount of waste generated, which is generally more for e scooters due to their short lifespan and more advanced manufacturing processes including lithium (\cite{Hollingsworth2019}, p.4).
+    Even if it is not very clear if e scooters or dockless bikes are more sustainable, it is generally assumed, that these sharing systems are more environmentally friendly, than passenger cars (\cite{Severengiz2020}, p.6, \cite{Hollingsworth2019}, p.8).
+    Coming to the advantage that it is more environmentally friendly seen by itself, it is often coupled with tram and bus usage, which makes it even more environmentally friendly depending on the occupancy of the bus (\cite{Hollingsworth2019}, p.8).
+
+    The most common connection of public transit and shared mobility is mostly stated as first and last mile travel, meaning the distance one has to overcome from the start to public transport and from public transit to the destination respecitvely (\cite{Grosshuesch2020}).
+    Furthermore, alternating investments from public transit to accomodating shared mobility, could alleviate some of the cities mobility struggles (\cite{Grosshuesch2020}, p.849).
+    It due to ride hailing services relying on cars, they are not an end solution to the problem of urban transportation, but should be more used to accomodate public transit (\cite{Grosshuesch2020}, p.851).
+    Cities should focus more on making public transit better and solving the first and last mile through e scooters and bicycles
+
+    In a paper by \cite{Boecker2020}, they collected data consisting of 2 years ride data and also data about the riders themselves from the Norwegian city of Oslo.
+    They found, that bike rental frequencies are much higher to get to public transport and from public transport (\cite{Boecker2020}, p.398).
+    This connection of bikes to get to public transportation and bikes to get from the public transportation stations to the final destination, these are typical first and last mile usages.
+    Furthermore they found out, that mostly younger people and males use bikes as a connection to public transit stations, especially middle aged people use them much less frequently.
+    They also find out, that riders living in inner Oslo more often use the bikes to get from start to finish, while outer Oslo residents, use them more frequently to get to public transit stations.
+    They conclude, that shared mobility has the potential to enhance public transit, with differences between start and stop, bikes especially make sense for egress (last mile) trips, perpendicular to the metro lines (\cite{Boecker2020}, p.399).
+
+    In another study by \cite{Fan2019} they looked at how the introduction of bike sharing services in china impacts the urban mobility choices of people.
+    They found out, that around 5,5\% of automobile travelers changed to public transport after the introduction of bike sharing services.
+    This relatively low number is explained with the relatively low service level of public transportation services and the aspirations of many chinese people to one day own a car, as 42\% of chinese young people have no car available, but 91\% plan to purchase one within the next 10 years (\cite{Fan2019}, p.12).
+    This effect could also be explained, by the earlier discussed effect of displaying wealth and social status through car ownership, although this trend is going back in the western countries (\cite{Canzler2016}, p.10), as sustainability concerns rise, it seems to generally grow in China, due to Chinas big economical growth (\cite{Zhu2012}, p.317).
+    To break these trends and to enhance the interconnections between public transit and shared mobility it is important, that public service providers improve their service level.
+
+    Generally
+
+    \subsection{The development of intermodality and multimodality in the context of urban mobility}
+
+    Urban mobility is changing with new introductions to the mobility landscape, like shared mobility platforms and ride hailing, these platforms indirectly encourage users to travel multimodally (Using multiple modes of transport in general) and intermodally (Using multiple modes of transport within a single trip).
     \cite{Babar2017} investigated the effects of public transit on ride hailing services.
     They researched about which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
     To test that, they looked at 833 US cities, that introduced Uber's services and compared the public transit usage before and after.
     They developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
     They found out that generally, the usage of buses decreases and the usage of trains increases, but this effect also varies widely with some other factors.
     Factors that generally lower bus usage like violent crimes, labor force, hot and snowy days lowered the effect of the introduction of ride hailing services, while the transit quality, the average trip length and gas prices positively moderated the effect ride hailing has on public transit (\cite{Babar2017}, p.28)
-    This research shows, that urban mobility is evolving and well established means of mobility like public transit get influenced by new advancements like ride hailing services.
-    One of these ways mentioned by research is car-sharing and public transit usage (\cite{Lah2019}, p.142)
-    %Die jetzige Zeit ermöglicht durch die schnellere Entwicklung von IS die Möglichkeiten von vehicle sharing, vergleich zu früheren Papern
+    This research shows, that urban mobility is evolving and well established means of mobility like public transit get influenced by new advancements like ride hailing services, partly increasing multimodal and intermodal travel, but also partly diminishing it.
+
+    A big factor in the recent developments of multimodal traveling has been the smartphone, it allows travelers to get new information about travel on the go and in real time (\cite{Aguilera2019}, p.9).
+    This allows users to change their travel plans on the go, and with higher precision than ever before, adapting to unpredictable scenarios like traffic jams, public transit delays etc (\cite{Aguilera2019}, p.9, \cite{Ben-Elia2015}, p.19)
+    However this information is not enough on it's own to contribute to major change, research has shown that upon getting an application that allows people to get trip information multimodally does not necessarily improve their willingness to use multimodal transport (\cite{Aguilera2019}, p.11).
+    The explanation stated for that is, that the advancements in technology and mobile technology also benefit the car transport, like being able to see trafic jams in and thus optimizing routes in real time (\cite{Aguilera2019}, p.11).
+    These effects are so far not that well understood and have to be looked at more closely, but so far it looks like the smartphone makes existing travel more efficiently instead of changing the modals (\cite{Aguilera2019}, p.12).
+    Although \cite{Aguilera2019} are not stating, that there is a complete overhaul in the way of thinking about traffic and it becomes much more spontaneos, and things like promotions in mobility apps, could lead to a change to more multimodal travel, this tactic has also been applied by many scooter providers with them offering very aggressive discounts (\cite{Schellong2019}, p.4)
+
+    For others, the case is much clearer, the smartphone is even called "the digital key to an intermodal world." (\cite{Canzler2016}, p.8) and it revolutionizes travel completely and is the driving factor in the development of intermodal travel (\cite{Canzler2016}, p.8).
+    This is explained by people being able to communicate online with their peers, meaning that the spatial component in communication gets removed (\cite{Canzler2016}, p.8).
+    \cite{Canzler2016} also speak about a general change in the way cars are seen in general, especially in the past, cars were seen as a status symbol of wealth and being able to make individual travel (\cite{Canzler2016}, p.7).
+    In the current zeitgeist and presumably more in the future, cars will be seen as a means to an end, and not as a status symbol anymore, and just as a for example through car sharing quick way to get from point A to point B (\cite{Canzler2016}, p.7).
+    This is also partly due to car sharing services not putting emphasis on owning a car individually, but to the service of quick personal transportation, this is also similar for ride hailing services, where the car does not matter nearly as much, as the car getting there within 5 minutes.
+    The car losing its value as status symbol and as \cite{Canzler2016} puts it "There is no going back." (\cite{Canzler2016}, p.10).
+
+    This intermodal traffic is especially important for cities to get people to use less cars for their commutes.
+    In a paper by \cite{Gebhardt2016}, they look at travel surveys from Berlin and Hamburg, Germany and they state that of the general population only around 17\% are travelling multimodally on a regular basis (\cite{Gebhardt2016}, p.1187).
+    Also younger people tend to travel more multimodally, the age group 20\-29 being the strongest of all and with around 34\% in Berlin and 28\% in Hamburg.
+    Also \cite{Gebhardt2016} state that the main reasons for people being multimodal is having no car available or having to arrange themselves with other members of the household (\cite{Gebhardt2016}, p.1187).
+    This speaks to how multimodality is often seen, it is sort of seen as a necessary evil, that people mostly would not have chosen if they had a car easily and readily accessible.
+    This peception needs to change if urban mobility wants to be accessible and feasible for every one, as it is simply not feasible to have single monomodal car travel for anyone, because of space constraints and congestion caused by the monomodal car approach (\cite{Gebhardt2016}).
+
+    A solution to this bad perception are ride sharing platforms by moderating very positively the incentives to move intermodal. (\cite{Aguilera2019}, p.25)
+    Mostly people who live in urban areas with good public transport options, opt to use these services, it makes travel for them cheaper having to maintain less cars or having no cars at all, because it helps them going without a car without completely changing their travel habits (\cite{Aguilera2019}, p.25).
+    This contributes to households, who use these sharing mobility platforms, having a lower car use in general compared to similar households.
 
     \subsection{The need for information systems in shared mobility}
 
-    %Paper von Boeker mentionenen wenn es darum geht, dass die FFV nutzung hoch geht, Beispiel wäre bestimmt auch Call a Bike
-
-    %Wie wurde public transit usage bisher mit ffv
-
-    \subsection{Connecting public transit usage with shared mobility and shared mobility platofrms}
-
-    Other researchers have also already tried connecting FFVS to public transit systems and have found interesting results.
-    In a paper already mentioned earlier by \cite{Boeker2020}, they show with data from the Norwegian city of Oslo, that the usage of bike rentals is mostly related to get to public transport, or shopping.
-    This connection of bikes to get to public transp
+    %Die jetzige Zeit ermöglicht durch die schnellere Entwicklung von IS die Möglichkeiten von vehicle sharing, vergleich zu früheren Papern
+    The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity.
+    This is mostly
+    Because of the spontaneous nature of shared mobility services, smartphones and information systems are especially important for the success of shared mobility and shared mobility platforms (\cite{Aguilera2019}, p.19).
+    Before it was not possible to geolocate cars in advance and reserve them, but with the rise of the smartphone it has been made much easier for drivers (\cite{Aguilera2019}, p.22).
+    It also allows much more spontaneous rentals of cars, instead of having to wait for the taxi, the driver is immediatly able to drive and immediately fill their demand, instead of it being asynchronous.
+    This is also a more efficient use of the vehicle, since it more or less directly travels to the destination instead of a taxi driver first having to get there (\cite{Aguilera2019}, p.22).
+    In addition to that, the cost goes down, because of the generally more efficient distance and having to only pay the cost of the car and the platform instead of having to pay a driver to drive to the destination (\cite{Aguilera2019}, p.22).
+    Lastly, this goes for ride hailing services instead of shared mobility services, the platforms grant more safety than otherwise through ratings and platforms like Uber making these ratings visible to both sides.
+    This leads to the driver and the passenger being safer, because there is a system to weed out people that misbehave, this is something traditional taxis are lacking (\cite{Aguilera2019}, p.23, \cite{Canzler2016}, p.10).
+    One is at the mercy of the taxi company deciding who should be allowed to drive and wo should not instead of crowdsourced information.
+    This speaks to the first 2 values information systems bring to the table for shared mobility, spontaneity and security.
 
     \subsection{Hypothesis development}
 
@@ -220,18 +284,30 @@
     The ride data is 05.11.2019-29.02.2019 with exceptions from the 06.11.2019 - 17.11.2019 and 15.01.2019 - 16.01.2019 for a total of 103 days.
     It was scraped via the API of different FFV providers, in an interval of every 5 minutes.
     Because it was scraped by reverse engineering their providers API's unfortunately there is also incomplete data for some providers.
-    The final providers whose data was used for the model are Circ(Kick Scooters), Tier (Kick Scooters), KVB (Bikes), Fordpass (Bikes) and Car2Go (Cars).
-    After the cleaning step about 500000 rides remain which are on average roughly 5000 each day.
+    The final providers whose data was used for the model are Circ (Kick Scooters), Tier (Kick Scooters), KVB (Bikes), Fordpass (Bikes) and Car2Go (Cars).
+    After the cleaning step about 500000 rides remain which are on average roughly 5000 each days.
+    The dataset consists of nearly all data points one would find helpful for my use case when looking at such a dataset.
+    It has fuel data, datetime data, location, distance as well as pricing data although the pricing data will not be used since the influences of pricing are no part of the research goal.
 
-    The public transit data is provided in the GTFS(General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\url{https://gtfs.org/}).
+    The public transit data is provided in the GTFS(General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\cite{GTFS}).
     Generally it's comprised of a database like structure that links the different entities for example stops, routes and trips together via unique IDs.
     The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 - 14.12.2019 and the other one 14.12.2019 - 12.12.2020.
     The GTFS data comprises about 5000 stops, 500 routes and 100000 trips, although most of these are irrelevant, because there is only trip data for Cologne.
+    %Tabelle wie viel gibt es und wie viel ist relevant
 
-    The service area data, is one GeoJSON file, that is a union of all the service areas for Cologne.
-    For reasons of simplicity, the trips are not evaluated against the service area of every single provider, but against this union.
+    The service area data, is two GeoJSON files, the first is a union of all the service areas for Cologne.
+    The second one is a set of the different GeoJSON coordinates for every single provider in Cologne.
+    The union GeoJSON file will be used to evaluate all of the data together and the single data will be used to split the different modes of transport (Car, Kick Scooters and Bikes), to better understand the individual dynamics of these modes.
+    Unfortunately the single GeoJSON data was not possible to get for every single provider, so some GeoJSON serviceareas for the mode of transport specific analysis had to be approximated from other similar providers.
 
     Furthermore, temperature and precipitation data is collected from the DWD (\url{https://dwd.de}), because it is a relevant factor for the usage of micromobility as shown by other research (\cite{Babar2017}, p.18 and \cite{Demircan2021}, p.9).
+    This temperature is collected hourly from a single Cologne weather station, and consists of 3 relevant datapoints: a variable saying if there has been precipitation within the hour, a variable stating how much precipitation there was in mm per m^{2} and a variable, that states the average temperature within the hour.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{./Figures/union map}
+        \caption{Figure showing a map of Cologne, where the hexes are our station hexes, the darker it is, the more trips it has had, and the red dots show the public transit stations, the outline shows the service area union}
+    \end{figure}
 
     \subsection{Model Development}
 
@@ -267,10 +343,18 @@
     On top of that, I also established another time dependent variable based around weekdays.
     It is a binary variable called if it is a weekday or not, from other research it has been shown, that which day it is, can have a big impact on FFVS demand. (\cite{Willing_2017_im}, p.79)
 
+    \subsubsection{Mathematics}
+
+    In accordance to the earlier described features, I will use an OLS regression. This is a tried an tested method of econometric analysis.
+
+    \begin{aligned}
+        num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +  \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +  \beta_{9} \times  timebucket\_00\_04\_x +  \beta_{10} \times  timebucket\_04\_08\_x +  \beta_{11} \times  timebucket\_08\_12\_x +  \beta_{12} \times  timebucket\_12\_16\_x +  \beta_{13} \times  timebucket\_16\_20\_x +  \beta_{14} \times  timebucket\_20\_24\_x\label{null:aligned}
+    \end{aligned}
+
     \subsection{Data Preparation}
 
-    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\url{https://www.python.org/}) is used for the data preparation and analysis.
-    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFSTK (\url{https://github.com/mrcagney/gtfstk}) is used to handle the data, and make the data easily usable for the analysis.
+    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\cite{Python}) is used for the data preparation and analysis.
+    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data, and make the data easily usable for the analysis.
 
     Firstly I looked at a data to get a better understanding of it.
     Some first key learnings were:
@@ -290,16 +374,22 @@
     The reason for removing and cleaning all this data is, because the predicitive value fo the model goes down significantly, because the comparison between the days is too difficult, and especially when a lot of the data comes from one provider like with lime, it really skews the model.
 
     For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
-    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data. (CIT:NEEDED)?
+    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data.
     For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
 
-    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regression.
+    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regressions.
     Firstly, all of the stations were removed that are not in the service area, because they are not relevant to the analysis.
-    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event. This generates more data, and has the advantage, that trips, that only start or end on a station hex don't have to be removed fully.
+    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event.
+    This generates more data, and has the advantage, that trips, that only start or end on a station hex do not have to be removed fully.
+    Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
+    This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
     To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed.
 
     Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
     The data is then grouped first by h3 and then by time to achieve a geospatial model.
+    Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
+
+    The final dataframe consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
 
 
     \section{Results}
@@ -359,6 +449,50 @@
         \caption{Comparison between different h3 resolutions, total of 432 stops in the service area}
         \label{tab:h3}
     \end{table}
+
+    \begin{table}
+        \centering
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Transport Mode} & \textbf{Trip} \\
+            \midrule
+            All                     & All           \\
+            All                     & Start         \\
+            All                     & End           \\
+            Cars                    & All           \\
+            Cars                    & Start         \\
+            Cars                    & End           \\
+            Bikes                   & All           \\
+            Bikes                   & Start         \\
+            Bikes                   & End           \\
+            Kick Scooters           & All           \\
+            Kick Scooters           & Start         \\
+            Kick Scooters           & End           \\
+            \bottomrule
+        \end{tabular}
+        \caption{Enumeration of all the models}
+        \label{tab:models}
+    \end{table}
+
+    \begin{table}
+        \centering
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Provider} & \textbf{Provider Servicearea used}      & \textbf{Modal Type} \\
+            \midrule
+            Car2Go            & DriveNow (Car2Go merged with them)      & Cars                \\
+            Tier              & Tier                                    & Kick Scooters       \\
+            Circ              & Tier                                    & Kick Scooters       \\
+            KVB               & Call a Bike                             & Bikes               \\
+            Fordpass          & Call a Bike (They were a joint-venture) & Bikes               \\
+            \bottomrule
+        \end{tabular}
+        \caption{Service Areas used for the single Providers in the individual models}
+        \label{tab:serviceareas}
+    \end{table}
+
+
+
 
     \clearpage
     \printbibliography[heading=bibintoc]
