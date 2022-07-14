@@ -75,7 +75,7 @@
   readstatus = {read},
 }
 
-@Article{Chen_2021,
+@Article{Chen202,
   author     = {Enhui Chen and Zhirui Ye},
   journal    = {Journal of Cleaner Production},
   title      = {Identifying the nonlinear relationship between free-floating bike sharing usage and built environment},
@@ -351,6 +351,52 @@
   month     = {mar},
   publisher = {{IEEE}},
   doi       = {10.1109/e-tems46250.2020.9111817},
+}
+
+@Article{Chen2020,
+  author    = {Zheyan Chen and Dea van Lierop and Dick Ettema},
+  journal   = {Transport Reviews},
+  title     = {Dockless bike-sharing systems: what are the implications?},
+  year      = {2020},
+  month     = {jan},
+  number    = {3},
+  pages     = {333--353},
+  volume    = {40},
+  doi       = {https://doi.org/10.1080/01441647.2019.1710306},
+  publisher = {Informa {UK} Limited},
+}
+
+@Article{Qin2018,
+  author    = {Juan Qin and Stephanie Lee and Xiangbin Yan and Yong Tan},
+  journal   = {Journal of Business Analytics},
+  title     = {Beyond solving the last mile problem: the substitution effects of bike-sharing on a ride-sharing platform},
+  year      = {2018},
+  month     = {jan},
+  number    = {1},
+  pages     = {13--28},
+  volume    = {1},
+  doi       = {10.1080/2573234x.2018.1506686},
+  publisher = {Informa {UK} Limited},
+}
+
+@Article{Laporte2018,
+  author    = {Gilbert Laporte and Fr{\'{e}}d{\'{e}}ric Meunier and Roberto Wolfler Calvo},
+  journal   = {Annals of Operations Research},
+  title     = {Shared mobility systems: an updated survey},
+  year      = {2018},
+  month     = {oct},
+  number    = {1},
+  pages     = {105--126},
+  volume    = {271},
+  doi       = {https://doi.org/10.1007/s10479-018-3076-8},
+  publisher = {Springer Science and Business Media {LLC}},
+}
+
+@Electronic{LIME2022,
+  author = {{Lime Inc.}},
+  title  = {Juicing with Lime - Lime Helpcenter},
+  url    = {https://help.li.me/hc/en-us/categories/360004847794-Juicing-With-Lime},
+  year   = {2022},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

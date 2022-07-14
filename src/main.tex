@@ -12,8 +12,8 @@
 \usepackage{pdflscape}
 \usepackage{apacite}
 \usepackage{adjustbox}
-\usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{rotating}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -55,7 +55,6 @@
 
 
 
-%! language = Latex
 \begin{document}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,28 +183,28 @@
 
     %Wo hypothesen einführen?
     In addition to this general research question the goal is also to introduce some hypotheses, that will be answered using the available data.
+    These hypotheses will be introduced in the Method & Hypotheses part.
 
 
     \section{Theoretical Background}
 
-    % Was muss sich an urban mobility ändern, näher auf Daten eingehen mit Fazit, dass sie grüner werden muss und sharing hilft
-    % Auch auf public transit an sich eingehen
-    %Auch auf die Änderung durch Shared Mobility plattformen eingehen
-
     \subsection{The Interconnections between Public Transit and Shared Mobility Usage}
 
-    Generally there are a couple of possible alternatives when it comes to shared mobility.
+    The most common connection of public transit and shared mobility is mostly stated as first and last mile travel, meaning the distance one has to overcome from the start to public transport and from public transit to the destination respecitvely (\cite{Grosshuesch2020}).
+    To understand how public transport and shared mobility are interconnected, you first have to understand shared mobility, generally there are a couple of possible alternatives when it comes to shared mobility.
     Firstly there are bikes and e scooters, which are mostly the same except for bikes being used for slightly longer trips on average (\cite{Schellong2019}, p.3).
     They are mostly used for very short trips, for last mile applications, and bikes are generally considered to be a greener option although this is a disputed question.
     \cite{Hollingsworth2019} showed using monte carlo analyses that the chance for e-scooters being more eco friendly than dockless bikes is two thirds (\cite{Hollingsworth2019}, p.8), due to the high displacement costs of dockless bikes, which goes against the general notion, that they are more sustainable.
-    But it is important to note, that eco friendliness not only consists of the co^{2} emissions but also of the amount of waste generated, which is generally more for e scooters due to their short lifespan and more advanced manufacturing processes including lithium (\cite{Hollingsworth2019}, p.4).
+    But it is important to note, that eco friendliness not only consists of the $co ^ 2$ emissions but also of the amount of waste generated, which is generally more for e scooters due to their short lifespan and more advanced manufacturing processes including lithium (\cite{Hollingsworth2019}, p.4).
     Even if it is not very clear if e scooters or dockless bikes are more sustainable, it is generally assumed, that these sharing systems are more environmentally friendly, than passenger cars (\cite{Severengiz2020}, p.6, \cite{Hollingsworth2019}, p.8).
-    Coming to the advantage that it is more environmentally friendly seen by itself, it is often coupled with tram and bus usage, which makes it even more environmentally friendly depending on the occupancy of the bus (\cite{Hollingsworth2019}, p.8).
+    Coming to the advantage that it is more environmentally friendly seen by itself, it is often coupled with tram and bus usage, which makes it even more environmentally friendly if the trip is seen as a whole, depending on the occupancy of the public transit (\cite{Hollingsworth2019}, p.8).
+    There are generally also the options of having the vehicles free floating or having stations for these vehicles, which is most often for bikes, because it alleviates some of the issues for the providers and makes their access easier depending on the distribution fo the stations.
+    But of course stations for these shared mobility systems also have a similar first and last mile issue, because some rest distance to the destination still remains most of the time (\cite{Grosshuesch2020}, p.851).
+    Some cities especially in the US, try to campaign against these free floating vehicles, but this hampers innovation and makes it more difficult to solve the first and last mile issue and ultimately harm commuters (\cite{Grosshuesch2020}, p.867).
 
-    The most common connection of public transit and shared mobility is mostly stated as first and last mile travel, meaning the distance one has to overcome from the start to public transport and from public transit to the destination respecitvely (\cite{Grosshuesch2020}).
     Furthermore, alternating investments from public transit to accomodating shared mobility, could alleviate some of the cities mobility struggles (\cite{Grosshuesch2020}, p.849).
     It due to ride hailing services relying on cars, they are not an end solution to the problem of urban transportation, but should be more used to accomodate public transit (\cite{Grosshuesch2020}, p.851).
-    Cities should focus more on making public transit better and solving the first and last mile through e scooters and bicycles
+    Cities should focus more on making public transit better and solving the first and last mile through e scooters and bicycles.
 
     In a paper by \cite{Boecker2020}, they collected data consisting of 2 years ride data and also data about the riders themselves from the Norwegian city of Oslo.
     They found, that bike rental frequencies are much higher to get to public transport and from public transport (\cite{Boecker2020}, p.398).
@@ -220,18 +219,15 @@
     This effect could also be explained, by the earlier discussed effect of displaying wealth and social status through car ownership, although this trend is going back in the western countries (\cite{Canzler2016}, p.10), as sustainability concerns rise, it seems to generally grow in China, due to Chinas big economical growth (\cite{Zhu2012}, p.317).
     To break these trends and to enhance the interconnections between public transit and shared mobility it is important, that public service providers improve their service level.
 
-    Generally
+    To recap this section: Shared mobility and public transit are very sustainable, many young people are already willing to use shared mobility in tandem with public transit, but it is important to encourage other age groups to use shared mobility more often.
+    Also older people should be encouraged to use public transit more often and leave the car as their status symbol, cities also have to support shared mobility especially the free floating kind, because it moderates positively on public transit usage.
 
-    \subsection{The development of intermodality and multimodality in the context of urban mobility}
+    \subsection{Ongoing development of intermodality and multimodality in the context of urban mobility}
+
+    % Transformation: Von Groß nach klein gehen, groß einführen und immer feiner werden mit der Zeit, am Ende kurzer Recap
 
     Urban mobility is changing with new introductions to the mobility landscape, like shared mobility platforms and ride hailing, these platforms indirectly encourage users to travel multimodally (Using multiple modes of transport in general) and intermodally (Using multiple modes of transport within a single trip).
-    \cite{Babar2017} investigated the effects of public transit on ride hailing services.
-    They researched about which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
-    To test that, they looked at 833 US cities, that introduced Uber's services and compared the public transit usage before and after.
-    They developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
-    They found out that generally, the usage of buses decreases and the usage of trains increases, but this effect also varies widely with some other factors.
-    Factors that generally lower bus usage like violent crimes, labor force, hot and snowy days lowered the effect of the introduction of ride hailing services, while the transit quality, the average trip length and gas prices positively moderated the effect ride hailing has on public transit (\cite{Babar2017}, p.28)
-    This research shows, that urban mobility is evolving and well established means of mobility like public transit get influenced by new advancements like ride hailing services, partly increasing multimodal and intermodal travel, but also partly diminishing it.
+
 
     A big factor in the recent developments of multimodal traveling has been the smartphone, it allows travelers to get new information about travel on the go and in real time (\cite{Aguilera2019}, p.9).
     This allows users to change their travel plans on the go, and with higher precision than ever before, adapting to unpredictable scenarios like traffic jams, public transit delays etc (\cite{Aguilera2019}, p.9, \cite{Ben-Elia2015}, p.19)
@@ -247,22 +243,38 @@
     This is also partly due to car sharing services not putting emphasis on owning a car individually, but to the service of quick personal transportation, this is also similar for ride hailing services, where the car does not matter nearly as much, as the car getting there within 5 minutes.
     The car losing its value as status symbol and as \cite{Canzler2016} puts it "There is no going back." (\cite{Canzler2016}, p.10).
 
-    This intermodal traffic is especially important for cities to get people to use less cars for their commutes.
+    \cite{Babar2017} investigated the effects of public transit on ride hailing services.
+    They researched about which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
+    To test that, they looked at 833 US cities, that introduced Uber's services and compared the public transit usage before and after.
+    They developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
+    They found out that generally, the usage of buses decreases and the usage of trains increases, but this effect also varies widely with some other factors.
+    Factors that generally lower bus usage like violent crimes, labor force, hot and snowy days lowered the effect of the introduction of ride hailing services, while the transit quality, the average trip length and gas prices positively moderated the effect ride hailing has on public transit (\cite{Babar2017}, p.28)
+    To add to this point, it has to be stated, that of course ride-hailing is also not the best solution to the traffic problems of most cities, but since it can lead to intermodal transport with other public transportation, and enable some people who only occasionally need a car to completely refrain from buying one (\cite{Aguilera2019}, p.25).
+    But of course ride hailing can also have the risk of people not changing their travel habits at all and thus making the problems of pollution and congestion only worse (\cite{Qin2018}).
+    Mostly people who live in urban areas with good public transport options, opt to use these services, it makes travel for them cheaper having to maintain less cars or having no cars at all, because it helps them going without a car without completely changing their travel habits (\cite{Aguilera2019}, p.25).
+    This contributes to households, who use these sharing mobility platforms, having a lower car use in general compared to similar households.
+    This research shows, that urban mobility is evolving and well established means of mobility like public transit get influenced by new advancements like ride hailing services, partly increasing multimodal and intermodal travel, but also partly diminishing it.
+
+    Furthermore, the introduction of free floating vehicle platforms can lower the number of the environmentally seen generally worse ride hailing services (\cite{Qin2018}).
+    In a study in Chengdu, China it was found out, that the general pick up rate from bus stations decreased by 5\% for distances between 1 to 2 miles, but the usage at train stations decreased from 1 to 2 miles (\cite{Qin2018}, p.23).
+    Also, the impacts of the introductions of second and third bike sharing platform were analyzed and the second still had significant impacts, but the 3rd introduction had mostly insignificant impacts (\cite{Qin2018}, p.25).
+    This could imply that this effect has an upper limit, bound by the inherent willingness to use these sharing alternatives over the generally better travel experience of ride hailing.
+
+    To understand how multimodality and intermodality develops you first have to understand how the status quo for multimodality and intermodality in urban mobility is.
     In a paper by \cite{Gebhardt2016}, they look at travel surveys from Berlin and Hamburg, Germany and they state that of the general population only around 17\% are travelling multimodally on a regular basis (\cite{Gebhardt2016}, p.1187).
     Also younger people tend to travel more multimodally, the age group 20\-29 being the strongest of all and with around 34\% in Berlin and 28\% in Hamburg.
     Also \cite{Gebhardt2016} state that the main reasons for people being multimodal is having no car available or having to arrange themselves with other members of the household (\cite{Gebhardt2016}, p.1187).
     This speaks to how multimodality is often seen, it is sort of seen as a necessary evil, that people mostly would not have chosen if they had a car easily and readily accessible.
     This peception needs to change if urban mobility wants to be accessible and feasible for every one, as it is simply not feasible to have single monomodal car travel for anyone, because of space constraints and congestion caused by the monomodal car approach (\cite{Gebhardt2016}).
 
-    A solution to this bad perception are ride sharing platforms by moderating very positively the incentives to move intermodal. (\cite{Aguilera2019}, p.25)
-    Mostly people who live in urban areas with good public transport options, opt to use these services, it makes travel for them cheaper having to maintain less cars or having no cars at all, because it helps them going without a car without completely changing their travel habits (\cite{Aguilera2019}, p.25).
-    This contributes to households, who use these sharing mobility platforms, having a lower car use in general compared to similar households.
-
     \subsection{The need for information systems in shared mobility}
 
     %Die jetzige Zeit ermöglicht durch die schnellere Entwicklung von IS die Möglichkeiten von vehicle sharing, vergleich zu früheren Papern
-    The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity.
-    This is mostly
+
+    Since their establishment, information technology has been a driver of innovation and productivity in organizations and around the world (CIT:NEEDED).
+
+    The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity, a big part of this success can be attributed to information systems (\cite{Chen2020}, p.334).
+
     Because of the spontaneous nature of shared mobility services, smartphones and information systems are especially important for the success of shared mobility and shared mobility platforms (\cite{Aguilera2019}, p.19).
     Before it was not possible to geolocate cars in advance and reserve them, but with the rise of the smartphone it has been made much easier for drivers (\cite{Aguilera2019}, p.22).
     It also allows much more spontaneous rentals of cars, instead of having to wait for the taxi, the driver is immediatly able to drive and immediately fill their demand, instead of it being asynchronous.
@@ -273,10 +285,22 @@
     One is at the mercy of the taxi company deciding who should be allowed to drive and wo should not instead of crowdsourced information.
     This speaks to the first 2 values information systems bring to the table for shared mobility, spontaneity and security.
 
+    For example the Oslo region saw a steep increase in the number of Oslo bike users, with progressing time.
+    The system exists since 2002 and in recent years it went from 950,000 trips by 29,000 users in 2015 to 2,7 Million trips by 77,000 users in 2017 (\cite{Boecker2020}, p.392).
+    The newest generation of bike sharing is the free floating kind, with 3rd, generation bike sharing, users were bound to stations, with 4th generation bike sharing stations are not necessary (\cite{Chen2020}, p.336).
+    The mobile access required for this 4th generation of bike sharing has been a catalyst of its growth (\cite{Chen2020}, p.334), because it allows users to spontaneously choose bicycles in their vicinity (\cite{Aguilera2019}, p.19).
+
+    Furthermore, IS allow to let the trips be automatically billed and monitored allowing a level of fleet control that not possible before, because too many vehicles at a given station lower the return on investment, while too few vehicles mean lost demand (\cite{Laporte2018}, p.106).
+    This also translates to free floating vehicles, but instead of stations, one has to think about the density of the vehicles.
+    Furthermore, the relatively new phenomenon of free floating scooters also builds on this spontaneity, and all of the known providers had no other options than to book vehicles via their app.
+    Also the providers make use of apps for people that have to recharge the devices or swap the batteries, to look at which scooters to pick up where and which are allowed to take for recharging (\cite{LIME2022}).
+
     \subsection{Hypothesis development}
 
 
-    \section{Method}
+    \section{Method and Hypotheses}
+
+    To answer the research question
 
     \subsection{Data Description and Collection}
 
@@ -301,13 +325,53 @@
     Unfortunately the single GeoJSON data was not possible to get for every single provider, so some GeoJSON serviceareas for the mode of transport specific analysis had to be approximated from other similar providers.
 
     Furthermore, temperature and precipitation data is collected from the DWD (\url{https://dwd.de}), because it is a relevant factor for the usage of micromobility as shown by other research (\cite{Babar2017}, p.18 and \cite{Demircan2021}, p.9).
-    This temperature is collected hourly from a single Cologne weather station, and consists of 3 relevant datapoints: a variable saying if there has been precipitation within the hour, a variable stating how much precipitation there was in mm per m^{2} and a variable, that states the average temperature within the hour.
+    This temperature is collected hourly from a single Cologne weather station, and consists of 3 relevant datapoints: a variable saying if there has been precipitation within the hour, a variable stating how much precipitation there was in mm per $ m ^ 2 $ and a variable, that states the average temperature within the hour.
 
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/union map}
         \caption{Figure showing a map of Cologne, where the hexes are our station hexes, the darker it is, the more trips it has had, and the red dots show the public transit stations, the outline shows the service area union}
     \end{figure}
+
+    \subsection{Data Preparation}
+
+    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\cite{Python}) is used for the data preparation and analysis.
+    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data, and make the data easily usable for the analysis.
+
+    Firstly I looked at a data to get a better understanding of it.
+    Some first key learnings were:
+
+    \begin{enumerate}
+        \item Some of the provided data is really inconsistent, and has missing days
+        \item GTFS supports unusual time formats like 27:13:00
+        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019 - 16.01.2019.
+    \end{enumerate}
+
+    I fixed these issues by firstly removing Lime, Bird, Driveby and Drivenow from the dataset, which is very unfortunate, because they had a lot of data points which are lost because of this, but it will make it easier to compare the other days that way.
+    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19, also their trip volume was 5 to 10 times larger than any other kick scooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
+    Bird only had datapoints in November so it made sense to remove it as well.
+    For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
+    Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties.
+
+    The reason for removing and cleaning all this data is, because the predictive value fo the model goes down significantly, because the comparison between the days is too difficult, and especially when a lot of the data comes from one provider like with lime, it really skews the model.
+
+    For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
+    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data.
+    For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
+
+    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regressions.
+    Firstly, all of the stations were removed that are not in the service area, because they are not relevant to the analysis.
+    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event.
+    This generates more data, and has the advantage, that trips, that only start or end on a station hex do not have to be removed fully.
+    Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
+    This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
+    To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed.
+
+    Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
+    The data is then grouped first by h3 and then by time to achieve a geospatial model.
+    Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
+
+    The final dataframe consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
 
     \subsection{Model Development}
 
@@ -347,49 +411,12 @@
 
     In accordance to the earlier described features, I will use an OLS regression. This is a tried an tested method of econometric analysis.
 
-    \begin{aligned}
-        num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +  \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +  \beta_{9} \times  timebucket\_00\_04\_x +  \beta_{10} \times  timebucket\_04\_08\_x +  \beta_{11} \times  timebucket\_08\_12\_x +  \beta_{12} \times  timebucket\_12\_16\_x +  \beta_{13} \times  timebucket\_16\_20\_x +  \beta_{14} \times  timebucket\_20\_24\_x\label{null:aligned}
-    \end{aligned}
-
-    \subsection{Data Preparation}
-
-    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\cite{Python}) is used for the data preparation and analysis.
-    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data, and make the data easily usable for the analysis.
-
-    Firstly I looked at a data to get a better understanding of it.
-    Some first key learnings were:
-
-    \begin{enumerate}
-        \item Some of the provided data is really inconsistent, and has missing days
-        \item GTFS supports unusual time formats like 27:13:00
-        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019 - 16.01.2019.
-    \end{enumerate}
-
-    I fixed these issues by firstly removing Lime, Bird, Driveby and Drivenow from the dataset, which is very unfortunate, because they had a lot of data points which are lost because of this, but it will make it easier to compare the other days that way.
-    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19, also their trip volume was 5 to 10 times larger than any other kick scooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
-    Bird only had datapoints in November so it made sense to remove it as well.
-    For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
-    Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties.
-
-    The reason for removing and cleaning all this data is, because the predicitive value fo the model goes down significantly, because the comparison between the days is too difficult, and especially when a lot of the data comes from one provider like with lime, it really skews the model.
-
-    For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
-    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data.
-    For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
-
-    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regressions.
-    Firstly, all of the stations were removed that are not in the service area, because they are not relevant to the analysis.
-    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event.
-    This generates more data, and has the advantage, that trips, that only start or end on a station hex do not have to be removed fully.
-    Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
-    This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
-    To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed.
-
-    Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
-    The data is then grouped first by h3 and then by time to achieve a geospatial model.
-    Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
-
-    The final dataframe consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
+    \begin{center}
+        & num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
+        & \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
+        & \beta_{9} \times  timebucket\_00\_04 +  \beta_{10} \times  timebucket\_04\_08 +  \beta_{11} \times  timebucket\_08\_12 +
+        & \beta_{12} \times  timebucket\_12\_16 +  \beta_{13} \times  timebucket\_16\_20 +  \beta_{14} \times  timebucket\_20\_24
+    \end{center}
 
 
     \section{Results}
@@ -414,7 +441,7 @@
     Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
     Naturally as other research has already shown, the demand for FFV is higher in the city centres and as Cologne only has one very clear city center, the demand tends to be the strongest there.
     For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne.
-    This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping streety and the traffic that's there because Neumarkt is a traffic center.
+    This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping street and the traffic that's there because Neumarkt is a traffic center.
 
 
     \section{Conclusion}
@@ -491,10 +518,101 @@
         \label{tab:serviceareas}
     \end{table}
 
+    \begin{table}
+        \centering
+        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+            \begin{tabular}{lllllll}
+                \toprule
+                \textbf{}                   & \textbf{bike\_both} & \textbf{bike\_end} & \textbf{bike\_start} & \textbf{cars\_both} & \textbf{cars\_end} & \textbf{cars\_start} \\
+                \midrule
+                Intercept                   & 0.0036***           & 0.0036***          & 0.0027***            & 0.0169***           & 0.0171***          & 0.0162***            \\
+                & (0.0004)            & (0.0004)           & (0.0004)             & (0.0005)            & (0.0006)           & (0.0006)             \\
+                num\_city\_train\_trips     & 0.0482***           & 0.0405***          & 0.0406***            & 0.0974***           & 0.0965***          & 0.0913***            \\
+                & (0.0008)            & (0.0007)           & (0.0008)             & (0.0012)            & (0.0013)           & (0.0013)             \\
+                num\_regional\_train\_trips & 0.0189***           & 0.0153***          & 0.0167***            & 0.0742***           & 0.0759***          & 0.0671***            \\
+                & (0.0021)            & (0.0020)           & (0.0022)             & (0.0034)            & (0.0036)           & (0.0035)             \\
+                num\_bus\_trips             & 0.0398***           & 0.0346***          & 0.0324***            & 0.0310***           & 0.0388***          & 0.0210***            \\
+                & (0.0011)            & (0.0011)           & (0.0012)             & (0.0019)            & (0.0020)           & (0.0020)             \\
+                num\_routes                 & -0.0167***          & -0.0155***         & -0.0124***           & -0.0593***          & -0.0736***         & -0.0408***           \\
+                & (0.0022)            & (0.0022)           & (0.0023)             & (0.0035)            & (0.0037)           & (0.0036)             \\
+                is\_weekday                 & -0.0015***          & -0.0010***         & -0.0016***           & -0.0074***          & -0.0072***         & -0.0070***           \\
+                & (0.0002)            & (0.0002)           & (0.0002)             & (0.0003)            & (0.0003)           & (0.0003)             \\
+                precip                      & -0.0014***          & -0.0012***         & -0.0011***           & 0.0016***           & 0.0014***          & 0.0016***            \\
+                & (0.0002)            & (0.0002)           & (0.0002)             & (0.0003)            & (0.0003)           & (0.0003)             \\
+                sum\_precip\_amount         & -0.0079***          & -0.0064***         & -0.0069***           & 0.0040***           & 0.0045***          & 0.0032***            \\
+                & (0.0007)            & (0.0007)           & (0.0007)             & (0.0012)            & (0.0012)           & (0.0012)             \\
+                mean\_temp                  & 0.0059***           & 0.0048***          & 0.0052***            & 0.0015*             & 0.0018**           & 0.0011               \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0008)            & (0.0009)           & (0.0009)             \\
+                timebucket\_00\_04          & -0.0052***          & -0.0050***         & -0.0040***           & -0.0128***          & -0.0123***         & -0.0131***           \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0008)           & (0.0007)             \\
+                timebucket\_04\_08          & -0.0093***          & -0.0085***         & -0.0075***           & -0.0173***          & -0.0170***         & -0.0171***           \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
+                timebucket\_08\_12          & -0.0077***          & -0.0076***         & -0.0054***           & -0.0008             & -0.0022***         & -0.0001              \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
+                timebucket\_12\_16          & 0.0004              & -0.0008*           & 0.0013***            & 0.0288***           & 0.0256***          & 0.0291***            \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0008)           & (0.0008)             \\
+                timebucket\_16\_20          & 0.0052***           & 0.0037***          & 0.0049***            & 0.0408***           & 0.0412***          & 0.0368***            \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
+                timebucket\_20\_24          & 0.0029***           & 0.0022***          & 0.0024***            & 0.0189***           & 0.0214***          & 0.0144***            \\
+                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
+                R-squared                   & 0.0877              & 0.0666             & 0.0614               & 0.1827              & 0.1629             & 0.1564               \\
+                R-squared Adj.              & 0.0876              & 0.0665             & 0.0613               & 0.1826              & 0.1628             & 0.1563               \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{}
+        \label{tab:Regression Summary for Bikes and Cars}
+    \end{table}
+
+    \begin{table}
+        \centering
+        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+            \begin{tabular}{lllllll}
+                \toprule
+                \textbf{}                   & \textbf{scooters\_both} & \textbf{scooters\_end} & \textbf{scooters\_start} & \textbf{union\_both} & \textbf{union\_end} & \textbf{union\_start} \\
+                \midrule
+                Intercept                   & 0.0073***               & 0.0079***              & 0.0074***                & 0.0073***            & 0.0074***           & 0.0076***             \\
+                & (0.0010)                & (0.0011)               & (0.0010)                 & (0.0003)             & (0.0003)            & (0.0003)              \\
+                num\_city\_train\_trips     & 0.0857***               & 0.0874***              & 0.0841***                & 0.1051***            & 0.1011***           & 0.1095***             \\
+                & (0.0018)                & (0.0020)               & (0.0018)                 & (0.0007)             & (0.0007)            & (0.0008)              \\
+                num\_regional\_train\_trips & -0.0102**               & -0.0064                & -0.0137***               & 0.0748***            & 0.0720***           & 0.0778***             \\
+                & (0.0045)                & (0.0050)               & (0.0046)                 & (0.0019)             & (0.0020)            & (0.0021)              \\
+                num\_bus\_trips             & 0.0142***               & 0.0138***              & 0.0146***                & 0.0427***            & 0.0456***           & 0.0396***             \\
+                & (0.0021)                & (0.0023)               & (0.0022)                 & (0.0011)             & (0.0011)            & (0.0012)              \\
+                num\_routes                 & 0.0088*                 & 0.0039                 & 0.0132**                 & -0.0369***           & -0.0435***          & -0.0296***            \\
+                & (0.0051)                & (0.0056)               & (0.0052)                 & (0.0020)             & (0.0020)            & (0.0022)              \\
+                is\_weekday                 & -0.0064***              & -0.0066***             & -0.0062***               & -0.0050***           & -0.0048***          & -0.0052***            \\
+                & (0.0006)                & (0.0007)               & (0.0006)                 & (0.0002)             & (0.0002)            & (0.0002)              \\
+                precip                      & -0.0032***              & -0.0034***             & -0.0030***               & -0.0011***           & -0.0011***          & -0.0011***            \\
+                & (0.0006)                & (0.0006)               & (0.0006)                 & (0.0002)             & (0.0002)            & (0.0002)              \\
+                sum\_precip\_amount         & -0.0110***              & -0.0109***             & -0.0112***               & -0.0062***           & -0.0057***          & -0.0067***            \\
+                & (0.0023)                & (0.0025)               & (0.0023)                 & (0.0006)             & (0.0007)            & (0.0007)              \\
+                mean\_temp                  & 0.0077***               & 0.0082***              & 0.0072***                & 0.0041***            & 0.0040***           & 0.0042***             \\
+                & (0.0017)                & (0.0019)               & (0.0017)                 & (0.0005)             & (0.0005)            & (0.0005)              \\
+                timebucket\_00\_04          & -0.0110***              & -0.0112***             & -0.0114***               & -0.0064***           & -0.0060***          & -0.0072***            \\
+                & (0.0014)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0005)              \\
+                timebucket\_04\_08          & -0.0172***              & -0.0174***             & -0.0176***               & -0.0122***           & -0.0117***          & -0.0131***            \\
+                & (0.0013)                & (0.0014)               & (0.0013)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
+                timebucket\_08\_12          & -0.0065***              & -0.0064***             & -0.0072***               & -0.0061***           & -0.0064***          & -0.0061***            \\
+                & (0.0013)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
+                timebucket\_12\_16          & 0.0124***               & 0.0133***              & 0.0109***                & 0.0095***            & 0.0084***           & 0.0104***             \\
+                & (0.0014)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0005)              \\
+                timebucket\_16\_20          & 0.0134***               & 0.0149***              & 0.0115***                & 0.0136***            & 0.0137***           & 0.0132***             \\
+                & (0.0013)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
+                timebucket\_20\_24          & 0.0131***               & 0.0144***              & 0.0114***                & 0.0083***            & 0.0089***           & 0.0072***             \\
+                & (0.0013)                & (0.0014)               & (0.0013)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
+                R-squared                   & 0.1967                  & 0.1769                 & 0.1846                   & 0.2400               & 0.2224              & 0.2227                \\
+                R-squared Adj.              & 0.1964                  & 0.1766                 & 0.1843                   & 0.2399               & 0.2223              & 0.2227                \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{}
+        \label{tab:Regression Summary for Scooters and Rest}
+    \end{table}
+
+    \pagebreak
 
 
-
-    \clearpage
     \printbibliography[heading=bibintoc]
 
 \end{document}
