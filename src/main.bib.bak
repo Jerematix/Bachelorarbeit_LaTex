@@ -392,10 +392,11 @@
   publisher = {Springer Science and Business Media {LLC}},
 }
 
-@Article{,
+@Electronic{LIME2022,
   author = {{Lime Inc.}},
   title  = {Juicing with Lime - Lime Helpcenter},
   url    = {https://help.li.me/hc/en-us/categories/360004847794-Juicing-With-Lime},
+  year   = {2022},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

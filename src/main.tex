@@ -12,6 +12,7 @@
 \usepackage{pdflscape}
 \usepackage{apacite}
 \usepackage{adjustbox}
+\usepackage{float}
 \usepackage{hyperref}
 \usepackage{rotating}
 \hypersetup{
@@ -144,35 +145,45 @@
 
     Sustainability concerns are getting much more important in today's times as effects like climate change and pollution are advancing and risking of making the earth an uninhabitable space.
     According to the \cite{EEA2021} the transportation sector is one of the biggest contributor to greenhouse gas emissions and thus climate change.
-    Pollution in cities is a major factor in making cities uninhabitable (CIT:NEEDED)
-    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (\cite{EEA2021})
-    To solve these challenges that have to be faced, society has to look, at new, alternative ways for transportation
-    Public transit is an important factor in urban mobility.
-    It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked.
-    One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations, that delay transportation that would have otherwise happened.
-    If one wants to travel from point A to point B, they have to wait for the public transit to arrive.
+    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (\cite{EEA2021}).
+    The rise of the car in many regions has made the cities more uninhabitable through pollution and transit worse due to congestion (\cite{Fan2019}, p.1).
 
-    Another option is to use a shared mobility system, which is a platform that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
-    These systems will be called free floating vehicles (FFVs) in the following text.
+    To solve these challenges that have to be faced, society has to look, at alternative ways to car centric transportation.
+    This means encouraging inhabitants of cities to go multimodal (use multiple types of transport in general) and intermodal (use multiple types of transport in one trip).
+    One way to encourage intermodality, is encouraging public transit, since it is one alternative, which has already been established for a while.
+    It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked (\cite{Fan2019}).
+    One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations, that delay transportation that would have otherwise happened.
+    If one wants to travel from point A to point B, they have to wait for the public transit to arrive, and thus increase their commute time, without a benefit for themselves.
+    The second major shortcoming is that, there is the first and last mile problem, riders of public transit have to pass the distance from their point to public transit (access) and from the public transit to their destination (egress) (\cite{Boecker2020}, p.390).
+    Another major shortcoming is, that the service level is perceived to be lower, due to the riders not having their own personal space, but that they are travelling together with other riders in a single vehicle (\cite{Fan2019}, p.12).
+    These problems are, that is an extensive issues for public transit, and public transit providers have to work on to improve  (\cite{Fan2019}, p.1-2).
+
+    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform which is enabled by IT (\cite{Puschmann2016}), that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
-    This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedule.
-    Shared mobility has many modes of transportation, some of them are: bike, car, kick scooter, and scooter.
-    Though there has been research linking public transit to shared mobility, there is still a lot of research missing, most of it is focused on the first and last mile of public transit.
-    There has been no concurrent research on the effects of public transit schedules on shared mobility usage.
-    This research could help public transit providers to improve their schedules, and thus improve efficiency.
+    Typically these services operate within a confined service area, that the user has to start and end in, these service areas are mostly confined to the densest areas of the city.
+    Altough there are these service area models, for bikes there are also older, dock based models, that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
+    This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedules or going long distances by foot.
+
+    Shared mobility has a couple different possible modes of transportation, some of them are: bike, car, kick scooter, and scooters.
+    Though there has been research linking public transit to shared mobility (e.g \cite{Guo2020}, \cite{Lin2019}, \cite{Grosshuesch2020}, \cite{Fan2019}), there is still a lot of research missing, most of it is focused on the first and last mile of public transit.
+    On top of that, most of this research is international, mostly focused on China and the US and not about the German transportation systems.
+    Germany is known for regions like the Rheinland, or Ruhrgebiet, where there is high density population and with very much economic power, because these regions are so dense, intercity/regional transit is also something that has to be looked at.
+    Added to that, there has been not much research on the effects of public transit schedules, meaning the density of public transit on shared mobility usage.
+    This research could help public transit providers to better understand the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
     Furthermore, it could help shared mobility providers to learn more about the interconnection of public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
 
-    \subsubsection{Research Objective}
+    In this research I proceed as follows:
+    I begin by reviewing prior literature on the interconnections of shared mobility and public transit, then I go into detail about the ongoing development of intermodality and multimodality in the context of urban mobility and I finish the literature review by explaining the importance of information systems for shared mobility.
+    I then set up further hypotheses that break down the main research question, look at the empirical data and set up a model to validate these hypotheses.
+    Lastly, I analyze the empirical results and conclude by discussing managerial implications, research implications, limitations, and contributions of my research.
 
-    The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a less frequent public transit schedule leads to a higher usage of shared mobility.
-    To evaluate that, I got historical data from the public transit schedules and shared mobility usage.
-    The research question could be phrased as "Will a difference in public transit schedules lead to an incerease/decerease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?".
-    To answer the research question and the hypotheses a model has to be developed.
-    I also have to note that I will develop a total of 12 models all following the following structure of dependent and independent variables.
-    Where they differ is by examining different modes of transport, there are 3 in total: car, kick scooter and bike and of course putting all together.
-    Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops seperately and in one model looking at them together.
-    See table \ref{tab:models} to get an overview of the 12 models we will have a look at in the following text.
+    \subsection{Research Objective}
+
+    The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a more or less frequent public transit schedule leads to a higher usage of shared mobility.
+    To evaluate that, I got historical data from the public transit schedules and shared mobility usage from months in 2019-2020.
+    The research question could be phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?".
     To reach the to answer the question, the research will be divided it in the following substeps:
+
     \begin{enumerate}
         \item In addition to the provided data from the chair, search for more data, that helps to answer the question.
         \item Get the data in shape to use for analysis.
@@ -181,9 +192,13 @@
         \item Test the models and see if it can answer the research question and compare the models to one another
     \end{enumerate}
 
-    %Wo hypothesen einführen?
-    In addition to this general research question the goal is also to introduce some hypotheses, that will be answered using the available data.
-    These hypotheses will be introduced in the Method & Hypotheses part.
+    To answer the research question according to the established substeps and the hypotheses models have to be developed.
+    I developed a total of 12 models all following the following structure of dependent and independent variables.
+    Where they differ is by examining different modes of transport, there are 3 in total: car, kick scooter and bike and of course putting all together.
+    Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops seperately and in one model looking at them together.
+    See table \ref{tab:models} to get an overview of the 12 models we will have a look at in the following text.
+
+    With these substeps I will be able to answer the initial research question.
 
 
     \section{Theoretical Background}
@@ -227,7 +242,6 @@
     % Transformation: Von Groß nach klein gehen, groß einführen und immer feiner werden mit der Zeit, am Ende kurzer Recap
 
     Urban mobility is changing with new introductions to the mobility landscape, like shared mobility platforms and ride hailing, these platforms indirectly encourage users to travel multimodally (Using multiple modes of transport in general) and intermodally (Using multiple modes of transport within a single trip).
-
 
     A big factor in the recent developments of multimodal traveling has been the smartphone, it allows travelers to get new information about travel on the go and in real time (\cite{Aguilera2019}, p.9).
     This allows users to change their travel plans on the go, and with higher precision than ever before, adapting to unpredictable scenarios like traffic jams, public transit delays etc (\cite{Aguilera2019}, p.9, \cite{Ben-Elia2015}, p.19)
@@ -273,6 +287,7 @@
 
     Since their establishment, information technology has been a driver of innovation and productivity in organizations and around the world (CIT:NEEDED).
 
+
     The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity, a big part of this success can be attributed to information systems (\cite{Chen2020}, p.334).
 
     Because of the spontaneous nature of shared mobility services, smartphones and information systems are especially important for the success of shared mobility and shared mobility platforms (\cite{Aguilera2019}, p.19).
@@ -295,12 +310,12 @@
     Furthermore, the relatively new phenomenon of free floating scooters also builds on this spontaneity, and all of the known providers had no other options than to book vehicles via their app.
     Also the providers make use of apps for people that have to recharge the devices or swap the batteries, to look at which scooters to pick up where and which are allowed to take for recharging (\cite{LIME2022}).
 
-    \subsection{Hypothesis development}
+    \subsection{Public Transit Schedules}
 
 
     \section{Method and Hypotheses}
 
-    To answer the research question
+    To answer the research question more easily, it makes sense to subdivide the
 
     \subsection{Data Description and Collection}
 
@@ -309,8 +324,8 @@
     It was scraped via the API of different FFV providers, in an interval of every 5 minutes.
     Because it was scraped by reverse engineering their providers API's unfortunately there is also incomplete data for some providers.
     The final providers whose data was used for the model are Circ (Kick Scooters), Tier (Kick Scooters), KVB (Bikes), Fordpass (Bikes) and Car2Go (Cars).
-    After the cleaning step about 500000 rides remain which are on average roughly 5000 each days.
-    The dataset consists of nearly all data points one would find helpful for my use case when looking at such a dataset.
+    After the cleaning step about 500000 rides remain which are on average roughly 5000 on each day.
+    The data set consists of nearly all data points one would find helpful for my use case when looking at such a dataset.
     It has fuel data, datetime data, location, distance as well as pricing data although the pricing data will not be used since the influences of pricing are no part of the research goal.
 
     The public transit data is provided in the GTFS(General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\cite{GTFS}).
@@ -330,7 +345,8 @@
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/union map}
-        \caption{Figure showing a map of Cologne, where the hexes are our station hexes, the darker it is, the more trips it has had, and the red dots show the public transit stations, the outline shows the service area union}
+        \caption{Map of Cologne showing micromobility servicearea with usage of micromobility and stations} \newline
+        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
     \end{figure}
 
     \subsection{Data Preparation}
@@ -338,12 +354,11 @@
     To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\cite{Python}) is used for the data preparation and analysis.
     Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data, and make the data easily usable for the analysis.
 
-    Firstly I looked at a data to get a better understanding of it.
-    Some first key learnings were:
+    Firstly I looked at a data to get a better understanding of it, some first key oddities were:
 
     \begin{enumerate}
-        \item Some of the provided data is really inconsistent, and has missing days
-        \item GTFS supports unusual time formats like 27:13:00
+        \item Some of the provided shared mobility data is really inconsistent, and has missing days for some providers
+        \item GTFS supports unusual time formats like 27:13:00, that als can't be parsed with the python date library (\cite{Python}).
         \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many way to long "skewed" trips, also there was an outage between the 15.01.2019 - 16.01.2019.
     \end{enumerate}
 
@@ -353,25 +368,25 @@
     For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
     Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties.
 
-    The reason for removing and cleaning all this data is, because the predictive value fo the model goes down significantly, because the comparison between the days is too difficult, and especially when a lot of the data comes from one provider like with lime, it really skews the model.
-
     For the GTFS problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so the numbers are accurate.
-    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data.
-    For the last problem, the fix was used to remove all trips that are longer than 24 hours, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not.
+    The problem stems from the KVB counting their days from 03am to 03am the following day, this then also translates to the GTFS data, meaning that service days are not equal to normal days.
+    For the last problem, all trips that are longer than 24 hours are removed, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip, which it presumably was not, because the scraping relies on matching the IDs of the vehicles every 5 minutes, if the scraping halts, the data gets very unreliable.
 
-    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the regressions.
-    Firstly, all of the stations were removed that are not in the service area, because they are not relevant to the analysis.
-    I also changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as a start and a stop event.
+    Furthemore, I changed the way to look at the trips, instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip 2 seperate things: a start and a stop event.
     This generates more data, and has the advantage, that trips, that only start or end on a station hex do not have to be removed fully.
     Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
     This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
-    To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed.
 
-    Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
-    The data is then grouped first by h3 and then by time to achieve a geospatial model.
+    After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the 12 regressions.
+    Firstly, I removed further errors like round trips, or extremely short trips by removing all trips that had the same start and stop fuel for kick scooters since they have to be extremely short then.
+    Then, all of the stations and start stop events were removed that are not in the service area, because they are not relevant to the analysis, this was done by calculating a point and checking if it is on the respective modes service area or in the union service area when looking at all modes.
+    To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed, because it is difficult to pair them with a station that way.
     Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
 
-    The final dataframe consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
+    Lastly, the stop stats mentioned above are calculated for every stop and then the mean of those values per h3 is taken, this is to provide for the overlap of the close stations in a single hex, where it is very difficult to say which station the trip belongs to, so it is averaged by h3.
+    The data is then grouped first by h3 and then by time to achieve a geospatial model.
+
+    The final, polished data, consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
 
     \subsection{Model Development}
 
@@ -409,7 +424,8 @@
 
     \subsubsection{Mathematics}
 
-    In accordance to the earlier described features, I will use an OLS regression. This is a tried an tested method of econometric analysis.
+    in accordance to the earlier described features, I will use an OLS regression.
+    This is a tried an tested method of econometric analysis.
 
     \begin{center}
         & num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
@@ -419,7 +435,36 @@
     \end{center}
 
 
+    This is the formula for the linear model, by letting the model train, it will predict these $ \beta_{i} $ and with the values of $ \beta_{i} $ predict the dependent variable, for every row.
+
     \section{Results}
+
+    \begin{table}
+        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+            \begin{tabular}{lcccccc}
+                & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]} \\
+                \midrule
+                \textbf{Intercept}                   & 0.0073***     & 0.000            & 23.314     & 0.000               & 0.007           & 0.008           \\
+                \textbf{num\_city\_train\_trips}     & 0.1051***     & 0.001            & 150.323    & 0.000               & 0.104           & 0.106           \\
+                \textbf{num\_regional\_train\_trips} & 0.0748***     & 0.002            & 38.442     & 0.000               & 0.071           & 0.079           \\
+                \textbf{num\_bus\_trips}             & 0.0427***     & 0.001            & 39.023     & 0.000               & 0.041           & 0.045           \\
+                \textbf{num\_routes}                 & -0.0369***    & 0.002            & -18.433    & 0.000               & -0.041          & -0.033          \\
+                \textbf{is\_weekday}                 & -0.0050***    & 0.000            & -29.853    & 0.000               & -0.005          & -0.005          \\
+                \textbf{precip}                      & -0.0011***    & 0.000            & -6.625     & 0.000               & -0.001          & -0.001          \\
+                \textbf{sum\_precip\_amount}         & -0.0062***    & 0.001            & -9.507     & 0.000               & -0.007          & -0.005          \\
+                \textbf{mean\_temp}                  & 0.0041***     & 0.000            & 8.498      & 0.000               & 0.003           & 0.005           \\
+                \textbf{timebucket\_00\_04\_x}       & -0.0064***    & 0.000            & -15.768    & 0.000               & -0.007          & -0.006          \\
+                \textbf{timebucket\_04\_08\_x}       & -0.0122***    & 0.000            & -31.005    & 0.000               & -0.013          & -0.011          \\
+                \textbf{timebucket\_08\_12\_x}       & -0.0061***    & 0.000            & -15.290    & 0.000               & -0.007          & -0.005          \\
+                \textbf{timebucket\_12\_16\_x}       & 0.0095***     & 0.000            & 23.113     & 0.000               & 0.009           & 0.010           \\
+                \textbf{timebucket\_16\_20\_x}       & 0.0136***     & 0.000            & 33.798     & 0.000               & 0.013           & 0.014           \\
+                \textbf{timebucket\_20\_24\_x}       & 0.0083***     & 0.000            & 20.889     & 0.000               & 0.008           & 0.009           \\
+                \bottomrule
+                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
+            \end{tabular}
+        \end{adjustbox}
+        \caption{}
+    \end{table}
 
     \subsection{Model Evaluation}
 
@@ -448,18 +493,20 @@
 
     \pagebreak
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %APPENDICES
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%APPENDICES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
     \appendix
     \renewcommand*{\thesection}{\Alph{section}}\textbf{}
 
-    % APPENDIX A
-    Appendix
 
-    \begin{table}
+    \section{Appendix}
+% APPENDIX A
+
+    \begin{table}[H]
         \centering
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{lllrrl}
@@ -477,7 +524,7 @@
         \label{tab:h3}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \centering
         \begin{tabular}{ll}
             \toprule
@@ -501,7 +548,7 @@
         \label{tab:models}
     \end{table}
 
-    \begin{table}
+    \begin{table}[H]
         \centering
         \begin{tabular}{lll}
             \toprule
@@ -558,10 +605,11 @@
                 R-squared                   & 0.0877              & 0.0666             & 0.0614               & 0.1827              & 0.1629             & 0.1564               \\
                 R-squared Adj.              & 0.0876              & 0.0665             & 0.0613               & 0.1826              & 0.1628             & 0.1563               \\
                 \bottomrule
+                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
             \end{tabular}
         \end{adjustbox}
-        \caption{}
-        \label{tab:Regression Summary for Bikes and Cars}
+        \caption{Regression Summary for Bikes and Cars}
+        \label{tab:r1}
     \end{table}
 
     \begin{table}
@@ -604,14 +652,34 @@
                 R-squared                   & 0.1967                  & 0.1769                 & 0.1846                   & 0.2400               & 0.2224              & 0.2227                \\
                 R-squared Adj.              & 0.1964                  & 0.1766                 & 0.1843                   & 0.2399               & 0.2223              & 0.2227                \\
                 \bottomrule
+                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
             \end{tabular}
         \end{adjustbox}
-        \caption{}
-        \label{tab:Regression Summary for Scooters and Rest}
+        \caption{Regression Summary for Scooters and Rest}
+        \label{tab:reg2}
     \end{table}
 
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{./Figures/bikes map}
+        \caption{Map of Cologne showing bike servicearea with usage of bikes and stations} \newline
+        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+    \end{figure}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{./Figures/car map}
+        \caption{Map of Cologne showing car servicearea with usage of car and stations} \newline
+        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+    \end{figure}
     \pagebreak
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/kick scooter map}
+        \caption{Map of Cologne showing kick scooter servicearea with usage of kick scooters and stations} \newline
+        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+    \end{figure}
 
+    \pagebreak
 
     \printbibliography[heading=bibintoc]
 
