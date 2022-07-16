@@ -158,7 +158,7 @@
     Another major shortcoming is, that the service level is perceived to be lower, due to the riders not having their own personal space, but that they are travelling together with other riders in a single vehicle (\cite{Fan2019}, p.12).
     These problems are, that is an extensive issues for public transit, and public transit providers have to work on to improve  (\cite{Fan2019}, p.1-2).
 
-    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform which is enabled by IT (\cite{Puschmann2016}), that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
+    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform which is enabled by IT (\cite{Puschmann2016}, p.93), that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
     Typically these services operate within a confined service area, that the user has to start and end in, these service areas are mostly confined to the densest areas of the city.
     Altough there are these service area models, for bikes there are also older, dock based models, that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
@@ -216,6 +216,10 @@
     There are generally also the options of having the vehicles free floating or having stations for these vehicles, which is most often for bikes, because it alleviates some of the issues for the providers and makes their access easier depending on the distribution fo the stations.
     But of course stations for these shared mobility systems also have a similar first and last mile issue, because some rest distance to the destination still remains most of the time (\cite{Grosshuesch2020}, p.851).
     Some cities especially in the US, try to campaign against these free floating vehicles, but this hampers innovation and makes it more difficult to solve the first and last mile issue and ultimately harm commuters (\cite{Grosshuesch2020}, p.867).
+    One could also say now, that cities can fix the problem of too much traffic just by building more roads, unfortunately that is something which would only intuitively help (\cite{Lee1999}, p.68).
+    This is because more road building leads to the phenomenon of induced demand, it can be quickly described when looking at travel as being a cost function, that's mostly dependent on time, if by more road building the cost to travel gets cheaper, more people will drive (\cite{Lee1999}).
+    This goes on as long as there is an equilibrium again, where the mean traffic makes the cost so expensive, that switching to the car makes no sense anymore, but by then a larger share of the population uses cars to get around.
+    But this is excactly not, what cities should encourage, but there is also research that leads to believe, that induced demand can also work for public rail networks, so cities should focusing on encouraging this travel instead of building roads (\cite{Givoni2013}, p.737).
 
     Furthermore, alternating investments from public transit to accomodating shared mobility, could alleviate some of the cities mobility struggles (\cite{Grosshuesch2020}, p.849).
     It due to ride hailing services relying on cars, they are not an end solution to the problem of urban transportation, but should be more used to accomodate public transit (\cite{Grosshuesch2020}, p.851).
@@ -257,7 +261,7 @@
     This is also partly due to car sharing services not putting emphasis on owning a car individually, but to the service of quick personal transportation, this is also similar for ride hailing services, where the car does not matter nearly as much, as the car getting there within 5 minutes.
     The car losing its value as status symbol and as \cite{Canzler2016} puts it "There is no going back." (\cite{Canzler2016}, p.10).
 
-    \cite{Babar2017} investigated the effects of public transit on ride hailing services.
+    \ \cite{Babar2017} investigated the effects of public transit on ride hailing services.
     They researched about which factors can increase or decrease the usage of ride hailing services like Uber and Lyft.
     To test that, they looked at 833 US cities, that introduced Uber's services and compared the public transit usage before and after.
     They developed a model influenced by the following factors: "Size of the local population, rates of violent crime, weather, gas prices, transit riders' average trip distance and the overall quality of public transit options." (\cite{Babar2017}, p.1).
@@ -286,7 +290,9 @@
     %Die jetzige Zeit ermöglicht durch die schnellere Entwicklung von IS die Möglichkeiten von vehicle sharing, vergleich zu früheren Papern
 
     Since their establishment, information technology has been a driver of innovation and productivity in organizations and around the world (CIT:NEEDED).
-
+    Also, scientists are more and more interested in how to use information systems to create a greener, more sustainable future and tackle the challenged of climate change (\cite{Brocke2013}, p.510).
+    It is also important to note, that Green IS is not only about things like energy efficiency and equipment utilization of IT, but they also contribute to designing systems, that change processes to be more efficient lean and sustainable (\cite{Brocke2013}, p.510).
+    A part of this are systems that further enable the sharing economy, which would not have been possible without information systems (\cite{Puschmann2016}, p.93)
 
     The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity, a big part of this success can be attributed to information systems (\cite{Chen2020}, p.334).
 
@@ -312,10 +318,54 @@
 
     \subsection{Public Transit Schedules}
 
+    The efficiency of public transit systems is a very crucial factor, when it comes to the cost effective usage of the resources, the provider has available.
+    Cost effectiveness is very important for providers since public transit needs to be available for every one, as public transit has the social mission to keep the population mobile (\cite{Desaulniers2007}, p.69).
+    As the fares have to be low, public transit providers have to plan very carefully with their available resources, meaning their fleet, maintenance facilities, bus and train depots and staff (\cite{Desaulniers2007}, p.69).
+    These efficiency factors are all controlled by one major thing: The planning of the public transit, being strategic, tactical and operational, but also long term decisions like the design of routes and networks (\cite{Desaulniers2007}, p.69).
+
+    One of these efficiency factors is the one with most interest for us: The operational planning, because it includes vehicle scheduling.
+    Vehicle scheduling is arguably one of the most important of these planning dimensions, as it is the interface between the provider and the passenger.
+    To be able to schedule vehicles, one first has to know, how many passengers will be using which route at which time (\cite{Desaulniers2007}, p.78).
+    To plan that, the passenger gets seen as a node in a network, that wants to travel from one place to another for the lowest cost, generally meaning time (\cite{Desaulniers2007}, p.78).
+    The solution of the problem also depends on how one calculates the cost function, generally cost means saving time, but also other factors can come into play, like how to handle overcrowding or how to handle two potential paths, that have the same time cost (\cite{Desaulniers2007}, p.79).
+    Older approaches just viewed this as a simple shortest path problems, and solved it that way, more modern and accurate are stochastic approaches, since times of passenger and train/bus arrivals can vary (\cite{Desaulniers2007}, p.79).
+    Although the stochastic approach makes more sense, it is a problem that gets difficult very quickly because subpaths do not necessarily concatenate, so one has to evaluate an exponential number of subtrips (\cite{Desaulniers2007}, p.79).
+    A good model to put this to action is a multi agent based one, where from population data, learning humans with different preferences get simulated with them learning daily (\cite{Wahba2005}, p.102).
+    However, of course the accuracy of the model is highly determinant of having accurate population data, which is of course difficult, but it shows a way how passenger demand can be simulated (\cite{Wahba2005}, p.102).
+
+    As soon as providers have a good simulation of the passenger demand, they can try to put this demand in to public transit plans.
+    The providers have 2 other major variables to look at, their number of vehicles and the number of
+    %Deadhead trips
+
+    %Light rail vs bus etc.
+
 
     \section{Method and Hypotheses}
 
-    To answer the research question more easily, it makes sense to subdivide the
+    To answer the research question more easily, it makes sense to subdivide the research question using some hypotheses that make sense from the background we have.
+
+    The first hypothesis is about cars, I have already shown, that car trips tend to be longer in the sharing economy.
+    Because of that, car users generally have a bigger range, thus I would argue, that car users are probably more influenced by the schedules of regional trains, since they have a bigger range aswell, and cars less frequently need the connections by bus and light rail if they want to go far.
+
+    \begin{center}
+        Hypothesis 1 (H1): Cars are influenced more by regional train schedules, than other modes of transport.
+    \end{center}
+
+    Making the hypothesis the other way around, also makes sense, due to the generally shorter trips, if users are using their shared mobility ride to connect to public transit, it would make more sense if they were to use it for light rail and bus access, but due to light rail generally being fast and having a higher range I would theorize, that bike and scooter trips are used more frequently to access light rail stations.
+    This makes Hypothesis 2:
+
+    \begin{center}
+        Hypothesis 2 (H2): Bikes and Scooter are influenced more by higher0
+    \end{center}
+
+    Now coming to access and egress: Due to looking at free floating vehicles, that are not station bound, the general likelyhood of a vehicle being in the near vicinity of a station, is not guaranteed, but because access trip drivers already have the vehicle, they should be more likely to park directly there.
+    So I would theorize that these access trips are more likely to end near a station, than the egress trips, since the vehicle does not have to be aquired anymore, so it is easier to map the vehicle to a station, from this emerges hypothesis 3.
+
+    \begin{center}
+        Hypothesis 3 (H3): Public Transit schedules moderate access trips more strongly than egress trips.
+    \end{center}
+
+    In the following text, I will then describe the data, and the model to answer these hypotheses and the general question.
 
     \subsection{Data Description and Collection}
 
@@ -330,7 +380,7 @@
 
     The public transit data is provided in the GTFS(General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\cite{GTFS}).
     Generally it's comprised of a database like structure that links the different entities for example stops, routes and trips together via unique IDs.
-    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 - 14.12.2019 and the other one 14.12.2019 - 12.12.2020.
+    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 \- 14.12.2019 and the other one 14.12.2019 \- 12.12.2020.
     The GTFS data comprises about 5000 stops, 500 routes and 100000 trips, although most of these are irrelevant, because there is only trip data for Cologne.
     %Tabelle wie viel gibt es und wie viel ist relevant
 
@@ -387,6 +437,8 @@
     The data is then grouped first by h3 and then by time to achieve a geospatial model.
 
     The final, polished data, consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
+    Altough these are the final datapoints, the results are standardized according to the MinMax Scaling principle, meaning all of the values get divided by the highest value, so that they reach from 0 to 1 and are more comparable and less dependant on the used units.
+    This makes the resulting model much easier to compare to other models, since they can have other maxima in their number of FFV trips or public transit trips for example.
 
     \subsection{Model Development}
 
@@ -425,21 +477,76 @@
     \subsubsection{Mathematics}
 
     in accordance to the earlier described features, I will use an OLS regression.
-    This is a tried an tested method of econometric analysis.
-
-    \begin{center}
-        & num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
-        & \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
-        & \beta_{9} \times  timebucket\_00\_04 +  \beta_{10} \times  timebucket\_04\_08 +  \beta_{11} \times  timebucket\_08\_12 +
-        & \beta_{12} \times  timebucket\_12\_16 +  \beta_{13} \times  timebucket\_16\_20 +  \beta_{14} \times  timebucket\_20\_24
-    \end{center}
-
+    This is a tried an tested method of econometric analysis.\linebreak
+    $num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
+    & \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
+    & \beta_{9} \times  timebucket\_00\_04 +  \beta_{10} \times  timebucket\_04\_08 +  \beta_{11} \times  timebucket\_08\_12 +
+    & \beta_{12} \times  timebucket\_12\_16 +  \beta_{13} \times  timebucket\_16\_20 +  \beta_{14} \times  timebucket\_20\_24 + \epsilon$
 
     This is the formula for the linear model, by letting the model train, it will predict these $ \beta_{i} $ and with the values of $ \beta_{i} $ predict the dependent variable, for every row.
+    The $\epsilon$ is the error term, describing the deviation from the linear term, $\displaystyle\epsilon + \beta_0 + \sum_{i=1} ^{14} \beta_{i} \times x_{i}$ will always be excactly amount to the dependant variable.
+
 
     \section{Results}
 
+    \subsection{Descriptive Analysis}
+
+    \begin{table}[T]
+        \centering
+        \begin{tabular}{lllll}
+            \toprule
+            \textbf{}                    & \textbf{union} & \textbf{bikes} & \textbf{cars} & \textbf{kick scooters} \\
+            \midrule
+            Observations                 & 685.968        & 51.266         & 347.434       & 95.678                 \\
+            Mean Trip Duration (Minutes) & 50             & 205            & 56            & 11                     \\
+            Mean Distance (Meters)       & 2.458          & 1.751          & 3.714         & 667                    \\
+            Timebuckets \\
+            \ \ Timebucket 00:00-04:00   & 6\%            & 8\%            & 4\%           & 10\%                   \\
+            \ \ Timebucket 04:00-08:00   & 13\%           & 13\%           & 14\%          & 11\%                   \\
+            \ \ Timebucket 08:00-12:00   & 18\%           & 17\%           & 18\%          & 18\%                   \\
+            \ \ Timebucket 12:00-16:00   & 23\%           & 23\%           & 23\%          & 22\%                   \\
+            \ \ Timebucket 16:00-20:00   & 26\%           & 29\%           & 27\%          & 24\%                   \\
+            \ \ Timebucket 20:00-24:00   & 14\%           & 11\%           & 13\%          & 16\%                   \\
+            Temp Mean                    & 6,31           & 6,42           & 6,28          & 6,27                   \\
+            Precip Mean                  & 46\%           & 44\%           & 48\%          & 43\%                   \\
+            Sum Precip Mean              & 0,37           & 0,29           & 0,43          & 0,33                   \\
+            Weekdays                     & 71\%           & 75\%           & 72\%          & 70\%                   \\
+            \bottomrule
+        \end{tabular}
+        \caption{}
+        \label{tab:}
+    \end{table}
+
     \begin{table}
+        \centering
+        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+            \begin{tabular}{lrllll}
+                \toprule
+                \textbf{Data Point} & \textbf{Timeframe} & \textbf{union} & \textbf{bikes} & \textbf{cars} & \textbf{kick scooters} \\
+                \midrule
+                Avg daily Number of Light Rail Trips & 05.11.19-14.12.19 & 20,38 & 23,51 & 20,54 & 41,27 \\
+                & 15.12.19-29.02.20 & 20,19 & 23,37 & 20,34 & 38,81 \\
+                Number of Stops & 05.11.19-14.12.19 & 432 & 348 & 405 & 63 \\
+                & 15.12.19-29.02.20 & 436 & 350 & 409 & 67 \\
+                Avg daily Number of Regional Train Trips & 05.11.19-14.12.19 & 2,20 & 2,23 & 1,88 & 6,14 \\
+                & 15.12.19-29.02.20 & 2,18 & 2,21 & 1,86 & 5,77 \\
+                Avg daily Number of Bus Trips & 05.11.19-14.12.19 & 24,37 & 24,29 & 24,48 & 25,86 \\
+                & 15.12.19-29.02.20 & 24,33 & 24,33 & 24,44 & 25,73 \\
+                Number of Station Hexes & 05.11.19-14.12.19 & 393 & 316 & 368 & 58 \\
+                & 15.12.19-29.02.20 & 397 & 318 & 372 & 62 & \\
+                \bottomrule
+            \end{tabular}
+        \end{adjustbox}
+        \caption{}
+        \label{tab:}
+    \end{table}
+
+
+    %DESCRIBE AND ANALAYZE GTFS AND TRIP DATA
+
+    \subsection{Model Evaluation}
+
+    \begin{table}[T]
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{lcccccc}
                 & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]} \\
@@ -464,9 +571,16 @@
             \end{tabular}
         \end{adjustbox}
         \caption{}
+        \label{tab:union_results}
     \end{table}
 
-    \subsection{Model Evaluation}
+    I will now explain the details of the different regression analyses in context to the main research question.
+    First of all it is good to say, that all regression could produce statistically significant results.
+    You see the results of the biggest, the union model here in table \ref{tab:union_results}.
+    The analys, will also be split in the multiple subcategories discussed before in the model part.
+    Also important to note for the analyses is that, the data is minmax scaled for better comparability, this also means, that the $\beta_{i}$, meaning the coefficients can roughly be interpreted as a percentile variable.
+
+    \subsubsection{Public Transit Variables}
 
     \subsection{Hypothesis Discussion}
 
