@@ -397,6 +397,7 @@
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/union map}
         \caption{Map of Cologne showing micromobility servicearea with usage of micromobility and stations} \newline
         Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \label{fig:union_sa}
     \end{figure}
 
     \subsection{Data Preparation}
@@ -491,68 +492,107 @@
 
     \subsection{Descriptive Analysis}
 
-    \begin{table}[T]
+    Before I go in to the results of the model, I first want to describe the datapoints that the model consists of, and showcase some interesting points about them.
+    I will start with the free floating vehicle datapoints and then go into detail about the GTFS feeds.
+
+    \subsubsection{Free Floating Vehicle Descriptive Analysis}
+
+    \begin{table}[H]
         \centering
         \begin{tabular}{lllll}
             \toprule
-            \textbf{}                    & \textbf{union} & \textbf{bikes} & \textbf{cars} & \textbf{kick scooters} \\
+            \textbf{}                      & \textbf{Union} & \textbf{Bikes} & \textbf{Cars} & \textbf{Kick Scooters} \\
             \midrule
-            Observations                 & 685.968        & 51.266         & 347.434       & 95.678                 \\
-            Mean Trip Duration (Minutes) & 50             & 205            & 56            & 11                     \\
-            Mean Distance (Meters)       & 2.458          & 1.751          & 3.714         & 667                    \\
+            Observations                   & 685.968        & 51.266         & 347.434       & 95.678                 \\
+            Mean Trip Duration (Minutes)   & 50             & 205            & 56            & 11                     \\
+            Mean Distance (Meters)         & 2.458          & 1.751          & 3.714         & 667                    \\
             Timebuckets \\
-            \ \ Timebucket 00:00-04:00   & 6\%            & 8\%            & 4\%           & 10\%                   \\
-            \ \ Timebucket 04:00-08:00   & 13\%           & 13\%           & 14\%          & 11\%                   \\
-            \ \ Timebucket 08:00-12:00   & 18\%           & 17\%           & 18\%          & 18\%                   \\
-            \ \ Timebucket 12:00-16:00   & 23\%           & 23\%           & 23\%          & 22\%                   \\
-            \ \ Timebucket 16:00-20:00   & 26\%           & 29\%           & 27\%          & 24\%                   \\
-            \ \ Timebucket 20:00-24:00   & 14\%           & 11\%           & 13\%          & 16\%                   \\
-            Temp Mean                    & 6,31           & 6,42           & 6,28          & 6,27                   \\
-            Precip Mean                  & 46\%           & 44\%           & 48\%          & 43\%                   \\
-            Sum Precip Mean              & 0,37           & 0,29           & 0,43          & 0,33                   \\
-            Weekdays                     & 71\%           & 75\%           & 72\%          & 70\%                   \\
+            \ \ Timebucket 00:00-04:00     & 6\%            & 8\%            & 4\%           & 10\%                   \\
+            \ \ Timebucket 04:00-08:00     & 13\%           & 13\%           & 14\%          & 11\%                   \\
+            \ \ Timebucket 08:00-12:00     & 18\%           & 17\%           & 18\%          & 18\%                   \\
+            \ \ Timebucket 12:00-16:00     & 23\%           & 23\%           & 23\%          & 22\%                   \\
+            \ \ Timebucket 16:00-20:00     & 26\%           & 29\%           & 27\%          & 24\%                   \\
+            \ \ Timebucket 20:00-24:00     & 14\%           & 11\%           & 13\%          & 16\%                   \\
+            Temp Mean (Celsius)            & 6,31           & 6,42           & 6,28          & 6,27                   \\
+            Precip Mean                    & 46\%           & 44\%           & 48\%          & 43\%                   \\
+            Sum Precip Mean (mm per $m^2$) & 0,37           & 0,29           & 0,43          & 0,33                   \\
+            Weekdays                       & 71\%           & 75\%           & 72\%          & 70\%                   \\
             \bottomrule
         \end{tabular}
-        \caption{}
+        \caption{Describing data from the FFV trips}
         \label{tab:descr_rides}
     \end{table}
 
+    If you shortly look at the data (Table \ref{tab:descr_rides}), instantly some interesting patterns emerge.
+    Shown are the Bikes, the Cars and the Kick Scooters and all of them combined, firstly you will notice, that they do not excactly add up.
+    This comes from the fact, that different service areas are used for the union calculation and the single calculation.
+    %Noch mal mit Lime laufen lassen?
+    Unfortunately, there is no good service area available for the scooters, which makes the removal from the service area remove too many scooter trips.
+    This is unfortunately a dilemma, because using a too big service area, would leave in many data points, that should not be left in.
+    In Figure \ref{fig:scooters_sa} you can see, the relatively small service area.
+    Another interesting factor is that one can see, that the rental period for bikes is the most on averge, this is an effect, that gets created by many pretty cheap daypasses.
+    Many people rent bikes close to a day, but since they still can start and stop at a stop, since it is a single ride, it still makes sense to count them since, that are no errors.
+    Many people just use the bike as a way to get around quickly, just like with scooters, but that touches in to the next topic: Distance.
+    The distance is intuitively the longest for cars, followed by bikes, followed by e scooters.
+    This finding checks out with other similar findings, for example in \cite{Demircan2021}, bikes and scooters also varied by a factor of 2.
 
+    When looking at the timebuckets, there are some noticeable differences for example in the first timebucket, for example scooters have 10\%, bikes 8\% of their whole rides there and cars only 4\%.
+    This could have multiple reasons, first reason could just be the service area, in the scooter service area (\ref{fig:scooters_sa}) are when comparatively to the whole servicearea much more nightlife districts than in the car servicearea (Figure \ref{fig:cars_sa}).
+    Another reason could be, that especially in nightlife and in the central city, cars are less convenient, so they are less frequently used, compared to scooters and bikes.
+    Another thing seen in the times is, that in typical weekday work starting and end times 04-08 and 16-20, cars and bikes have an edge over scooters, while on most free hours, 20-24, 00-04, scooters have an edge over cars and bikes.
+    This could indicate, that scooters are more commonly used for free time travel, and sharing bikes and cars are more commonly used to get to work.
+    A reason that could explain this is, that most public transit monthly subscriptions, have the bike service included and some workplaces have deals with car sharing with "service area islands".
+    Some notable examples of this include Leskan Park, Axa Headquarters and Chempark Leverkusen (Figure \ref{fig:islands}).
+    This theory is also underlined by the Weekday percentage of cars and bikes also being higher than for scooters, roughly 71,43\% of days are weekdays, so it is a bit more in average for bikes and cars and a bit less for scooters.
 
-    \begin{table}[T]
+    Coming to the weather factors, the first important thing to note is, that since this all is calculated in 4 hour timebuckets, these are not the excact values at the start or stop time, but the factors in the 4 hour time window.
+    When looking at the temperature, it is a reminder again, that this is all winter data, so the average temperature is low, but the temperature for the bike is about 0,15 degrees bigger, meaning that temperature could have an effect on bike rentals and even lower temperatures lead to less bike rentals.
+    Interestingly, the average temperature for scooters and cars is quite similar, altough that is the case, I think it can be at least partly be explained that due to scooters being used more in the nighttime, where the temperature is lower on average, the value gets dragged down in comparison to the car.
+    Still, the car has the highest value which makes sense due to it being warm and protected from the weather.
+    For precip, cars are used more in rainy intervals, and have a huge margin in sum of the precip against scooters and bikes (roughly 1/3 more).
+    This could imply, that general rain, does not deter passengers of micromobility as much as medium heavy to heavy rain.
+
+    \subsubsection{GTFS Feed Descriptive Analysis}
+
+    \begin{table}[H]
         \centering
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{ll|llll}
                 \toprule
-                \textbf{Data Point} & \textbf{Timeframe} & \textbf{union} & \textbf{bikes} & \textbf{cars} & \textbf{kick scooters} \\
+                \textbf{Data Point}                      & \textbf{Timeframe} & \textbf{union} & \textbf{bikes} & \textbf{cars} & \textbf{kick scooters} \\
                 \midrule
-                Avg daily Number of Light Rail Trips & 05.11.19-14.12.19 & 20,38 & 23,51 & 20,54 & 41,27 \\
-                & 15.12.19-29.02.20 & 20,19 & 23,37 & 20,34 & 38,81 \\
+                Number of Stops                          & 05.11.19-14.12.19  & 432            & 348            & 405           & 63                     \\
+                & 15.12.19-29.02.20  & 436            & 350            & 409           & 67                     \\
                 \midrule
-                Number of Stops & 05.11.19-14.12.19 & 432 & 348 & 405 & 63 \\
-                & 15.12.19-29.02.20 & 436 & 350 & 409 & 67 \\
+                Number of Station Hexes                  & 05.11.19-14.12.19  & 393            & 316            & 368           & 58                     \\
+                & 15.12.19-29.02.20  & 397            & 318            & 372           & 62                     \\
                 \midrule
-                Avg daily Number of Regional Train Trips & 05.11.19-14.12.19 & 2,20 & 2,23 & 1,88 & 6,14 \\
-                & 15.12.19-29.02.20 & 2,18 & 2,21 & 1,86 & 5,77 \\
+                Avg daily Number of City Train Trips     & 05.11.19-14.12.19  & 20,38          & 23,51          & 20,54         & 41,27                  \\
+                & 15.12.19-29.02.20  & 20,19          & 23,37          & 20,34         & 38,81                  \\
                 \midrule
-                Avg daily Number of Bus Trips & 05.11.19-14.12.19 & 24,37 & 24,29 & 24,48 & 25,86 \\
-                & 15.12.19-29.02.20 & 24,33 & 24,33 & 24,44 & 25,73 \\
+                Avg daily Number of Regional Train Trips & 05.11.19-14.12.19  & 2,20           & 2,23           & 1,88          & 6,14                   \\
+                & 15.12.19-29.02.20  & 2,18           & 2,21           & 1,86          & 5,77                   \\
                 \midrule
-                Number of Station Hexes & 05.11.19-14.12.19 & 393 & 316 & 368 & 58 \\
-                & 15.12.19-29.02.20 & 397 & 318 & 372 & 62 & \\
+                Avg daily Number of Bus Trips            & 05.11.19-14.12.19  & 24,37          & 24,29          & 24,48         & 25,86                  \\
+                & 15.12.19-29.02.20  & 24,33          & 24,33          & 24,44         & 25,73                  \\
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
-        \caption{}
+        \caption{Describing data from the GTFS feeds}
         \label{tab:descr_feed}
     \end{table}
 
+    If you look at the table (Table \ref{tab:descr_feed}), it has to be noted first, that within the FFV trip timeframe, there are 2 distinct GTFS feeds, hence the 2 values for everything.
+    The number of stops is relatively similar for union, bikes and cars, and with that the size of the service area.
+    For scooters although, the service area is much smaller, and with that the available stations.
+    That leads to a much higher average number of daily city train trips and regional train trips, but not for bus trips.
+    This could be explained by city trains and regional trains having their many intersections in the central city, but buses are more spaced out, because their primary purpose is to connect between the trains.
 
     %DESCRIBE AND ANALAYZE GTFS AND TRIP DATA
 
     \subsection{Model Evaluation}
 
-    \begin{table}[T]
+    \begin{table}[H]
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{lcccccc}
                 & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]} \\
@@ -566,17 +606,17 @@
                 \textbf{precip}                      & -0.0011***    & 0.000            & -6.625     & 0.000               & -0.001          & -0.001          \\
                 \textbf{sum\_precip\_amount}         & -0.0062***    & 0.001            & -9.507     & 0.000               & -0.007          & -0.005          \\
                 \textbf{mean\_temp}                  & 0.0041***     & 0.000            & 8.498      & 0.000               & 0.003           & 0.005           \\
-                \textbf{timebucket\_00\_04\_x}       & -0.0064***    & 0.000            & -15.768    & 0.000               & -0.007          & -0.006          \\
-                \textbf{timebucket\_04\_08\_x}       & -0.0122***    & 0.000            & -31.005    & 0.000               & -0.013          & -0.011          \\
-                \textbf{timebucket\_08\_12\_x}       & -0.0061***    & 0.000            & -15.290    & 0.000               & -0.007          & -0.005          \\
-                \textbf{timebucket\_12\_16\_x}       & 0.0095***     & 0.000            & 23.113     & 0.000               & 0.009           & 0.010           \\
-                \textbf{timebucket\_16\_20\_x}       & 0.0136***     & 0.000            & 33.798     & 0.000               & 0.013           & 0.014           \\
-                \textbf{timebucket\_20\_24\_x}       & 0.0083***     & 0.000            & 20.889     & 0.000               & 0.008           & 0.009           \\
+                \textbf{timebucket\_00\_04}          & -0.0064***    & 0.000            & -15.768    & 0.000               & -0.007          & -0.006          \\
+                \textbf{timebucket\_04\_08}          & -0.0122***    & 0.000            & -31.005    & 0.000               & -0.013          & -0.011          \\
+                \textbf{timebucket\_08\_12}          & -0.0061***    & 0.000            & -15.290    & 0.000               & -0.007          & -0.005          \\
+                \textbf{timebucket\_12\_16}          & 0.0095***     & 0.000            & 23.113     & 0.000               & 0.009           & 0.010           \\
+                \textbf{timebucket\_16\_20}          & 0.0136***     & 0.000            & 33.798     & 0.000               & 0.013           & 0.014           \\
+                \textbf{timebucket\_20\_24}          & 0.0083***     & 0.000            & 20.889     & 0.000               & 0.008           & 0.009           \\
                 \bottomrule
                 Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
             \end{tabular}
         \end{adjustbox}
-        \caption{}
+        \caption{Regressions result from the union regression with starts and stops}
         \label{tab:union_results}
     \end{table}
 
@@ -640,7 +680,7 @@
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
-        \caption{Comparison between different h3 resolutions, total of 432 stops in the service area}
+        \caption{Comparison between different h3 resolutions, total of 432 stops in the service area, calculated with the GTFS feed from 05.10-14.12}
         \label{tab:h3}
     \end{table}
 
@@ -784,12 +824,14 @@
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/bikes map}
         \caption{Map of Cologne showing bike servicearea with usage of bikes and stations} \newline
         Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \label{fig:bikes_sa}
     \end{figure}
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/car map}
         \caption{Map of Cologne showing car servicearea with usage of car and stations} \newline
         Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \label{fig:cars_sa}
     \end{figure}
     \pagebreak
     \begin{figure}[htbp]
@@ -797,8 +839,15 @@
         \includegraphics[width=\textwidth,center=\textwidth]{Figures/kick scooter map}
         \caption{Map of Cologne showing kick scooter servicearea with usage of kick scooters and stations} \newline
         Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \label{fig:scooters_sa}
     \end{figure}
-
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/service area Islands}
+        \caption{Service Area Islands} \newline
+        Closer look at the "Service Area Islands", at the top left you see the Leverkusen Chempark, at the bottom right you can see the Axa HQ, and to the right above it, you can see the Leskan Park, this is not in the general car service area, but only in the union service area in Figure \ref{fig:union_sa}
+        \label{fig:islands}
+    \end{figure}
     \pagebreak
 
     \printbibliography[heading=bibintoc]
