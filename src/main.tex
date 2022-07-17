@@ -428,6 +428,11 @@
     Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
     This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
 
+    The city centre is chosen as the Cologne main station, which is a really big traffic centre for cologne, and is right next the the Kölner Dom, which is the most well known structure of Cologne .
+    It is used to calculate the distance from the start stop event to the city centre, to filter out spatial dynamics.
+    Although it is not in the mid of most of the service areas, it can be seen as the rough mid point for most of them.
+    This variable is calculated as an airline, so that has some inaccuracies, espescially when crossing the Rhine.
+
     After cleaning the above mentioned easy errors, the data had to be improved and needed to be brought in shape for the 12 regressions.
     Firstly, I removed further errors like round trips, or extremely short trips by removing all trips that had the same start and stop fuel for kick scooters since they have to be extremely short then.
     Then, all of the stations and start stop events were removed that are not in the service area, because they are not relevant to the analysis, this was done by calculating a point and checking if it is on the respective modes service area or in the union service area when looking at all modes.
@@ -475,17 +480,23 @@
     On top of that, I also established another time dependent variable based around weekdays.
     It is a binary variable called if it is a weekday or not, from other research it has been shown, that which day it is, can have a big impact on FFVS demand. (\cite{Willing_2017_im}, p.79)
 
+    \subsubsection{Other Accuracy Increasing Variables}
+
+    As is clearly visible in most of the figures and what quickly showed in the data, is that the trips have a spatial dynamic, that generally leads to the middle.
+    Because of that, a variable about the distance to the city centre in metres is needed, this helps to counteract some of the city centre driven dynamics in the data.
+    It is only a rough estimate, since it does not factor in, what amenities increase the demand, but should serve as an estimate of the desireability of the amenities at the given place.
+
     \subsubsection{Mathematics}
 
     in accordance to the earlier described features, I will use an OLS regression.
     This is a tried an tested method of econometric analysis.\linebreak
     $num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
-    & \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
-    & \beta_{9} \times  timebucket\_00\_04 +  \beta_{10} \times  timebucket\_04\_08 +  \beta_{11} \times  timebucket\_08\_12 +
-    & \beta_{12} \times  timebucket\_12\_16 +  \beta_{13} \times  timebucket\_16\_20 +  \beta_{14} \times  timebucket\_20\_24 + \epsilon$
+    \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
+    \beta_{9} \times distance\_to\_city\_centre + \beta_{10} \times  timebucket\_00\_04 +  \beta_{11} \times  timebucket\_04\_08 +  \beta_{12} \times  timebucket\_08\_12 +
+    \beta_{13} \times  timebucket\_12\_16 +  \beta_{14} \times  timebucket\_16\_20 +  \beta_{15} \times  timebucket\_20\_24 + \epsilon$
 
     This is the formula for the linear model, by letting the model train, it will predict these $ \beta_{i} $ and with the values of $ \beta_{i} $ predict the dependent variable, for every row.
-    The $\epsilon$ is the error term, describing the deviation from the linear term, $\displaystyle\epsilon + \beta_0 + \sum_{i=1} ^{14} \beta_{i} \times x_{i}$ will always be excactly amount to the dependant variable.
+    The $\epsilon$ is the error term, describing the deviation from the linear term, $\displaystyle\epsilon + \beta_0 + \sum_{i=1} ^{15} \beta_{i} \times x_{i}$ will always be excactly amount to the dependant variable.
 
 
     \section{Results}
@@ -501,22 +512,23 @@
         \centering
         \begin{tabular}{lllll}
             \toprule
-            \textbf{}                      & \textbf{Union} & \textbf{Bikes} & \textbf{Cars} & \textbf{Kick Scooters} \\
+            \textbf{} & \textbf{Union} & \textbf{Bikes} & \textbf{Cars} & \textbf{Kick Scooters} \\
             \midrule
-            Observations                   & 685.968        & 51.266         & 347.434       & 95.678                 \\
-            Mean Trip Duration (Minutes)   & 50             & 205            & 56            & 11                     \\
-            Mean Distance (Meters)         & 2.458          & 1.751          & 3.714         & 667                    \\
+            Observations & 685.968 & 51.266 & 347.434 & 95.678 \\
+            Obeservations per Day & 6.660 & 498 & 3.373 & 929 \\
+            Mean Trip Duration (Minutes) & 50 & 205 & 56 & 11 \\
+            Mean Distance (Meters) & 2.458 & 1.751 & 3.714 & 667 \\
             Timebuckets \\
-            \ \ Timebucket 00:00-04:00     & 6\%            & 8\%            & 4\%           & 10\%                   \\
-            \ \ Timebucket 04:00-08:00     & 13\%           & 13\%           & 14\%          & 11\%                   \\
-            \ \ Timebucket 08:00-12:00     & 18\%           & 17\%           & 18\%          & 18\%                   \\
-            \ \ Timebucket 12:00-16:00     & 23\%           & 23\%           & 23\%          & 22\%                   \\
-            \ \ Timebucket 16:00-20:00     & 26\%           & 29\%           & 27\%          & 24\%                   \\
-            \ \ Timebucket 20:00-24:00     & 14\%           & 11\%           & 13\%          & 16\%                   \\
-            Temp Mean (Celsius)            & 6,31           & 6,42           & 6,28          & 6,27                   \\
-            Precip Mean                    & 46\%           & 44\%           & 48\%          & 43\%                   \\
-            Sum Precip Mean (mm per $m^2$) & 0,37           & 0,29           & 0,43          & 0,33                   \\
-            Weekdays                       & 71\%           & 75\%           & 72\%          & 70\%                   \\
+            \ \ Timebucket 00:00-04:00 & 6\% & 8\% & 4\% & 10\% \\
+            \ \ Timebucket 04:00-08:00 & 13\% & 13\% & 14\% & 11\% \\
+            \ \ Timebucket 08:00-12:00 & 18\% & 17\% & 18\% & 18\% \\
+            \ \ Timebucket 12:00-16:00 & 23\% & 23\% & 23\% & 22\% \\
+            \ \ Timebucket 16:00-20:00 & 26\% & 29\% & 27\% & 24\% \\
+            \ \ Timebucket 20:00-24:00 & 14\% & 11\% & 13\% & 16\% \\
+            Temp Mean (Celsius) & 6,31 & 6,42 & 6,28 & 6,27 \\
+            Precip Mean & 46\% & 44\% & 48\% & 43\% \\
+            Sum Precip Mean (mm per $m^2$) & 0,37 & 0,29 & 0,43 & 0,33 \\
+            Weekdays & 71\% & 75\% & 72\% & 70\% \\
             \bottomrule
         \end{tabular}
         \caption{Describing data from the FFV trips}
@@ -575,6 +587,12 @@
                 \midrule
                 Avg daily Number of Bus Trips            & 05.11.19-14.12.19  & 24,37          & 24,29          & 24,48         & 25,86                  \\
                 & 15.12.19-29.02.20  & 24,33          & 24,33          & 24,44         & 25,73                  \\
+                \midrule
+                Avg daily Number of Routes               & 05.11.19-14.12.19  & 2,08           & 2,08           & 2,06          & 2,89                   \\
+                & 15.12.19-29.02.20  & 2,07           & 2,08           & 2,05          & 2,79                   \\
+                \midrule
+                Average Distance to City Centre (m)      & 05.11.19-14.12.19  & 4418,74        & 3683,67        & 4374,1        & 2334,81                \\
+                & 15.12.19-29.02.20  & 4404,83        & 3647,34        & 4359,71       & 2240,54                \\
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
@@ -587,46 +605,54 @@
     For scooters although, the service area is much smaller, and with that the available stations.
     That leads to a much higher average number of daily city train trips and regional train trips, but not for bus trips.
     This could be explained by city trains and regional trains having their many intersections in the central city, but buses are more spaced out, because their primary purpose is to connect between the trains.
+    The higher number of intersections is also seen at the average number of routers for a station, which is roughly 3 for kick scooters instead of about 2 for the other modes.
+    The smaller service area of the kick scooters is also clearly visible for if compared to the car, which has roughly double the average distance to city centre.
+    The bike also has considerably closer aligned service area when compared to the car, shown by the fact, that the average distance to the city centre is about 700 metres lower compared to car and union.
 
     %DESCRIBE AND ANALAYZE GTFS AND TRIP DATA
 
     \subsection{Model Evaluation}
 
-    \begin{table}[H]
-        \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
-            \begin{tabular}{lcccccc}
-                & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]} \\
-                \midrule
-                \textbf{Intercept}                   & 0.0073***     & 0.000            & 23.314     & 0.000               & 0.007           & 0.008           \\
-                \textbf{num\_city\_train\_trips}     & 0.1051***     & 0.001            & 150.323    & 0.000               & 0.104           & 0.106           \\
-                \textbf{num\_regional\_train\_trips} & 0.0748***     & 0.002            & 38.442     & 0.000               & 0.071           & 0.079           \\
-                \textbf{num\_bus\_trips}             & 0.0427***     & 0.001            & 39.023     & 0.000               & 0.041           & 0.045           \\
-                \textbf{num\_routes}                 & -0.0369***    & 0.002            & -18.433    & 0.000               & -0.041          & -0.033          \\
-                \textbf{is\_weekday}                 & -0.0050***    & 0.000            & -29.853    & 0.000               & -0.005          & -0.005          \\
-                \textbf{precip}                      & -0.0011***    & 0.000            & -6.625     & 0.000               & -0.001          & -0.001          \\
-                \textbf{sum\_precip\_amount}         & -0.0062***    & 0.001            & -9.507     & 0.000               & -0.007          & -0.005          \\
-                \textbf{mean\_temp}                  & 0.0041***     & 0.000            & 8.498      & 0.000               & 0.003           & 0.005           \\
-                \textbf{timebucket\_00\_04}          & -0.0064***    & 0.000            & -15.768    & 0.000               & -0.007          & -0.006          \\
-                \textbf{timebucket\_04\_08}          & -0.0122***    & 0.000            & -31.005    & 0.000               & -0.013          & -0.011          \\
-                \textbf{timebucket\_08\_12}          & -0.0061***    & 0.000            & -15.290    & 0.000               & -0.007          & -0.005          \\
-                \textbf{timebucket\_12\_16}          & 0.0095***     & 0.000            & 23.113     & 0.000               & 0.009           & 0.010           \\
-                \textbf{timebucket\_16\_20}          & 0.0136***     & 0.000            & 33.798     & 0.000               & 0.013           & 0.014           \\
-                \textbf{timebucket\_20\_24}          & 0.0083***     & 0.000            & 20.889     & 0.000               & 0.008           & 0.009           \\
-                \bottomrule
-                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
-            \end{tabular}
-        \end{adjustbox}
-        \caption{Regressions result from the union regression with starts and stops}
-        \label{tab:union_results}
-    \end{table}
-
     I will now explain the details of the different regression analyses in context to the main research question.
     First of all it is good to say, that all regression could produce statistically significant results.
-    You see the results of the biggest, the union model here in table \ref{tab:union_results}.
+    You see the results of the biggest, the union model here in table \ref{tab:both_results}.
     The analys, will also be split in the multiple subcategories discussed before in the model part.
     Also important to note for the analyses is that, the data is minmax scaled for better comparability, this also means, that the $\beta_{i}$, meaning the coefficients can roughly be interpreted as a percentile variable.
 
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{l|llll}
+            \toprule
+            \textbf{}                   & \textbf{Bikes} & \textbf{Cars} & \textbf{Scooters} & \textbf{Union} \\
+            \midrule
+            Intercept                   & 0,0166***      & 0,0370***     & 0,0071***         & 0,0227***      \\
+            num\_city\_train\_trips     & 0,0375***      & 0,0621***     & 0,0851***         & 0,0794***      \\
+            num\_regional\_train\_trips & 0,0074***      & 0,0380***     & -0,0047           & 0,0450***      \\
+            num\_bus\_trips             & 0,0397***      & 0,0194***     & 0,0168***         & 0,0348***      \\
+            num\_routes                 & -0,0153***     & -0,0177***    & 0,0019            & -0,0055***     \\
+            is\_weekday                 & -0,0013***     & -0,0069***    & -0,0073***        & -0,0047***     \\
+            precip                      & -0,0014***     & 0,0016***     & -0,0030***        & -0,0010***     \\
+            sum\_precip\_amount         & -0,0078***     & 0,0040***     & -0,0106***        & -0,0060***     \\
+            mean\_temp                  & 0,0058***      & 0,0015*       & 0,0070***         & 0,0039***      \\
+            distance\_to\_city\_centre  & -0,0267***     & -0,0544***    & -0,0167***        & -0,0394***     \\
+            timebucket\_00\_04          & -0,0047***     & -0,0113***    & -0,0059***        & -0,0060***     \\
+            timebucket\_04\_08          & -0,0082***     & -0,0142***    & -0,0119***        & -0,0106***     \\
+            timebucket\_08\_12          & -0,0062***     & 0,0036***     & -0,0019           & -0,0035***     \\
+            timebucket\_12\_16          & 0,0017***      & 0,0330***     & 0,0169***         & 0,0121***      \\
+            timebucket\_16\_20          & 0,0067***      & 0,0455***     & 0,0180***         & 0,0164***      \\
+            timebucket\_20\_24          & 0,0039***      & 0,0219***     & 0,0189***         & 0,0099***      \\
+            R-squared                   & 0,1108         & 0,2182        & 0,2110            & 0,2892         \\
+            R-squared Adj.              & 0,1107         & 0,2182        & 0,2106            & 0,2892         \\
+            \bottomrule
+        \end{tabular}
+        * p<.1, ** p<.05, ***p<.01
+        \caption{Comparison of the regressions from all modes, including both start events and end events, More detailed are (Table \ref{tab:reg2} and Table \ref{tab:r1})}
+        \label{tab:both_results}
+    \end{table}
+
     \subsubsection{Public Transit Variables}
+
+
 
     \subsection{Hypothesis Discussion}
 
@@ -732,42 +758,44 @@
                 \toprule
                 \textbf{}                   & \textbf{bike\_both} & \textbf{bike\_end} & \textbf{bike\_start} & \textbf{cars\_both} & \textbf{cars\_end} & \textbf{cars\_start} \\
                 \midrule
-                Intercept                   & 0.0036***           & 0.0036***          & 0.0027***            & 0.0169***           & 0.0171***          & 0.0162***            \\
-                & (0.0004)            & (0.0004)           & (0.0004)             & (0.0005)            & (0.0006)           & (0.0006)             \\
-                num\_city\_train\_trips     & 0.0482***           & 0.0405***          & 0.0406***            & 0.0974***           & 0.0965***          & 0.0913***            \\
-                & (0.0008)            & (0.0007)           & (0.0008)             & (0.0012)            & (0.0013)           & (0.0013)             \\
-                num\_regional\_train\_trips & 0.0189***           & 0.0153***          & 0.0167***            & 0.0742***           & 0.0759***          & 0.0671***            \\
-                & (0.0021)            & (0.0020)           & (0.0022)             & (0.0034)            & (0.0036)           & (0.0035)             \\
-                num\_bus\_trips             & 0.0398***           & 0.0346***          & 0.0324***            & 0.0310***           & 0.0388***          & 0.0210***            \\
-                & (0.0011)            & (0.0011)           & (0.0012)             & (0.0019)            & (0.0020)           & (0.0020)             \\
-                num\_routes                 & -0.0167***          & -0.0155***         & -0.0124***           & -0.0593***          & -0.0736***         & -0.0408***           \\
-                & (0.0022)            & (0.0022)           & (0.0023)             & (0.0035)            & (0.0037)           & (0.0036)             \\
-                is\_weekday                 & -0.0015***          & -0.0010***         & -0.0016***           & -0.0074***          & -0.0072***         & -0.0070***           \\
-                & (0.0002)            & (0.0002)           & (0.0002)             & (0.0003)            & (0.0003)           & (0.0003)             \\
-                precip                      & -0.0014***          & -0.0012***         & -0.0011***           & 0.0016***           & 0.0014***          & 0.0016***            \\
-                & (0.0002)            & (0.0002)           & (0.0002)             & (0.0003)            & (0.0003)           & (0.0003)             \\
-                sum\_precip\_amount         & -0.0079***          & -0.0064***         & -0.0069***           & 0.0040***           & 0.0045***          & 0.0032***            \\
-                & (0.0007)            & (0.0007)           & (0.0007)             & (0.0012)            & (0.0012)           & (0.0012)             \\
-                mean\_temp                  & 0.0059***           & 0.0048***          & 0.0052***            & 0.0015*             & 0.0018**           & 0.0011               \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0008)            & (0.0009)           & (0.0009)             \\
-                timebucket\_00\_04          & -0.0052***          & -0.0050***         & -0.0040***           & -0.0128***          & -0.0123***         & -0.0131***           \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0008)           & (0.0007)             \\
-                timebucket\_04\_08          & -0.0093***          & -0.0085***         & -0.0075***           & -0.0173***          & -0.0170***         & -0.0171***           \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
-                timebucket\_08\_12          & -0.0077***          & -0.0076***         & -0.0054***           & -0.0008             & -0.0022***         & -0.0001              \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
-                timebucket\_12\_16          & 0.0004              & -0.0008*           & 0.0013***            & 0.0288***           & 0.0256***          & 0.0291***            \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0008)           & (0.0008)             \\
-                timebucket\_16\_20          & 0.0052***           & 0.0037***          & 0.0049***            & 0.0408***           & 0.0412***          & 0.0368***            \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
-                timebucket\_20\_24          & 0.0029***           & 0.0022***          & 0.0024***            & 0.0189***           & 0.0214***          & 0.0144***            \\
-                & (0.0005)            & (0.0005)           & (0.0005)             & (0.0007)            & (0.0007)           & (0.0007)             \\
-                R-squared                   & 0.0877              & 0.0666             & 0.0614               & 0.1827              & 0.1629             & 0.1564               \\
-                R-squared Adj.              & 0.0876              & 0.0665             & 0.0613               & 0.1826              & 0.1628             & 0.1563               \\
+                Intercept                   & 0,0166***           & 0,0144***          & 0,0138***            & 0,0370***           & 0,0372***          & 0,0347***            \\
+                & -0,0004             & -0,0004            & -0,0005              & -0,0006             & -0,0007            & -0,0006              \\
+                num\_city\_train\_trips     & 0,0375***           & 0,0316***          & 0,0315***            & 0,0621***           & 0,0614***          & 0,0583***            \\
+                & -0,0008             & -0,0008            & -0,0008              & -0,0012             & -0,0013            & -0,0013              \\
+                num\_regional\_train\_trips & 0,0074***           & 0,0057***          & 0,0068***            & 0,0380***           & 0,0401***          & 0,0332***            \\
+                & -0,0021             & -0,002             & -0,0022              & -0,0033             & -0,0035            & -0,0034              \\
+                num\_bus\_trips             & 0,0397***           & 0,0345***          & 0,0324***            & 0,0194***           & 0,0268***          & 0,0106***            \\
+                & -0,0011             & -0,0011            & -0,0012              & -0,0019             & -0,002             & -0,0019              \\
+                num\_routes                 & -0,0153***          & -0,0143***         & -0,0114***           & -0,0177***          & -0,0323***         & -0,0019              \\
+                & -0,0022             & -0,0021            & -0,0023              & -0,0034             & -0,0036            & -0,0036              \\
+                is\_weekday                 & -0,0013***          & -0,0008***         & -0,0014***           & -0,0069***          & -0,0067***         & -0,0067***           \\
+                & -0,0002             & -0,0002            & -0,0002              & -0,0003             & -0,0003            & -0,0003              \\
+                precip                      & -0,0014***          & -0,0012***         & -0,0011***           & 0,0016***           & 0,0015***          & 0,0016***            \\
+                & -0,0002             & -0,0002            & -0,0002              & -0,0003             & -0,0003            & -0,0003              \\
+                sum\_precip\_amount         & -0,0078***          & -0,0064***         & -0,0067***           & 0,0040***           & 0,0044***          & 0,0033***            \\
+                & -0,0007             & -0,0007            & -0,0007              & -0,0011             & -0,0012            & -0,0012              \\
+                mean\_temp                  & 0,0058***           & 0,0047***          & 0,0052***            & 0,0015*             & 0,0018**           & 0,0011               \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0008             & -0,0009            & -0,0009              \\
+                distance\_to\_city\_centre  & -0,0267***          & -0,0220***         & -0,0231***           & -0,0544***          & -0,0536*** & -0,0514*** \\
+                & -0,0004             & -0,0004            & -0,0004              & -0,0006             & -0,0006            & -0,0006              \\
+                timebucket\_00\_04\_x       & -0,0047***          & -0,0046***         & -0,0035***           & -0,0113***          & -0,0112***         & -0,0112***           \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0007              \\
+                timebucket\_04\_08\_x       & -0,0082***          & -0,0076***         & -0,0064***           & -0,0142***          & -0,0143***         & -0,0137***           \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
+                timebucket\_08\_12\_x       & -0,0062***          & -0,0066***         & -0,0041***           & 0,0036***           & 0,0019***          & 0,0044***            \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
+                timebucket\_12\_16\_x       & 0,0017***           & 0,0002             & 0,0025***            & 0,0330***           & 0,0296***          & 0,0335***            \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0008              \\
+                timebucket\_16\_20\_x       & 0,0067***           & 0,0049***          & 0,0062***            & 0,0455***           & 0,0456***          & 0,0416***            \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0007              \\
+                timebucket\_20\_24\_x       & 0,0039***           & 0,0029***          & 0,0034***            & 0,0219***           & 0,0240***          & 0,0177***            \\
+                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
+                R-squared                   & 0,1108              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1879               \\
+                R-squared Adj.              & 0,1107              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1878               \\
                 \bottomrule
-                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
             \end{tabular}
         \end{adjustbox}
+        Standard errors below the coefficients, * p<.1, ** p<.05, ***p<.01
         \caption{Regression Summary for Bikes and Cars}
         \label{tab:r1}
     \end{table}
@@ -779,69 +807,71 @@
                 \toprule
                 \textbf{}                   & \textbf{scooters\_both} & \textbf{scooters\_end} & \textbf{scooters\_start} & \textbf{union\_both} & \textbf{union\_end} & \textbf{union\_start} \\
                 \midrule
-                Intercept                   & 0.0073***               & 0.0079***              & 0.0074***                & 0.0073***            & 0.0074***           & 0.0076***             \\
-                & (0.0010)                & (0.0011)               & (0.0010)                 & (0.0003)             & (0.0003)            & (0.0003)              \\
-                num\_city\_train\_trips     & 0.0857***               & 0.0874***              & 0.0841***                & 0.1051***            & 0.1011***           & 0.1095***             \\
-                & (0.0018)                & (0.0020)               & (0.0018)                 & (0.0007)             & (0.0007)            & (0.0008)              \\
-                num\_regional\_train\_trips & -0.0102**               & -0.0064                & -0.0137***               & 0.0748***            & 0.0720***           & 0.0778***             \\
-                & (0.0045)                & (0.0050)               & (0.0046)                 & (0.0019)             & (0.0020)            & (0.0021)              \\
-                num\_bus\_trips             & 0.0142***               & 0.0138***              & 0.0146***                & 0.0427***            & 0.0456***           & 0.0396***             \\
-                & (0.0021)                & (0.0023)               & (0.0022)                 & (0.0011)             & (0.0011)            & (0.0012)              \\
-                num\_routes                 & 0.0088*                 & 0.0039                 & 0.0132**                 & -0.0369***           & -0.0435***          & -0.0296***            \\
-                & (0.0051)                & (0.0056)               & (0.0052)                 & (0.0020)             & (0.0020)            & (0.0022)              \\
-                is\_weekday                 & -0.0064***              & -0.0066***             & -0.0062***               & -0.0050***           & -0.0048***          & -0.0052***            \\
-                & (0.0006)                & (0.0007)               & (0.0006)                 & (0.0002)             & (0.0002)            & (0.0002)              \\
-                precip                      & -0.0032***              & -0.0034***             & -0.0030***               & -0.0011***           & -0.0011***          & -0.0011***            \\
-                & (0.0006)                & (0.0006)               & (0.0006)                 & (0.0002)             & (0.0002)            & (0.0002)              \\
-                sum\_precip\_amount         & -0.0110***              & -0.0109***             & -0.0112***               & -0.0062***           & -0.0057***          & -0.0067***            \\
-                & (0.0023)                & (0.0025)               & (0.0023)                 & (0.0006)             & (0.0007)            & (0.0007)              \\
-                mean\_temp                  & 0.0077***               & 0.0082***              & 0.0072***                & 0.0041***            & 0.0040***           & 0.0042***             \\
-                & (0.0017)                & (0.0019)               & (0.0017)                 & (0.0005)             & (0.0005)            & (0.0005)              \\
-                timebucket\_00\_04          & -0.0110***              & -0.0112***             & -0.0114***               & -0.0064***           & -0.0060***          & -0.0072***            \\
-                & (0.0014)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0005)              \\
-                timebucket\_04\_08          & -0.0172***              & -0.0174***             & -0.0176***               & -0.0122***           & -0.0117***          & -0.0131***            \\
-                & (0.0013)                & (0.0014)               & (0.0013)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
-                timebucket\_08\_12          & -0.0065***              & -0.0064***             & -0.0072***               & -0.0061***           & -0.0064***          & -0.0061***            \\
-                & (0.0013)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
-                timebucket\_12\_16          & 0.0124***               & 0.0133***              & 0.0109***                & 0.0095***            & 0.0084***           & 0.0104***             \\
-                & (0.0014)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0005)              \\
-                timebucket\_16\_20          & 0.0134***               & 0.0149***              & 0.0115***                & 0.0136***            & 0.0137***           & 0.0132***             \\
-                & (0.0013)                & (0.0015)               & (0.0014)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
-                timebucket\_20\_24          & 0.0131***               & 0.0144***              & 0.0114***                & 0.0083***            & 0.0089***           & 0.0072***             \\
-                & (0.0013)                & (0.0014)               & (0.0013)                 & (0.0004)             & (0.0004)            & (0.0004)              \\
-                R-squared                   & 0.1967                  & 0.1769                 & 0.1846                   & 0.2400               & 0.2224              & 0.2227                \\
-                R-squared Adj.              & 0.1964                  & 0.1766                 & 0.1843                   & 0.2399               & 0.2223              & 0.2227                \\
+                Intercept                   & 0,0071***               & 0,0079***              & 0,0068***                & 0,0227***            & 0,0223***           & 0,0233***             \\
+                & -0,0012                 & -0,0014                & -0,0013                  & -0,0004              & -0,0004             & -0,0004               \\
+                num\_city\_train\_trips     & 0,0851***               & 0,0865***              & 0,0838***                & 0,0794***            & 0,0761***           & 0,0829***             \\
+                & -0,0018                 & -0,002                 & -0,0019                  & -0,0007              & -0,0007             & -0,0008               \\
+                num\_regional\_train\_trips & -0,0047                 & -0,0007                & -0,0083*                 & 0,0450***            & 0,0432***           & 0,0469***             \\
+                & -0,0045                 & -0,0049                & -0,0046                  & -0,0019              & -0,0019             & -0,0021               \\
+                num\_bus\_trips             & 0,0168***               & 0,0162***              & 0,0173***                & 0,0348***            & 0,0377***           & 0,0315***             \\
+                & -0,0021                 & -0,0023                & -0,0022                  & -0,0011              & -0,0011             & -0,0012               \\
+                num\_routes                 & 0,0019                  & -0,0031                & 0,0064                   & -0,0055***           & -0,0131***          & 0,0028                \\
+                & -0,0051                 & -0,0056                & -0,0052                  & -0,0019              & -0,002              & -0,0021               \\
+                is\_weekday                 & -0,0073***              & -0,0075***             & -0,0071***               & -0,0047***           & -0,0045***          & -0,0049***            \\
+                & -0,0006                 & -0,0007                & -0,0006                  & -0,0002              & -0,0002             & -0,0002               \\
+                precip                      & -0,0030***              & -0,0032***             & -0,0028***               & -0,0010***           & -0,0010***          & -0,0010***            \\
+                & -0,0006                 & -0,0006                & -0,0006                  & -0,0002              & -0,0002             & -0,0002               \\
+                sum\_precip\_amount         & -0,0106***              & -0,0104***             & -0,0108***               & -0,0060***           & -0,0056***          & -0,0065***            \\
+                & -0,0023                 & -0,0025                & -0,0024                  & -0,0006              & -0,0006             & -0,0007               \\
+                mean\_temp                  & 0,0070***               & 0,0077***              & 0,0064***                & 0,0039***            & 0,0038***           & 0,0040***             \\
+                & -0,0017                 & -0,0019                & -0,0017                  & -0,0005              & -0,0005             & -0,0005               \\
+                distance\_to\_city\_centre  & -0,0167***              & -0,0178***             & -0,0157***               & -0,0394***           & -0,0381*** & -0,0409*** \\
+                & -0,0012                 & -0,0013                & -0,0012                  & -0,0003              & -0,0003             & -0,0004               \\
+                timebucket\_00\_04\_x       & -0,0059***              & -0,0061***             & -0,0060***               & -0,0060***           & -0,0058***          & -0,0065***            \\
+                & -0,0015                 & -0,0017                & -0,0016                  & -0,0004              & -0,0004             & -0,0004               \\
+                timebucket\_04\_08\_x       & -0,0119***              & -0,0121***             & -0,0121***               & -0,0106***           & -0,0104***          & -0,0112***            \\
+                & -0,0014                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
+                timebucket\_08\_12\_x       & -0,0019                 & -0,0018                & -0,0023                  & -0,0035***           & -0,0040***          & -0,0032***            \\
+                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
+                timebucket\_12\_16\_x       & 0,0169***               & 0,0179***              & 0,0156***                & 0,0121***            & 0,0108***           & 0,0132***             \\
+                & -0,0015                 & -0,0017                & -0,0016                  & -0,0004              & -0,0004             & -0,0005               \\
+                timebucket\_16\_20\_x       & 0,0180***               & 0,0197***              & 0,0162***                & 0,0164***            & 0,0163***           & 0,0162***             \\
+                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
+                timebucket\_20\_24\_x       & 0,0189***               & 0,0202***              & 0,0174***                & 0,0099***            & 0,0103***           & 0,0092***             \\
+                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
+                R-squared                   & 0,211                   & 0,1905                 & 0,1982                   & 0,2892               & 0,2679              & 0,2687                \\
+                R-squared Adj.              & 0,2106                  & 0,1902                 & 0,1979                   & 0,2892               & 0,2678              & 0,2687                \\
                 \bottomrule
-                Standard errors in parentheses, * p<.1, ** p<.05, ***p<.01
             \end{tabular}
         \end{adjustbox}
+        Standard errors below the coefficients, * p<.1, ** p<.05, ***p<.01
         \caption{Regression Summary for Scooters and Rest}
         \label{tab:reg2}
     \end{table}
 
-    \begin{figure}[htbp]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/bikes map}
-        \caption{Map of Cologne showing bike servicearea with usage of bikes and stations} \newline
-        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \caption{Map of Cologne showing bike service area with usage of bikes and stations} \newline
+        Legend: The hexes show all the places where micro mobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
         \label{fig:bikes_sa}
     \end{figure}
-    \begin{figure}[htbp]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{./Figures/car map}
-        \caption{Map of Cologne showing car servicearea with usage of car and stations} \newline
-        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \caption{Map of Cologne showing car service area with usage of car and stations} \newline
+        Legend: The hexes show all the places where micro mobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
         \label{fig:cars_sa}
     \end{figure}
     \pagebreak
-    \begin{figure}[htbp]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{Figures/kick scooter map}
-        \caption{Map of Cologne showing kick scooter servicearea with usage of kick scooters and stations} \newline
-        Legend: The hexes show all the places where micromobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
+        \caption{Map of Cologne showing kick scooter service area with usage of kick scooters and stations} \newline
+        Legend: The hexes show all the places where micro mobility has been, the darker these are, the more trips they have had, and the red dots show the public transit stations, the outline shows the service area union
         \label{fig:scooters_sa}
     \end{figure}
-    \begin{figure}[htbp]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth,center=\textwidth]{Figures/service area Islands}
         \caption{Service Area Islands} \newline
