@@ -125,6 +125,15 @@
     Köln, den 26.07.2022
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %ABSTRACT
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \clearpage
+    \thispagestyle{empty}
+    \section*{Abstract}
+
+    Abstract
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %TOC,TOF,TOT
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \clearpage
@@ -334,7 +343,7 @@
     However, of course the accuracy of the model is highly determinant of having accurate population data, which is of course difficult, but it shows a way how passenger demand can be simulated (\cite{Wahba2005}, p.102).
 
     As soon as providers have a good simulation of the passenger demand, they can try to put this demand in to public transit plans.
-    The providers have 2 other major variables to look at, their number of vehicles and the number of
+    The providers have 2 other major variables to look at, their number of vehicles and the number of passengers
     %Deadhead trips
 
     %Light rail vs bus etc.
@@ -351,11 +360,11 @@
         Hypothesis 1 (H1): Cars are influenced more by regional train schedules, than other modes of transport.
     \end{center}
 
-    Making the hypothesis the other way around, also makes sense, due to the generally shorter trips, if users are using their shared mobility ride to connect to public transit, it would make more sense if they were to use it for light rail and bus access, but due to light rail generally being fast and having a higher range I would theorize, that bike and scooter trips are used more frequently to access light rail stations.
+    Making the hypothesis the other way around, also makes sense, due to the generally shorter trips, if users are using their shared mobility ride to connect to public transit, it would make more sense if they were to use it for light rail and bus access, but due to light rail generally being fast and having a higher range I would theorize, that bike and scooter trips are used more frequently to access light rail stations, than bus stations.
     This makes Hypothesis 2:
 
     \begin{center}
-        Hypothesis 2 (H2): Bikes and Scooter are influenced more by higher0
+        Hypothesis 2 (H2): Bikes and Scooter are moderated more strongly by higher bus and light rail schedules than cars, but higher light rail schedules moderate .
     \end{center}
 
     Now coming to access and egress: Due to looking at free floating vehicles, that are not station bound, the general likelyhood of a vehicle being in the near vicinity of a station, is not guaranteed, but because access trip drivers already have the vehicle, they should be more likely to park directly there.
@@ -382,7 +391,11 @@
     Generally it's comprised of a database like structure that links the different entities for example stops, routes and trips together via unique IDs.
     The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 \- 14.12.2019 and the other one 14.12.2019 \- 12.12.2020.
     The GTFS data comprises about 5000 stops, 500 routes and 100000 trips, although most of these are irrelevant, because there is only trip data for Cologne.
-    %Tabelle wie viel gibt es und wie viel ist relevant
+    The particular GTFS providers used here is depending on the mode, for the light rail trips and for the bus trips the provider is the KVB.
+    The KVB is one of the biggest public transit providers in Germany.
+    The regional trains are provided by the Deutsche Bahn.
+    The KVB already has a joint venture with a shared mobility company, nextbike called KVB Bike.
+    KVB Bike was launched 2015 and offers 3000 bikes available for rent (\cite{WikiNextbike}).
 
     The service area data, is two GeoJSON files, the first is a union of all the service areas for Cologne.
     The second one is a set of the different GeoJSON coordinates for every single provider in Cologne.
@@ -428,8 +441,8 @@
     Depending on the regression I carried out (refer to this table \ref{tab:models}) I only looked at start, end or at both events together.
     This is to be able to see differences between those two different approaches, and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
 
-    The city centre is chosen as the Cologne main station, which is a really big traffic centre for cologne, and is right next the the Kölner Dom, which is the most well known structure of Cologne .
-    It is used to calculate the distance from the start stop event to the city centre, to filter out spatial dynamics.
+    The city center is chosen as the Cologne main station, which is a really big traffic center for cologne, and is right next the the Kölner Dom, which is the most well known structure of Cologne .
+    It is used to calculate the distance from the start stop event to the city center, to filter out spatial dynamics.
     Although it is not in the mid of most of the service areas, it can be seen as the rough mid point for most of them.
     This variable is calculated as an airline, so that has some inaccuracies, espescially when crossing the Rhine.
 
@@ -483,16 +496,16 @@
     \subsubsection{Other Accuracy Increasing Variables}
 
     As is clearly visible in most of the figures and what quickly showed in the data, is that the trips have a spatial dynamic, that generally leads to the middle.
-    Because of that, a variable about the distance to the city centre in metres is needed, this helps to counteract some of the city centre driven dynamics in the data.
+    Because of that, a variable about the distance to the city center in metres is needed, this helps to counteract some of the city center driven dynamics in the data.
     It is only a rough estimate, since it does not factor in, what amenities increase the demand, but should serve as an estimate of the desireability of the amenities at the given place.
 
     \subsubsection{Mathematics}
 
     in accordance to the earlier described features, I will use an OLS regression.
     This is a tried an tested method of econometric analysis.\linebreak
-    $num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_city\_train\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
+    $num\_ffv\_trips = \beta_{0} + \beta_{1} \times  num\_light\_rail\_trips +  \beta_{2} \times  num\_regional\_train\_trips +  \beta_{3} \times  num\_bus\_trips +
     \beta_{4} \times  num\_routes +  \beta_{5} \times  is\_weekday +  \beta_{6} \times  precip +  \beta_{7} \times  sum\_precip\_amount +  \beta_{8} \times  mean\_temp +
-    \beta_{9} \times distance\_to\_city\_centre + \beta_{10} \times  timebucket\_00\_04 +  \beta_{11} \times  timebucket\_04\_08 +  \beta_{12} \times  timebucket\_08\_12 +
+    \beta_{9} \times distance\_to\_city\_center + \beta_{10} \times  timebucket\_00\_04 +  \beta_{11} \times  timebucket\_04\_08 +  \beta_{12} \times  timebucket\_08\_12 +
     \beta_{13} \times  timebucket\_12\_16 +  \beta_{14} \times  timebucket\_16\_20 +  \beta_{15} \times  timebucket\_20\_24 + \epsilon$
 
     This is the formula for the linear model, by letting the model train, it will predict these $ \beta_{i} $ and with the values of $ \beta_{i} $ predict the dependent variable, for every row.
@@ -512,23 +525,23 @@
         \centering
         \begin{tabular}{lllll}
             \toprule
-            \textbf{} & \textbf{Union} & \textbf{Bikes} & \textbf{Cars} & \textbf{Kick Scooters} \\
+            \textbf{}                      & \textbf{Union} & \textbf{Bikes} & \textbf{Cars} & \textbf{Kick Scooters} \\
             \midrule
-            Observations & 685.968 & 51.266 & 347.434 & 95.678 \\
-            Obeservations per Day & 6.660 & 498 & 3.373 & 929 \\
-            Mean Trip Duration (Minutes) & 50 & 205 & 56 & 11 \\
-            Mean Distance (Meters) & 2.458 & 1.751 & 3.714 & 667 \\
+            Observations                   & 685.968        & 51.266         & 347.434       & 95.678                 \\
+            Obeservations per Day          & 6.660          & 498            & 3.373         & 929                    \\
+            Mean Trip Duration (Minutes)   & 50             & 205            & 56            & 11                     \\
+            Mean Distance (Meters)         & 2.458          & 1.751          & 3.714         & 667                    \\
             Timebuckets \\
-            \ \ Timebucket 00:00-04:00 & 6\% & 8\% & 4\% & 10\% \\
-            \ \ Timebucket 04:00-08:00 & 13\% & 13\% & 14\% & 11\% \\
-            \ \ Timebucket 08:00-12:00 & 18\% & 17\% & 18\% & 18\% \\
-            \ \ Timebucket 12:00-16:00 & 23\% & 23\% & 23\% & 22\% \\
-            \ \ Timebucket 16:00-20:00 & 26\% & 29\% & 27\% & 24\% \\
-            \ \ Timebucket 20:00-24:00 & 14\% & 11\% & 13\% & 16\% \\
-            Temp Mean (Celsius) & 6,31 & 6,42 & 6,28 & 6,27 \\
-            Precip Mean & 46\% & 44\% & 48\% & 43\% \\
-            Sum Precip Mean (mm per $m^2$) & 0,37 & 0,29 & 0,43 & 0,33 \\
-            Weekdays & 71\% & 75\% & 72\% & 70\% \\
+            \ \ Timebucket 00:00-04:00     & 6\%            & 8\%            & 4\%           & 10\%                   \\
+            \ \ Timebucket 04:00-08:00     & 13\%           & 13\%           & 14\%          & 11\%                   \\
+            \ \ Timebucket 08:00-12:00     & 18\%           & 17\%           & 18\%          & 18\%                   \\
+            \ \ Timebucket 12:00-16:00     & 23\%           & 23\%           & 23\%          & 22\%                   \\
+            \ \ Timebucket 16:00-20:00     & 26\%           & 29\%           & 27\%          & 24\%                   \\
+            \ \ Timebucket 20:00-24:00     & 14\%           & 11\%           & 13\%          & 16\%                   \\
+            Temp Mean (Celsius)            & 6,31           & 6,42           & 6,28          & 6,27                   \\
+            Precip Mean                    & 46\%           & 44\%           & 48\%          & 43\%                   \\
+            Sum Precip Mean (mm per $m^2$) & 0,37           & 0,29           & 0,43          & 0,33                   \\
+            Weekdays                       & 71\%           & 75\%           & 72\%          & 70\%                   \\
             \bottomrule
         \end{tabular}
         \caption{Describing data from the FFV trips}
@@ -557,8 +570,9 @@
     Some notable examples of this include Leskan Park, Axa Headquarters and Chempark Leverkusen (Figure \ref{fig:islands}).
     This theory is also underlined by the Weekday percentage of cars and bikes also being higher than for scooters, roughly 71,43\% of days are weekdays, so it is a bit more in average for bikes and cars and a bit less for scooters.
 
-    Coming to the weather factors, the first important thing to note is, that since this all is calculated in 4 hour timebuckets, these are not the excact values at the start or stop time, but the factors in the 4 hour time window.
-    When looking at the temperature, it is a reminder again, that this is all winter data, so the average temperature is low, but the temperature for the bike is about 0,15 degrees bigger, meaning that temperature could have an effect on bike rentals and even lower temperatures lead to less bike rentals.
+    Coming to the weather factors, the first important thing to note is, that since this all is calculated in 4 hour timebuckets, these are not the excact values at the time of the ride, but in the 4 hour window.
+    The time took to calculate the 4 hour window is the start time of the trip, since I suppose that decisions that are influenced by weather are most likely to be taken when the rider starts the ride.
+    When looking at the temperature, it is a reminder again, that this is all winter data, so the average temperature is low with about 6 degrees Celsius, but the temperature for the bike is about 0,15 degrees bigger, meaning that temperature could have an effect on bike rentals and even lower temperatures lead to less bike rentals.
     Interestingly, the average temperature for scooters and cars is quite similar, altough that is the case, I think it can be at least partly be explained that due to scooters being used more in the nighttime, where the temperature is lower on average, the value gets dragged down in comparison to the car.
     Still, the car has the highest value which makes sense due to it being warm and protected from the weather.
     For precip, cars are used more in rainy intervals, and have a huge margin in sum of the precip against scooters and bikes (roughly 1/3 more).
@@ -579,7 +593,7 @@
                 Number of Station Hexes                  & 05.11.19-14.12.19  & 393            & 316            & 368           & 58                     \\
                 & 15.12.19-29.02.20  & 397            & 318            & 372           & 62                     \\
                 \midrule
-                Avg daily Number of City Train Trips     & 05.11.19-14.12.19  & 20,38          & 23,51          & 20,54         & 41,27                  \\
+                Avg daily Number of light rail Trips     & 05.11.19-14.12.19  & 20,38          & 23,51          & 20,54         & 41,27                  \\
                 & 15.12.19-29.02.20  & 20,19          & 23,37          & 20,34         & 38,81                  \\
                 \midrule
                 Avg daily Number of Regional Train Trips & 05.11.19-14.12.19  & 2,20           & 2,23           & 1,88          & 6,14                   \\
@@ -591,7 +605,7 @@
                 Avg daily Number of Routes               & 05.11.19-14.12.19  & 2,08           & 2,08           & 2,06          & 2,89                   \\
                 & 15.12.19-29.02.20  & 2,07           & 2,08           & 2,05          & 2,79                   \\
                 \midrule
-                Average Distance to City Centre (m)      & 05.11.19-14.12.19  & 4418,74        & 3683,67        & 4374,1        & 2334,81                \\
+                Average Distance to City Center (m)      & 05.11.19-14.12.19  & 4418,74        & 3683,67        & 4374,1        & 2334,81                \\
                 & 15.12.19-29.02.20  & 4404,83        & 3647,34        & 4359,71       & 2240,54                \\
                 \bottomrule
             \end{tabular}
@@ -603,11 +617,11 @@
     If you look at the table (Table \ref{tab:descr_feed}), it has to be noted first, that within the FFV trip timeframe, there are 2 distinct GTFS feeds, hence the 2 values for everything.
     The number of stops is relatively similar for union, bikes and cars, and with that the size of the service area.
     For scooters although, the service area is much smaller, and with that the available stations.
-    That leads to a much higher average number of daily city train trips and regional train trips, but not for bus trips.
-    This could be explained by city trains and regional trains having their many intersections in the central city, but buses are more spaced out, because their primary purpose is to connect between the trains.
+    That leads to a much higher average number of daily light rail trips and regional train trips, but not for bus trips.
+    This could be explained by light rails and regional trains having their many intersections in the central city, but buses are more spaced out, because their primary purpose is to connect between the trains.
     The higher number of intersections is also seen at the average number of routers for a station, which is roughly 3 for kick scooters instead of about 2 for the other modes.
-    The smaller service area of the kick scooters is also clearly visible for if compared to the car, which has roughly double the average distance to city centre.
-    The bike also has considerably closer aligned service area when compared to the car, shown by the fact, that the average distance to the city centre is about 700 metres lower compared to car and union.
+    The smaller service area of the kick scooters is also clearly visible for if compared to the car, which has roughly double the average distance to city center.
+    The bike also has considerably closer aligned service area when compared to the car, shown by the fact, that the average distance to the city center is about 700 metres lower compared to car and union.
 
     %DESCRIBE AND ANALAYZE GTFS AND TRIP DATA
 
@@ -617,32 +631,33 @@
     First of all it is good to say, that all regression could produce statistically significant results.
     You see the results of the biggest, the union model here in table \ref{tab:both_results}.
     The analys, will also be split in the multiple subcategories discussed before in the model part.
-    Also important to note for the analyses is that, the data is minmax scaled for better comparability, this also means, that the $\beta_{i}$, meaning the coefficients can roughly be interpreted as a percentile variable.
+    Also important to note for the analyses is that, the data is minmax scaled for better comparability.
+    Generally about the $R^2$
 
     \begin{table}[H]
         \centering
         \begin{tabular}{l|llll}
             \toprule
-            \textbf{}                   & \textbf{Bikes} & \textbf{Cars} & \textbf{Scooters} & \textbf{Union} \\
+            \textbf{}               & \textbf{Bikes} & \textbf{Cars} & \textbf{Scooters} & \textbf{Union} \\
             \midrule
-            Intercept                   & 0,0166***      & 0,0370***     & 0,0071***         & 0,0227***      \\
-            num\_city\_train\_trips     & 0,0375***      & 0,0621***     & 0,0851***         & 0,0794***      \\
-            num\_regional\_train\_trips & 0,0074***      & 0,0380***     & -0,0047           & 0,0450***      \\
-            num\_bus\_trips             & 0,0397***      & 0,0194***     & 0,0168***         & 0,0348***      \\
-            num\_routes                 & -0,0153***     & -0,0177***    & 0,0019            & -0,0055***     \\
-            is\_weekday                 & -0,0013***     & -0,0069***    & -0,0073***        & -0,0047***     \\
-            precip                      & -0,0014***     & 0,0016***     & -0,0030***        & -0,0010***     \\
-            sum\_precip\_amount         & -0,0078***     & 0,0040***     & -0,0106***        & -0,0060***     \\
-            mean\_temp                  & 0,0058***      & 0,0015*       & 0,0070***         & 0,0039***      \\
-            distance\_to\_city\_centre  & -0,0267***     & -0,0544***    & -0,0167***        & -0,0394***     \\
-            timebucket\_00\_04          & -0,0047***     & -0,0113***    & -0,0059***        & -0,0060***     \\
-            timebucket\_04\_08          & -0,0082***     & -0,0142***    & -0,0119***        & -0,0106***     \\
-            timebucket\_08\_12          & -0,0062***     & 0,0036***     & -0,0019           & -0,0035***     \\
-            timebucket\_12\_16          & 0,0017***      & 0,0330***     & 0,0169***         & 0,0121***      \\
-            timebucket\_16\_20          & 0,0067***      & 0,0455***     & 0,0180***         & 0,0164***      \\
-            timebucket\_20\_24          & 0,0039***      & 0,0219***     & 0,0189***         & 0,0099***      \\
-            R-squared                   & 0,1108         & 0,2182        & 0,2110            & 0,2892         \\
-            R-squared Adj.              & 0,1107         & 0,2182        & 0,2106            & 0,2892         \\
+            Intercept               & 0,0166***      & 0,0370***     & 0,0071***         & 0,0227***      \\
+            Light Rail Trips        & 0,0375***      & 0,0621***     & 0,0851***         & 0,0794***      \\
+            Regional Train Trips    & 0,0074***      & 0,0380***     & -0,0047           & 0,0450***      \\
+            Bus Trips               & 0,0397***      & 0,0194***     & 0,0168***         & 0,0348***      \\
+            Routes                  & -0,0153***     & -0,0177***    & 0,0019            & -0,0055***     \\
+            Weekday                 & -0,0013***     & -0,0069***    & -0,0073***        & -0,0047***     \\
+            Precip                  & -0,0014***     & 0,0016***     & -0,0030***        & -0,0010***     \\
+            Precip Amount           & -0,0078***     & 0,0040***     & -0,0106***        & -0,0060***     \\
+            Temperature             & 0,0058***      & 0,0015*       & 0,0070***         & 0,0039***      \\
+            Distance to City Center & -0,0267***     & -0,0544***    & -0,0167***        & -0,0394***     \\
+            Timebucket 00:00-04:00  & -0,0047***     & -0,0113***    & -0,0059***        & -0,0060***     \\
+            Timebucket 04:00-08:00  & -0,0082***     & -0,0142***    & -0,0119***        & -0,0106***     \\
+            Timebucket 08:00-12:00  & -0,0062***     & 0,0036***     & -0,0019           & -0,0035***     \\
+            Timebucket 12:00-16:00  & 0,0017***      & 0,0330***     & 0,0169***         & 0,0121***      \\
+            Timebucket 16:00-20:00  & 0,0067***      & 0,0455***     & 0,0180***         & 0,0164***      \\
+            Timebucket 20:00-24:00  & 0,0039***      & 0,0219***     & 0,0189***         & 0,0099***      \\
+            $R^2$                   & 0,1108         & 0,2182        & 0,2110            & 0,2892         \\
+            $R^2$ Adj.              & 0,1107         & 0,2182        & 0,2106            & 0,2892         \\
             \bottomrule
         \end{tabular}
         * p<.1, ** p<.05, ***p<.01
@@ -652,12 +667,68 @@
 
     \subsubsection{Public Transit Variables}
 
+    Starting with the breakdown of the variables, it is clearly visible, that the public transit variables have a highly statistically significant impact on all of the modes except regional on scooters.
+    Generally for most of the modes, light rails have the most impact on the FFV rentals, but for bikes, buses have a slightly higher higher impact than light rails.
+    For scooters and bikes, regional travel seems to be less impactful than for cars, meaning that regional trains have less of an impact on bikes and scooters.
+    The number of distinct routes surprisingly have a negative effect through the board, for cars, bikes and union, where the result is signficant, more routers lose -0,0153 for bikes, -0,0177 for cars and -0,0055 for union.
+    An explanation for this could be, that generally the number of routes correlates heavily with the public transit variables, even more so for the regional trains, because there are very high number of distinct routes (Figures \ref{fig:corr_bikes}, \ref{fig:corr_cars}, \ref{fig:corr_scooters}, \ref{fig:corr_union}).
+    It can be said, that a denser public transit schedule, leads to a positively moderated effect on the number FFV trips, this effect can range anywhere from 0,0074 for bikes and regional to 0,0851 for scooters and light rails.
+    That means that it differs for each single mode, but it is generally positive for every mode.
 
+    \subsubsection{Trip Comfort Variables}
+
+    The trip comfort variables also show similar effects with the outlier of the car.
+    precip negatively moderates ffv usage, for bikes, cars and union, ranging from -0,001 for union, to -0,003 for scooters.
+    For cars, precip moderates the FFV usage positively with 0,0016.
+    When looking at the precip amount, you can see, that interestingly for cars, the heavier it rains, the more people use car sharing, this goes up to an effect of 0,004.
+    For the other modes, the usage goes down the heavier the rain is.
+    When looking at the mean temperature, with more temperature, the usage generally goes up, weakest for cars, but note that the p value is only <0.1 there.
+    This effect goes from 0,0015 for cars to 0,007 for kick scooters.
+    These results show the general user aversion to unfavourable trip conditions, when in unprotected vehicles, the car results imply, that users tend to use car sharing as alternative, when the weather is particularly bad.
+
+    \subsubsection{Time Dependent Factors}
+
+    Concerning the time dependent variables, the assumptions I made can only partially be supported, when looking at the regression results.
+    Firstly the assumption that cars and bikes are more for weekdays, are unanimously destroyed, when looking at the constantly negative Weekday variable.
+    When looking at the timebuckets altough the assumption that bikes and cars are more for getting to work and kick scooters more used in leisure can partially be supported,
+    Firstly, for the regular working time of 8-12 o' clock, cars have the only positive coefficient, but bikes have a widely more negative coefficient than scooters (-0,0062 vs -0,0019).
+    But in the normal work end timebucket, cars have a much higher coefficient (0,0455) compared to scooters (0,018), this speaks for cars being used to drive home, bikes also have a positive coefficient there, but generally the lowest.
+    What can be said, is that comparatively FFV vehicles are less likely to be used for morning traffic than for afternoon traffic, and cars are more likely to be used for work and scooters more in common leisure times.
+
+    \subsubsection{Other Accuracy Increasing Variables}
+
+    The distance to city center variable, that is there to moderate for the average desirability of the amenities nearby, is generally negative, that means the farther a hex is away from the city center, the less trips it has.
+    This effect is especially pronounced for cars, with 0,0554 and least pronounced with scooters with -0,0167.
+    This could have something to do with the smaller service area of the scooters, where the general density of the point that's farthest away is still a lot higher than for the farthest away points in car sharing, where the service area is almost as big as the entire city.
+    The effect for bikes is somewhere in between, since it has a little lower area and is generally more centralized and rounder.
 
     \subsection{Hypothesis Discussion}
 
+    After discussing my general research question, I now want to discuss the 3 hypotheses I set up, to give more detailed knowledge about the model and my findings.
+    The first hypothesis was, that cars are more strongly influenced by regional train trips than other modes of transport.
+    When looking at the numbers this is can be confirmed, by the coefficients, the coefficient for regional trains and cars is 0,038 for bikes it is only 0,0074 and for scooters it is even statistically insignificant.
+    So the first hypothesis can be quite easily confirmed.
+    The reasons for this being true, are probably that as already discussed cars tend to have a further range, so when the passengers goal is to connect the rental of a car and public transit, they tend to go to the regional train stations, that have a higher range, since they want to move further.
 
-    \section{Discussion}
+    Coming to the second hypothesis, it is about bikes and scooter rentals being influenced more by bus and light rail trips than by regional train trips.
+    This hypothesis is only able to be partly accepted when looking at table \ref{tab:both_results}, you can see that not only as discussed in H1, the regional trains impact is not only higher on cars than on the other modes, but also internally, light rails and buses have a higher impact on scooters and bikes than the number of regional train trips.
+    This is clearly seen with the value for the bikes being 0,0375 for the number of light rails and 0,0397 for the number of bus trips, compared to the 0,0074 for regional trains.
+    Same goes for the Scooters with 0,0851 for light rails and 0,0168 for bus trips compared to the regional train value being insignificant for scooters.
+    Although it has to be said, that the impact of rail and bus is higher for both bikes and scooters, than from regional train trips, the number of light rail trips also impacts cars more than the number of regional train trips.
+    It has to be noted although, that the relative impact of city trains and buses to regional trains is stronger for scooters and bikes than for cars.
+    So I would say this hypothesis is generally true, but the same also goes for cars, although the focus for cars is much higher on regional trains than on buses, presumably because of the higher range of regional trains.
+
+    To recap the last hypothesis, is was about public transit having a higher impact on end trips, than on start trips, because end trips are always extremely near to the station and for a start trip you first have to find a vehicle, which could then be more difficult to attribute to a certain stop and hex.
+    To discuss this hypothesis table \ref{tab:r1} and \ref{tab:reg2} are relevant, as they show all of the trips with divided by start and stop for each mode.
+    When looking at the tables, and comparing starting with bikes, for light rail and regional trains the difference is not beyond the standard deviation except for buses, they have a higher impact on end trips beyond the standard deviation (0,0052).
+    For car trips, it is another effect, all modes have different impacts for end trips, all consistently higher than for starting trips (0,0031 for light rail, 0,0069 for regional trains and 0,0162 for buses).
+    For scooters, there is not any difference of beyond the standard deviations.
+    So we can make out 4 differences beyond the standard deviation out of 9 possible ones, interestingly for cars, where all have an influence, buses also have the strongest influence and buses are the only statistically significant finding for bikes.
+    This makes the hypothesis believable, since there are no contra indications out of all the regressions, but more data will be needed to find if the hypothesis can also be hold, if there are more differences beyond the standard deviation.
+    All in all this shows, that the heuristic of the station hexes seemed to be chosen pretty closely to the mean distance that people are willing to walk, because the differences between the starts and the ends is about 10\% maximum disregarding the bus -> car trips dynamic.
+    That the effect is so clear for cars is probably an indication for the big service area and the thus higher average spread, that makes it more unlikely to encounter a car in the near vicinity and thus more unlikely for it to be in the same hex.
+
+    \section{Discussion and Further Research}
 
     Although I conducted the research very thoroughly there are some points that remain unclear and need to be advanced.
     Firstly I will going in to the points that are influenced by the data that I used for the research.
@@ -665,23 +736,71 @@
     The GTFS data only contains plan data and no live data, which is a problem since delays and cancellations are a common occurence among public transportation (CIT:NEEDED) and it would have been especially interesting to analyze data that factors in delays and cancellations.
     With this data it would be possible to learn if people switch spontaneously from their planned public transportation trip to an unplanned FFV trip and because of no actual data and just the plan data being there it's difficult to tell if the numbers are really accurate.
 
-    The trip data only contains winter months, and other research also shows that these comfort factors like temperature and precipitation can influence the amount of FFV usage, this effect is even stronger for uncovered vehicles. (\cite{Demircan2021}, p. 9)
+    The trip data only contains winter months, and my own as well as other research also shows that these comfort factors like temperature and precipitation can influence the amount of FFV usage, this effect is even stronger for uncovered vehicles (\cite{Babar2017}, \cite{Demircan2021}, p. 9).
     It would be thus very interesting to have summer and winter data to compare, and see if in the summer passengers are more willing to use FFV platforms.
     Furthermore, the trip data is only retrieved every 5 minutes from the different providers, which can especially for short trips make a big difference, but because only trips that are longer than 24 hours are removed from the dataset, this is not a big problem.
 
+    Another point is the general quality of the data, because the number of observations is comparatively low for the research method that has been carried out, meaning spatio temporal analysis.
+    For the union model, where everything is put together, with 432-436 stations with 6 timeframes and 103 days which equals to 266.976 spatio temporal divisions, and 685.968 ride datapoints.
+    This is a generally pretty low number, but it is still much higher, in comparison to for example the bike model, where 50.000 observations are distributed on 213.828 datapoints.
+    This is a very low distribution and you can generally say, that also the $R^2$ value is very low for the bike models compared to the other models with about 0,11, all other models have above 0,2.
+    So it is generally difficult to say if this effect comes from the fact, that bike traffic is more difficult to explain for bikes, or if we just need more data.
+    Also the difference between starts and stops would be easier to examine, with more data points.
+    One way to get these data points would be to either get ride data directly from providers, or improve the web scraping in such a way that it is more reliable and the data is trustworthier.
+    This would lead to less data needing to be cleaned in the data preparation steps of the method and then more usable data would remain.
+    Another point where the data quality is lacking is the service areas, they
+
+    Also another thing about the $R^2$ value is that they are generally pretty low for a big data oriented model, this can at least partly be attributed to missing data, but it also has to be said, that the goal of the thesis is not to generate a model, that is as accurate as possible.
+    The goal was, to extract the major variables that have an impact on FFVS to look at the resulting model to see if they have if the public transit variables have an impact and that has been done.
+    The goal was not, to construct a model, that as precisely as possible can predict how much FFV demand will be at a given place at a given time.
+    The assumptions made in the model are not very well suited to answer these questions at all and it would have needed many more variables to fully explain this effect.
+    Thus the $R^2$ value is no focus of the analysis and is only partly used to explain the merit of the models, if it was extremely low, it could be said, that the general variables seem to have a very low impact.
+    The goal was more to reproduce statistically significant coefficients that could explain the demand well enough and whose impact could then be discussed.
+    But further research is necessary to better predict the FFV demand and it will also require different data, best through the year and many data points in a big city.
+
     Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
-    Naturally as other research has already shown, the demand for FFV is higher in the city centres and as Cologne only has one very clear city center, the demand tends to be the strongest there.
+    Naturally as other research has already shown, the demand for FFV is higher in the city centers and as Cologne only has one very clear city center, the demand tends to be the strongest there.
     For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne.
     This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping street and the traffic that's there because Neumarkt is a traffic center.
+    A variable to help this: Distance to City Center was introduced, but it is only a rough estimate of the desirability of the nearby amenities.
+    But of course this variable is nothing more than an estimation and the research is not fully controlled for these factors.
 
+    Coming to the uses of this research: For managers of public transit providers this research has very high relevance.
+    Especially for the KVB, that is the transit provider of the GTFS data I looked at, because it has already a joint venture with nextbike, so they already dabbled in to the market.
+    But from the results I have gathered, it seems like free floating scooter rentals are influenced most by light rail rentals, and cars are the second place, last are bikes.
+    Although it has to be said, that bus trips seem to have a heavier impact on bikes than for any other vehicle type.
+    But it can be said from the data, that the KVB should at least consider a scooter joint venture, since their public transit seems to have less of an impact on bikes than on scooters.
+    Because of the higher impact on scooter sharing, it could be a more enticing service than the KVB Rad venture.
+    The most interesting part about the research is, that KVB bike data is even in the bike data for the analysis, but sadly the KVB bike data has only very little rides, about 30 per day, which is not enough to say anything about that.
+    Further research would be necessary with viable KVB Bike data to further compare the effectiveness of the KVB bike venture with a potential KVB E-Scooter venture.
+    The fact that KVB rad already exists and is integrated with a normal public transit subscription, is another very interesting point for further research.
+    Further research could systematically look at the ways how integrated subscriptions with bike sharing services are used and if public transit schedules have an impact on them more than other shared mobility services.
+    This could make shared mobility more efficient and help understand more in depth how these free additions operate and how people use them.
+
+    Furthermore about the implications for Deutsche Bahn (DB), who operate their call a bike infrastructure, it has to be said, that bike data was analyzed and regional trains had just a very tiny impact on bikes.
+    This could imply, that DB should think about if there is a big value add to their service, if the impact from regional transit is so small on bikes overall.
+    But the DB already has a car sharing program called Flinkster, but compared to share now it is much smaller and also dock based.
+    So far the DB markets it mostly as a regular car service in no affiliation with their normal public transit activites (\cite{Flinkster}).
+    Since car rentals are especially strongly influenced by regional trains, it could make sense to to try connect these two things to facilitate synergy effects.
+    Further research with data specifically from call a bike could be helpful, because unfortunately call a bike had to be removed completely due to huge lacks of data for some days.
+    Flinkster data could also be especially analysed to try to see if it is already more influenced by regional trains scheduling than other car sharing providers.
+
+    The contributions of this work to science are, a close look at the effects of public transit schedules on shared mobility rentals.
+    Although the connections have also partly been discussed already and in the papers themselves connections are discussed, no paper has the focus on public transit schedules.
+    They are always pretty unclear about how especially they have gotten their public transit metrics in their models.
+    In this thesis I established a precise way of how to look at public transit schedules that could be reused in other research.
+    I could successfully establish a connection between public transit schedules and micromobility usage, further research could go more into detail about this connection using better data.
 
     \section{Conclusion}
 
+    To conclude this thesis, I will quickly recap what I have done and what I have found out.
+    I started with
+
     \pagebreak
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%APPENDICES
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %APPENDICES
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -690,7 +809,7 @@
 
 
     \section{Appendix}
-% APPENDIX A
+    % APPENDIX A
 
     \begin{table}[H]
         \centering
@@ -756,42 +875,42 @@
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{lllllll}
                 \toprule
-                \textbf{}                   & \textbf{bike\_both} & \textbf{bike\_end} & \textbf{bike\_start} & \textbf{cars\_both} & \textbf{cars\_end} & \textbf{cars\_start} \\
+                \textbf{}               & \textbf{bike\_both} & \textbf{bike\_end} & \textbf{bike\_start} & \textbf{cars\_both} & \textbf{cars\_end} & \textbf{cars\_start} \\
                 \midrule
-                Intercept                   & 0,0166***           & 0,0144***          & 0,0138***            & 0,0370***           & 0,0372***          & 0,0347***            \\
-                & -0,0004             & -0,0004            & -0,0005              & -0,0006             & -0,0007            & -0,0006              \\
-                num\_city\_train\_trips     & 0,0375***           & 0,0316***          & 0,0315***            & 0,0621***           & 0,0614***          & 0,0583***            \\
-                & -0,0008             & -0,0008            & -0,0008              & -0,0012             & -0,0013            & -0,0013              \\
-                num\_regional\_train\_trips & 0,0074***           & 0,0057***          & 0,0068***            & 0,0380***           & 0,0401***          & 0,0332***            \\
-                & -0,0021             & -0,002             & -0,0022              & -0,0033             & -0,0035            & -0,0034              \\
-                num\_bus\_trips             & 0,0397***           & 0,0345***          & 0,0324***            & 0,0194***           & 0,0268***          & 0,0106***            \\
-                & -0,0011             & -0,0011            & -0,0012              & -0,0019             & -0,002             & -0,0019              \\
-                num\_routes                 & -0,0153***          & -0,0143***         & -0,0114***           & -0,0177***          & -0,0323***         & -0,0019              \\
-                & -0,0022             & -0,0021            & -0,0023              & -0,0034             & -0,0036            & -0,0036              \\
-                is\_weekday                 & -0,0013***          & -0,0008***         & -0,0014***           & -0,0069***          & -0,0067***         & -0,0067***           \\
-                & -0,0002             & -0,0002            & -0,0002              & -0,0003             & -0,0003            & -0,0003              \\
-                precip                      & -0,0014***          & -0,0012***         & -0,0011***           & 0,0016***           & 0,0015***          & 0,0016***            \\
-                & -0,0002             & -0,0002            & -0,0002              & -0,0003             & -0,0003            & -0,0003              \\
-                sum\_precip\_amount         & -0,0078***          & -0,0064***         & -0,0067***           & 0,0040***           & 0,0044***          & 0,0033***            \\
-                & -0,0007             & -0,0007            & -0,0007              & -0,0011             & -0,0012            & -0,0012              \\
-                mean\_temp                  & 0,0058***           & 0,0047***          & 0,0052***            & 0,0015*             & 0,0018**           & 0,0011               \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0008             & -0,0009            & -0,0009              \\
-                distance\_to\_city\_centre  & -0,0267***          & -0,0220***         & -0,0231***           & -0,0544***          & -0,0536*** & -0,0514*** \\
-                & -0,0004             & -0,0004            & -0,0004              & -0,0006             & -0,0006            & -0,0006              \\
-                timebucket\_00\_04\_x       & -0,0047***          & -0,0046***         & -0,0035***           & -0,0113***          & -0,0112***         & -0,0112***           \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0007              \\
-                timebucket\_04\_08\_x       & -0,0082***          & -0,0076***         & -0,0064***           & -0,0142***          & -0,0143***         & -0,0137***           \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
-                timebucket\_08\_12\_x       & -0,0062***          & -0,0066***         & -0,0041***           & 0,0036***           & 0,0019***          & 0,0044***            \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
-                timebucket\_12\_16\_x       & 0,0017***           & 0,0002             & 0,0025***            & 0,0330***           & 0,0296***          & 0,0335***            \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0008              \\
-                timebucket\_16\_20\_x       & 0,0067***           & 0,0049***          & 0,0062***            & 0,0455***           & 0,0456***          & 0,0416***            \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0008            & -0,0007              \\
-                timebucket\_20\_24\_x       & 0,0039***           & 0,0029***          & 0,0034***            & 0,0219***           & 0,0240***          & 0,0177***            \\
-                & -0,0005             & -0,0005            & -0,0005              & -0,0007             & -0,0007            & -0,0007              \\
-                R-squared                   & 0,1108              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1879               \\
-                R-squared Adj.              & 0,1107              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1878               \\
+                Intercept               & 0,0166***           & 0,0144***          & 0,0138***            & 0,0370***           & 0,0372***          & 0,0347***            \\
+                & 0,0004              & 0,0004             & 0,0005               & 0,0006              & 0,0007             & 0,0006               \\
+                Light Rail Trips        & 0,0375***           & 0,0316***          & 0,0315***            & 0,0621***           & 0,0614***          & 0,0583***            \\
+                & 0,0008              & 0,0008             & 0,0008               & 0,0012              & 0,0013             & 0,0013               \\
+                Regional Train Trips    & 0,0074***           & 0,0057***          & 0,0068***            & 0,0380***           & 0,0401***          & 0,0332***            \\
+                & 0,0021              & 0,002              & 0,0022               & 0,0033              & 0,0035             & 0,0034               \\
+                Bus Trips               & 0,0397***           & 0,0345***          & 0,0324***            & 0,0194***           & 0,0268***          & 0,0106***            \\
+                & 0,0011              & 0,0011             & 0,0012               & 0,0019              & 0,002              & 0,0019               \\
+                Routes                  & -0,0153***          & -0,0143***         & -0,0114***           & -0,0177***          & -0,0323***         & -0,0019              \\
+                & 0,0022              & 0,0021             & 0,0023               & 0,0034              & 0,0036             & 0,0036               \\
+                Weekday                 & -0,0013***          & -0,0008***         & -0,0014***           & -0,0069***          & -0,0067***         & -0,0067***           \\
+                & 0,0002              & 0,0002             & 0,0002               & 0,0003              & 0,0003             & 0,0003               \\
+                Precip                  & -0,0014***          & -0,0012***         & -0,0011***           & 0,0016***           & 0,0015***          & 0,0016***            \\
+                & 0,0002              & 0,0002             & 0,0002               & 0,0003              & 0,0003             & 0,0003               \\
+                Precip Amount           & -0,0078***          & -0,0064***         & -0,0067***           & 0,0040***           & 0,0044***          & 0,0033***            \\
+                & 0,0007              & 0,0007             & 0,0007               & 0,0011              & 0,0012             & 0,0012               \\
+                Temperature             & 0,0058***           & 0,0047***          & 0,0052***            & 0,0015*             & 0,0018**           & 0,0011               \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0008              & 0,0009             & 0,0009               \\
+                Distance to City Center & -0,0267***          & -0,0220***         & -0,0231***           & -0,0544***          & -0,0536***         & -0,0514***           \\
+                & 0,0004              & 0,0004             & 0,0004               & 0,0006              & 0,0006             & 0,0006               \\
+                Timebucket 00:00-04:00  & -0,0047***          & -0,0046***         & -0,0035***           & -0,0113***          & -0,0112***         & -0,0112***           \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0008             & 0,0007               \\
+                Timebucket 04:00 08:00  & -0,0082***          & -0,0076***         & -0,0064***           & -0,0142***          & -0,0143***         & -0,0137***           \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0007             & 0,0007               \\
+                Timebucket 08:00-12:00  & -0,0062***          & -0,0066***         & -0,0041***           & 0,0036***           & 0,0019***          & 0,0044***            \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0007             & 0,0007               \\
+                Timebucket 12:00-16:00  & 0,0017***           & 0,0002             & 0,0025***            & 0,0330***           & 0,0296***          & 0,0335***            \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0008             & 0,0008               \\
+                Timebucket 16:00 20:00  & 0,0067***           & 0,0049***          & 0,0062***            & 0,0455***           & 0,0456***          & 0,0416***            \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0008             & 0,0007               \\
+                Timebucket 20:00-24:00  & 0,0039***           & 0,0029***          & 0,0034***            & 0,0219***           & 0,0240***          & 0,0177***            \\
+                & 0,0005              & 0,0005             & 0,0005               & 0,0007              & 0,0007             & 0,0007               \\
+                $R^2$                   & 0,1108              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1879               \\
+                $R^2$ Adj.              & 0,1107              & 0,0836             & 0,0782               & 0,2182              & 0,1933             & 0,1878               \\
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
@@ -805,42 +924,42 @@
         \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
             \begin{tabular}{lllllll}
                 \toprule
-                \textbf{}                   & \textbf{scooters\_both} & \textbf{scooters\_end} & \textbf{scooters\_start} & \textbf{union\_both} & \textbf{union\_end} & \textbf{union\_start} \\
+                \textbf{}               & \textbf{scooters\_both} & \textbf{scooters\_end} & \textbf{scooters\_start} & \textbf{union\_both} & \textbf{union\_end} & \textbf{union\_start} \\
                 \midrule
-                Intercept                   & 0,0071***               & 0,0079***              & 0,0068***                & 0,0227***            & 0,0223***           & 0,0233***             \\
-                & -0,0012                 & -0,0014                & -0,0013                  & -0,0004              & -0,0004             & -0,0004               \\
-                num\_city\_train\_trips     & 0,0851***               & 0,0865***              & 0,0838***                & 0,0794***            & 0,0761***           & 0,0829***             \\
-                & -0,0018                 & -0,002                 & -0,0019                  & -0,0007              & -0,0007             & -0,0008               \\
-                num\_regional\_train\_trips & -0,0047                 & -0,0007                & -0,0083*                 & 0,0450***            & 0,0432***           & 0,0469***             \\
-                & -0,0045                 & -0,0049                & -0,0046                  & -0,0019              & -0,0019             & -0,0021               \\
-                num\_bus\_trips             & 0,0168***               & 0,0162***              & 0,0173***                & 0,0348***            & 0,0377***           & 0,0315***             \\
-                & -0,0021                 & -0,0023                & -0,0022                  & -0,0011              & -0,0011             & -0,0012               \\
-                num\_routes                 & 0,0019                  & -0,0031                & 0,0064                   & -0,0055***           & -0,0131***          & 0,0028                \\
-                & -0,0051                 & -0,0056                & -0,0052                  & -0,0019              & -0,002              & -0,0021               \\
-                is\_weekday                 & -0,0073***              & -0,0075***             & -0,0071***               & -0,0047***           & -0,0045***          & -0,0049***            \\
-                & -0,0006                 & -0,0007                & -0,0006                  & -0,0002              & -0,0002             & -0,0002               \\
-                precip                      & -0,0030***              & -0,0032***             & -0,0028***               & -0,0010***           & -0,0010***          & -0,0010***            \\
-                & -0,0006                 & -0,0006                & -0,0006                  & -0,0002              & -0,0002             & -0,0002               \\
-                sum\_precip\_amount         & -0,0106***              & -0,0104***             & -0,0108***               & -0,0060***           & -0,0056***          & -0,0065***            \\
-                & -0,0023                 & -0,0025                & -0,0024                  & -0,0006              & -0,0006             & -0,0007               \\
-                mean\_temp                  & 0,0070***               & 0,0077***              & 0,0064***                & 0,0039***            & 0,0038***           & 0,0040***             \\
-                & -0,0017                 & -0,0019                & -0,0017                  & -0,0005              & -0,0005             & -0,0005               \\
-                distance\_to\_city\_centre  & -0,0167***              & -0,0178***             & -0,0157***               & -0,0394***           & -0,0381*** & -0,0409*** \\
-                & -0,0012                 & -0,0013                & -0,0012                  & -0,0003              & -0,0003             & -0,0004               \\
-                timebucket\_00\_04\_x       & -0,0059***              & -0,0061***             & -0,0060***               & -0,0060***           & -0,0058***          & -0,0065***            \\
-                & -0,0015                 & -0,0017                & -0,0016                  & -0,0004              & -0,0004             & -0,0004               \\
-                timebucket\_04\_08\_x       & -0,0119***              & -0,0121***             & -0,0121***               & -0,0106***           & -0,0104***          & -0,0112***            \\
-                & -0,0014                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
-                timebucket\_08\_12\_x       & -0,0019                 & -0,0018                & -0,0023                  & -0,0035***           & -0,0040***          & -0,0032***            \\
-                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
-                timebucket\_12\_16\_x       & 0,0169***               & 0,0179***              & 0,0156***                & 0,0121***            & 0,0108***           & 0,0132***             \\
-                & -0,0015                 & -0,0017                & -0,0016                  & -0,0004              & -0,0004             & -0,0005               \\
-                timebucket\_16\_20\_x       & 0,0180***               & 0,0197***              & 0,0162***                & 0,0164***            & 0,0163***           & 0,0162***             \\
-                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
-                timebucket\_20\_24\_x       & 0,0189***               & 0,0202***              & 0,0174***                & 0,0099***            & 0,0103***           & 0,0092***             \\
-                & -0,0015                 & -0,0016                & -0,0015                  & -0,0004              & -0,0004             & -0,0004               \\
-                R-squared                   & 0,211                   & 0,1905                 & 0,1982                   & 0,2892               & 0,2679              & 0,2687                \\
-                R-squared Adj.              & 0,2106                  & 0,1902                 & 0,1979                   & 0,2892               & 0,2678              & 0,2687                \\
+                Intercept               & 0,0071***               & 0,0079***              & 0,0068***                & 0,0227***            & 0,0223***           & 0,0233***             \\
+                & 0,0012                  & 0,0014                 & 0,0013                   & 0,0004               & 0,0004              & 0,0004                \\
+                Light Rail Trips        & 0,0851***               & 0,0865***              & 0,0838***                & 0,0794***            & 0,0761***           & 0,0829***             \\
+                & 0,0018                  & 0,002                  & 0,0019                   & 0,0007               & 0,0007              & 0,0008                \\
+                Regional Train Trips    & -0,0047                 & -0,0007                & -0,0083*                 & 0,0450***            & 0,0432***           & 0,0469***             \\
+                & 0,0045                  & 0,0049                 & 0,0046                   & 0,0019               & 0,0019              & 0,0021                \\
+                Bus Trips               & 0,0168***               & 0,0162***              & 0,0173***                & 0,0348***            & 0,0377***           & 0,0315***             \\
+                & 0,0021                  & 0,0023                 & 0,0022                   & 0,0011               & 0,0011              & 0,0012                \\
+                Routes                  & 0,0019                  & -0,0031                & 0,0064                   & -0,0055***           & -0,0131***          & 0,0028                \\
+                & 0,0051                  & 0,0056                 & 0,0052                   & 0,0019               & 0,002               & 0,0021                \\
+                Weekday                 & -0,0073***              & -0,0075***             & -0,0071***               & -0,0047***           & -0,0045***          & -0,0049***            \\
+                & 0,0006                  & 0,0007                 & 0,0006                   & 0,0002               & 0,0002              & 0,0002                \\
+                Precip                  & -0,0030***              & -0,0032***             & -0,0028***               & -0,0010***           & -0,0010***          & -0,0010***            \\
+                & 0,0006                  & 0,0006                 & 0,0006                   & 0,0002               & 0,0002              & 0,0002                \\
+                Precip Amount           & -0,0106***              & -0,0104***             & -0,0108***               & -0,0060***           & -0,0056***          & -0,0065***            \\
+                & 0,0023                  & 0,0025                 & 0,0024                   & 0,0006               & 0,0006              & 0,0007                \\
+                Temperature             & 0,0070***               & 0,0077***              & 0,0064***                & 0,0039***            & 0,0038***           & 0,0040***             \\
+                & 0,0017                  & 0,0019                 & 0,0017                   & 0,0005               & 0,0005              & 0,0005                \\
+                Distance to City Center & -0,0167***              & -0,0178***             & -0,0157***               & -0,0394***           & -0,0381***          & -0,0409***            \\
+                & 0,0012                  & 0,0013                 & 0,0012                   & 0,0003               & 0,0003              & 0,0004                \\
+                Timebucket00:00-04:00   & -0,0059***              & -0,0061***             & -0,0060***               & -0,0060***           & -0,0058***          & -0,0065***            \\
+                & 0,0015                  & 0,0017                 & 0,0016                   & 0,0004               & 0,0004              & 0,0004                \\
+                Timebucket 04:00-08:00  & -0,0119***              & -0,0121***             & -0,0121***               & -0,0106***           & -0,0104***          & -0,0112***            \\
+                & 0,0014                  & 0,0016                 & 0,0015                   & 0,0004               & 0,0004              & 0,0004                \\
+                Timebucket 08:00-12:00  & -0,0019                 & -0,0018                & -0,0023                  & -0,0035***           & -0,0040***          & -0,0032***            \\
+                & 0,0015                  & 0,0016                 & 0,0015                   & 0,0004               & 0,0004              & 0,0004                \\
+                Timebucket 12:00-16:00  & 0,0169***               & 0,0179***              & 0,0156***                & 0,0121***            & 0,0108***           & 0,0132***             \\
+                & 0,0015                  & 0,0017                 & 0,0016                   & 0,0004               & 0,0004              & 0,0005                \\
+                Timebucket 16:00-20:00  & 0,0180***               & 0,0197***              & 0,0162***                & 0,0164***            & 0,0163***           & 0,0162***             \\
+                & -0,0015                 & 0,0016                 & 0,0015                   & 0,0004               & 0,0004              & 0,0004                \\
+                Timebucket 20:00-24:00  & 0,0189***               & 0,0202***              & 0,0174***                & 0,0099***            & 0,0103***           & 0,0092***             \\
+                & -0,0015                 & 0,0016                 & 0,0015                   & 0,0004               & 0,0004              & 0,0004                \\
+                $R^2$                   & 0,211                   & 0,1905                 & 0,1982                   & 0,2892               & 0,2679              & 0,2687                \\
+                $R^2$ Adj.              & 0,2106                  & 0,1902                 & 0,1979                   & 0,2892               & 0,2678              & 0,2687                \\
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
@@ -877,6 +996,30 @@
         \caption{Service Area Islands} \newline
         Closer look at the "Service Area Islands", at the top left you see the Leverkusen Chempark, at the bottom right you can see the Axa HQ, and to the right above it, you can see the Leskan Park, this is not in the general car service area, but only in the union service area in Figure \ref{fig:union_sa}
         \label{fig:islands}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/corr matrix union both}
+        \caption{Correlation Matrix for union} \newline
+        \label{fig:corr_union}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/corr matrix car both}
+        \caption{Correlation Matrix for Cars} \newline
+        \label{fig:corr_cars}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/corr matrix bikes both}
+        \caption{Correlation Matrix for Bikes} \newline
+        \label{fig:corr_bikes}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth,center=\textwidth]{Figures/corr matrix scooter both}
+        \caption{Correlation Matrix for kick scooters} \newline
+        \label{fig:corr_scooters}
     \end{figure}
     \pagebreak
 

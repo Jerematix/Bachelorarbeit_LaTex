@@ -494,6 +494,19 @@
   publisher = {Institute for Operations Research and the Management Sciences ({INFORMS})},
 }
 
+@Misc{WikiNextbike,
+  author = {{Various Authorts}},
+  title  = {Wikipedia Entry Nextbike},
+  url    = {https://en.wikipedia.org/wiki/Nextbike},
+}
+
+@Article{Flinkster,
+  author = {{Deutsche Bahn}},
+  title  = {Flinkster Website},
+  year   = {2022},
+  doi    = {https://www.bahn.de/angebot/urlaub/mietwagen/carsharing-flinkster},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 %! Author = jerem
