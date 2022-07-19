@@ -497,6 +497,7 @@
 @Misc{WikiNextbike,
   author = {{Various Authorts}},
   title  = {Wikipedia Entry Nextbike},
+  year   = {2022},
   url    = {https://en.wikipedia.org/wiki/Nextbike},
 }
 
@@ -505,6 +506,16 @@
   title  = {Flinkster Website},
   year   = {2022},
   doi    = {https://www.bahn.de/angebot/urlaub/mietwagen/carsharing-flinkster},
+}
+
+@InProceedings{Ciociola2020,
+  author    = {Alessandro Ciociola and Michele Cocca and Danilo Giordano and Luca Vassio and Marco Mellia},
+  booktitle = {2020 {IEEE}/{ACM} 24th International Symposium on Distributed Simulation and Real Time Applications ({DS}-{RT})},
+  title     = {E-Scooter Sharing: Leveraging Open Data for System Design},
+  year      = {2020},
+  month     = {sep},
+  publisher = {{IEEE}},
+  doi       = {10.1109/ds-rt50469.2020.9213514},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
