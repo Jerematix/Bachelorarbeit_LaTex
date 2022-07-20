@@ -132,13 +132,14 @@
     \section*{Abstract}
 
     \begin{itshape}
-        With rising concerns for climate change, and the mobility sector being a big polluting factor, less car centric, $co^2$ intensive transport is necessary.
+        With rising concerns for climate change and the mobility sector being a big polluting factor, less car centric, $co^2$ intensive transport is necessary.
         Shared mobility and public transit are opportunities for multimodal transportation, with less cars.
         But so far there has been little research about the density of public transit and their interconnections to the different shared mobility modes and how access and egress trips compare.
-        With this research, public transit companies could better plan their staff and determine if they want to do joint ventures with other companies.
-        To test out this research questions I developed, a spatio-temporal econometric model using a data set of about shared mobility 700000 datapoints about 103 from different provider with different modes of transport.
-        This was combined with the public transit data from cologne to test out the density of the public transit, other factors as weather, weekday and centrality were considered aswell.
-        The analysis of the results results show, a clear connection between public transit schedules and shared mobility, strongest for light rail, then regional trains and last buses.
+        With this research, public transit companies can better plan their staff and determine if they want to do joint ventures with other companies.
+        To answer these research questions I developed a spatio-temporal econometric model using a data set of about 700000 datapoints spanning 103 days from different shared mobility providers in the realm of cars, kick scooters and bikes.
+        This was combined with the corresponding public transit data from Cologne to calculate the density of the public transit.
+        Additional factors as weather, weekday and centrality were considered as well.
+        The analysis of the results results shows, a clear connection between public transit schedules and shared mobility, strongest for light rail, then regional trains and last buses.
         The different modes had some differences like cars being more focused on regional trains and bikes and scooters being more focused on light rail and buses.
     \end{itshape}
 
@@ -161,35 +162,35 @@
 
     \subsection{Problem Statement}
 
-    Sustainability concerns are getting much more important in today's times as effects like climate change and pollution are advancing and risking of making the earth an uninhabitable space.
-    According to the \cite{EEA2021} the transportation sector is one of the biggest contributor to greenhouse gas emissions and thus climate change.
-    Urban mobility is one of the leading contributing factors to pollution and greenhouse gas emission (\cite{EEA2021}).
+    Sustainability concerns are getting much more important in today's times as effects like climate change and pollution are advancing and risk of making the earth an uninhabitable space.
+    According to the \cite{EEA2021} the transportation sector is one of the biggest contributors to greenhouse gas emissions and thus climate change.
+    Urban mobility is one of the contributing factors to pollution and greenhouse gas emission (\cite{EEA2021}).
     The rise of the car in many regions has made the cities more uninhabitable through pollution and transit worse due to congestion (\cite{Fan2019}, p.1).
 
-    To solve these challenges that have to be faced, society has to look, at alternative ways to car centric transportation.
+    To solve these challenges, society has to look at alternative ways of transportations, to move away from car centric transportation.
     This means encouraging inhabitants of cities to go multimodal (use multiple types of transport in general) and intermodal (use multiple types of transport in one trip).
-    One way to encourage intermodality, is encouraging public transit, since it is one alternative, which has already been established for a while.
-    It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked (\cite{Fan2019}).
+    One way to encourage multimodality, is fostering public transit, since it is one alternative, which has already been established for a while.
+    It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked (\cite{Fan2019}, p.1).
     One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations, that delay transportation that would have otherwise happened.
-    If one wants to travel from point A to point B, they have to wait for the public transit to arrive, and thus increase their commute time, without a benefit for themselves.
+    If one wants to travel from point A to point B, they have to wait for public transit to arrive, and thus increase their commute time, without a benefit for themselves.
     The second major shortcoming is that, there is the first and last mile problem, riders of public transit have to pass the distance from their point to public transit (access) and from the public transit to their destination (egress) (\cite{Boecker2020}, p.390).
     Another major shortcoming is, that the service level is perceived to be lower, due to the riders not having their own personal space, but that they are travelling together with other riders in a single vehicle (\cite{Fan2019}, p.12).
-    These problems are, that is an extensive issues for public transit, and public transit providers have to work on to improve  (\cite{Fan2019}, p.1-2).
+    These problems are extensive issues for public transit, and public transit providers, as well as local government have to work on these problems to improve the service level (\cite{Fan2019}, p.1-2).
 
-    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform which is enabled by IT (\cite{Puschmann2016}, p.93), that allows people to rent modes of transport like bikes, cars and scooters for a short amount of time, for a typically relatively low fee.
+    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform that is enabled by IT (\cite{Puschmann2016}, p.93).
+    These platforms allow people to rent modes of transport like bikes, cars and scooters for a short amount of time, and the fees are typically relatively low.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
-    Typically these services operate within a confined service area, that the user has to start and end in, these service areas are mostly confined to the densest areas of the city.
-    Altough there are these service area models, for bikes there are also older, dock based models, that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
-    This has the advantage that as long as there is a shared mobility system, people can travel freely, without having to worry about the public transit schedules or going long distances by foot.
+    Typically these services operate within a confined service area, that the user has to start and end in, these service areas are mostly confined to the densest populated areas of the city, or parts of the city with very desirable amenities, like downtown areas.
+    Although there are these service area models, for bikes there are also older, dock based models, that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
+    Shared mobility systems have the advantage that as long as there are vehicles to rent in the near vicinity, people can travel freely, without having to worry about the public transit schedules or going long distances by foot.
 
-    Shared mobility has a couple different possible modes of transportation, some of them are: bike, car, kick scooter, and scooters.
     Though there has been research linking public transit to shared mobility (e.g \cite{Guo2020}, \cite{Lin2019}, \cite{Grosshuesch2020}, \cite{Fan2019}), there is still a lot of research missing, most of it is focused on the first and last mile of public transit.
     This research also mostly focuses on transportation systems being "near" of shared mobility usage, but not on the public transit schedules and the impacts of high schedules on shared mobility.
     On top of that, most of this research is international, mostly focused on China and the US and not about the German transportation systems.
-    Germany is known for regions like the Rheinland, or Ruhrgebiet, where there is high density population and with very much economic power, because these regions are so dense, intercity/regional transit is also something that has to be looked at.
-    Added to that, there has been not much research on the effects of public transit schedules, meaning the density of public transit on shared mobility usage.
-    This research could help public transit providers to better understand the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
-    Furthermore, it could help shared mobility providers to learn more about the interconnection of public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
+    Germany is known for regions like the Rheinland, or Ruhrgebiet, where there is high density population with very much concentrated, economic power.
+    Because these regions are so dense, intercity/regional transit is also something that has to be looked at.
+    This research could help public transit providers with better understanding the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
+    Furthermore, it could help shared mobility providers to learn more about the interconnections of public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
 
     In this research I proceed as follows:
     I begin by reviewing prior literature on the interconnections of shared mobility and public transit, then I go into detail about the ongoing development of intermodality and multimodality in the context of urban mobility and I finish the literature review by explaining the importance of information systems for shared mobility.
@@ -199,26 +200,24 @@
     \subsection{Research Objective}
 
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a more or less frequent public transit schedule leads to a higher usage of shared mobility.
-    To evaluate that, I got historical data from the public transit schedules and shared mobility usage from months in 2019-2020.
-    The research question could be phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?".
-    To reach the to answer the question, the research will be divided it in the following substeps:
+    To evaluate that, I got historical data from the public transit schedules and shared mobility usage from November of 2019 till February of 2020.
+    The research question is phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the various modes react differently to fluctuations in public transit and if so how?".
+    To reach the answer the question, the research will be divided it in the following substeps:
 
     \begin{enumerate}
         \item In addition to the provided data from the chair, search for more data, that helps to answer the question.
-        \item Get the data in shape to use for analysis.
+        \item Prepare the data and transform it to be usable for analysis.
         \item Analyze the data and try to find influencing factors in the public transit schedules that lead to higher/lower shared mobility usage.
-        \item Set up models that can be used to predict the usage of shared mobility based on the public transit schedules.
-        \item Test the models and see if it can answer the research question and compare the models to one another
+        \item Set up econometric models that can be used to predict the usage of shared mobility based on the public transit schedules.
+        \item Test the models and use them to answer the research question and compare the models to one another.
     \end{enumerate}
 
-    To answer the research question according to the established substeps and the hypotheses models have to be developed.
-    I developed a total of 12 models all following the following structure of dependent and independent variables.
+    To answer the research question according to the established substeps models have to be developed.
+    A total of 12 models have been developed, all following the same structure of dependent and independent variables.
     Where they differ is by examining different modes of transport, there are 3 in total: car, kick scooter and bike and of course putting all together.
     Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops seperately and in one model looking at them together.
     See table \ref{tab:models} to get an overview of the 12 models we will have a look at in the following text.
-
-    With these substeps I will be able to answer the initial research question.
-
+    Each of these 12 models are analyzed and the implications of these models are shared in the results part.
 
     \section{Theoretical Background}
 
@@ -527,7 +526,7 @@
     \beta_{13} \times  timebucket\_12\_16 +  \beta_{14} \times  timebucket\_16\_20 +  \beta_{15} \times  timebucket\_20\_24 + \epsilon$
 
     This is the formula for the linear model, by letting the model train, it will predict these $ \beta_{i} $ and with the values of $ \beta_{i} $ predict the dependent variable, for every row.
-    The $\epsilon$ is the error term, describing the deviation from the linear term, $\displaystyle\epsilon + \beta_0 + \sum_{i=1} ^{15} \beta_{i} \times x_{i}$ will always be excactly amount to the dependant variable.
+    The $\epsilon$ is the error term, describing the deviation from the linear term, $\displaystyle + \beta_0 + \sum_{i=1} ^{15} \beta_{i} \times x_{i} + \epsilon$ will always be excactly amount to the dependant variable.
 
 
     \section{Results}
