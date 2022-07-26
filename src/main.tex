@@ -136,7 +136,7 @@
         Shared mobility and public transit are opportunities for multimodal transportation, with less cars.
         But so far there has been little research on the density of public transit and their interconnections to the different shared mobility modes and how access and egress trips compare.
         With this research, public transit companies can better plan their staff and determine if they want to do joint ventures with other companies.
-        To answer these research questions I developed a spatio-temporal econometric model using a data set of about 700.000 datapoints spanning 103 days from different shared mobility providers in the realm of cars, kick scooters and bikes.
+        To answer these research questions, I developed a spatio-temporal econometric model using a data set of about 700,000 datapoints spanning 103 days from five different shared mobility providers in the realm of cars, kick scooters and bikes.
         This was combined with the corresponding public transit data from Cologne to calculate density of the public transit.
         Additional factors as weather, weekday and centrality were considered as well.
         The analysis of the results shows, a clear connection between public transit schedules and shared mobility, strongest for light rail, then regional trains and last buses.
@@ -162,6 +162,9 @@
             IS & Information Systems \\
             IT & Information Technology \\
             DWD & Deutscher Wetter Dienst (German Weather Service) \\
+            GTFS & General Transit Feed Specification \\
+            KVB & Kölner Verkehrs Betriebe \\
+            DB & Deutsche Bahn \\
         \end{tabular}
     \end{table}
 
@@ -174,47 +177,52 @@
 
     \subsection{Problem Statement}
 
-    Sustainability concerns are becoming much more important in today's times as effects like climate change and pollution are advancing and risk of making the earth an uninhabitable space.
-    According to the \citeauthor{EEA2021} the transportation sector is one of the biggest contributors to greenhouse gas emissions and thus climate change.
+    Sustainability concerns are becoming much more important in today's times as effects like climate change and pollution are advancing and risk making the earth an uninhabitable space.
+    According to the \citeauthor{EEA2021} the transportation sector is one of the biggest contributors to greenhouse gas emissions and thus climate change (\citeyear{EEA2021}).
     Urban mobility is one of the contributing factors to pollution and greenhouse gas emission (\cite{EEA2021}).
     The rise of the car in many regions has made the cities more uninhabitable through pollution and transit worse due to congestion (\cite{Fan2019}, p.1).
 
-    To solve these challenges, society has to look at alternative ways of transportation, to move away from car centric transportation.
+    To solve these challenges, society must look at alternative ways of transportation, to move away from car centric transportation.
     This means encouraging inhabitants of cities to go multimodal (use multiple types of transport in their general transport) and intermodal (use multiple types of transport in one trip).
-    One way to encourage multimodality, is fostering public transit, since it is one alternative, which has already been established for a while.
+    One way to encourage multimodality is fostering public transit, since it is one alternative which has already been established for a while.
     It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked (\cite{Fan2019}, p.1).
-    One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations that delay transportation that would have otherwise happened.
+    One of these shortcomings is that it is not always possible to use public transit because of its schedule or delays
+    Another reason are cancellations that cause delays of other vehicles, which would not have happened otherwise.
     If one wants to travel from point A to point B, one has to wait for public transit to arrive, and thus increase one's commute time, without a benefit for themselves.
-    The second major shortcoming is that there is the first and last mile problem, riders of public transit have to pass the distance from their point to public transit (access) and from the public transit to their destination (egress) (\cite{Boecker2020}, p.390).
+    The second major shortcoming is that there is the first and last mile problem.
+    Riders of public transit have to pass the distance from their location to public transit (access) and from the public transit to their destination (egress) (\cite{Boecker2020}, p.390).
     Another major shortcoming is that the service level is perceived to be lower, due to the riders not having their own personal space, but that they are travelling together with other riders in a single vehicle (\cite{Fan2019}, p.12).
-    These problems are extensive issues for public transit, and public transit providers, as well as local governments have to work on these problems to improve the service level (\cite{Fan2019}, p.1-2).
+    These problems are extensive issues for public transit and public transit providers as well as local governments have to work on these problems to improve the service level (\cite{Fan2019}, p.1-2).
 
-    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform that is enabled by IT (\cite{Puschmann2016}, p.93).
+    A solution to the first and last mile problem is to use a shared mobility system, which is a shared economy platform enabled by IT (\cite{Puschmann2016}, p.93).
     These platforms allow people to rent modes of transport like bikes, cars and scooters for a short amount of time, and the fees are typically relatively low.
     These means of transport are "publicly" available to all people, if they are willing to pay the ride fares and charges the providers demand.
-    Typically, these services operate within a confined service area that the user has to start and end in, these service areas are mostly confined to the densest populated areas of the city, or parts of the city with very desirable amenities, like downtown areas.
-    Although there are these service area models, for bikes there are also older, dock based models that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
+    Typically, these services operate within a confined service area that the user must start and end in.
+    These service areas are mostly confined to the densest populated areas of the city or parts of the city with very desirable amenities, like downtown areas.
+    Although there are service area models for bikes there are also older, dock based models that only allow the user to start and stop at one of these docks (\cite{Boecker2020}, p.392).
     Shared mobility systems have the advantage that as long as there are vehicles to rent in the near vicinity, people can travel freely, without having to worry about the public transit schedules or going long distances by foot.
 
-    Though there has been research linking public transit to shared mobility (e.g \cite{Guo2020}, \cite{Lin2019}, \cite{Grosshuesch2020}, \cite{Fan2019}), there is still a lot of research missing, most of it is focused on the first and last mile of public transit.
-    This research also mostly focuses on transportation systems being "near" of shared mobility usage, but not on the public transit schedules and the impacts of high schedules on shared mobility.
-    On top of that, most of this research is international, mostly focused on China and the US and not about the German transportation systems.
+    Though there has been research linking public transit to shared mobility (e.g \cite{Guo2020}, \cite{Lin2019}, \cite{Grosshuesch2020}, \cite{Fan2019}), there is still a lot of research missing.
+    Most of the existing research is focused on the first and last mile of public transit.
+    This research mostly focuses on transportation systems being "near" of shared mobility usage, but not on the public transit schedules and the impacts of high schedules on shared mobility.
+    On top of that, this research area is international, mostly focused on China and the US and not on the German transportation systems.
     Germany is known for regions like the Rheinland, or Ruhrgebiet, where there is high density population with very much concentrated, economic power.
     Because these regions are so dense, intercity/regional transit is also something that has to be looked at.
-    This research could help public transit providers with better understanding the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
-    Furthermore, it could help shared mobility providers to learn more about the interconnections between public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
+    This research could help public transit providers to better understand the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
+    Furthermore, it could help shared mobility providers to learn more about the interconnections between public transit and shared mobility which could lead to better revenue planning and a better market and customer understanding.
 
     In this research, I proceed as follows:
-    I begin by reviewing prior literature on the interconnections of shared mobility and public transit, then I go into detail about the ongoing development of intermodality and multimodality in the context of urban mobility and I finish the literature review by explaining the importance of information systems for shared mobility.
+    I begin by reviewing prior literature on the interconnections of shared mobility and public transit.
+    Then I go into detail about the ongoing development of intermodality and multimodality in the context of urban mobility and finish the literature review by explaining the importance of information systems for shared mobility.
     I then set up further hypotheses that break down the main research question, look at the empirical data and set up a model to validate these hypotheses.
     Lastly, I analyze the empirical results and conclude by discussing managerial implications, research implications, limitations, and contributions of my research.
 
     \subsection{Research Objective}
 
-    The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a more or less frequent public transit schedule leads to a higher usage of shared mobility.
-    To evaluate that, I got historical data from the public transit schedules and shared mobility usage from November of 2019 till February of 2020.
+    The research objective is to find out whether there is any link between public transit schedules and shared mobility usage, especially if a more or less frequent public transit schedule leads to a higher usage of shared mobility.
+    To evaluate that, I got historical data from the public transit schedules and shared mobility usage from November 2019 till February 2020.
     The research question is phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the various modes react differently to fluctuations in public transit and if so, how?".
-    To reach the answer the question, the research will be divided it in the following substeps:
+    To reach the answer of the question, the research will be divided it in the following sub-steps:
 
     \begin{enumerate}
         \item In addition to the provided data from the chair, search for more data that helps to answer the question.
@@ -224,58 +232,65 @@
         \item Test the models and use them to answer the research question and compare the models to one another.
     \end{enumerate}
 
-    To answer the research question according to the established substeps models have to be developed.
-    A total of 12 models have been developed, all following the same structure of dependent and independent variables.
-    Where they differ is by examining different modes of transport, there are 3 in total: car, kick scooter and bike and of course putting all together.
-    Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops seperately and in one model looking at them together.
+    To answer the research question according to the established sub-steps models have to be developed.
+    A total of 12 models are developed, all following the same structure of dependent and independent variables.
+    Where they differ is by examining different modes of transport.
+    There are four in total: car, kick scooter, bike and putting all together (Also called union in the following text).
+    Then I will look at whether it makes a difference for each of the different modes of transport by looking at the starts and stops separately and in one model looking at them together.
     See table \ref{tab:models} to get an overview of the 12 models we will have a look at in the following text.
-    Each of these 12 models are analyzed and the implications of these models are shared in the results part.
-
+    Each of these 12 models is analyzed and the implications of these models are shared in the results part.
 
     \section{Theoretical Background}
 
     \subsection{The Interconnections between Public Transit and Shared Mobility Usage}
 
-    The most common connection of public transit and shared mobility in literature is shared mobility as first and last mile travel, meaning the distance one has to overcome from the start to public transport and from public transit to the destination respecitvely (\cite{Grosshuesch2020}).
+    The most common connection of public transit and shared mobility in literature is shared mobility as first and last mile travel, meaning the distance one has to overcome from the start of the trip to public transport and from public transit to the destination respectively (\cite{Grosshuesch2020}).
     To understand how public transport and shared mobility are interconnected, you first have to understand shared mobility.
     Generally, there are a couple of possible alternatives when it comes to shared mobility.
-    Firstly, there are bikes and e scooters, which are mostly the same except for bikes being used for slightly longer trips on average (\cite{Schellong2019}, p.3).
-    Scooters and Bikes are mostly used for very short trips, meaning last mile applications, and bikes are generally considered to be a greener option although this is a disputed question.
-    \citeauthor{Hollingsworth2019} showed using monte carlo analyses that the chance for e-scooters being more eco friendly than dockless bikes is two thirds (\citeyear{Hollingsworth2019}, p.8).
-    Due to the high displacement costs of dockless bikes, which goes against the general notion that they are more sustainable.
+    Firstly, there are bikes and e scooters which are similar in use same except for bikes being used for slightly longer trips on average (\cite{Schellong2019}, p.3).
+    Scooters and Bikes are mostly used for very short trips, meaning last mile applications.
+    Bikes are generally considered to be a greener option although this is a disputed question.
+    \citeauthor{Hollingsworth2019} showed using Monte Carlo analyses that the chance for e-scooters being more eco-friendly than dockless bikes is two thirds (\citeyear{Hollingsworth2019}, p.8).
+    This is due to the high displacement costs of dockless bikes which goes against the general notion that they are more sustainable.
     But it is important to note that eco friendliness not only consists of the $co ^ 2$ emissions but also of the amount of waste generated.
     The waste is generally more for e scooters due to their short lifespan and more advanced manufacturing processes including lithium (\cite{Hollingsworth2019}, p.4).
-    Even if it is not clear if e scooters or dockless bikes are more sustainable, it is generally assumed that these sharing systems are more environmentally friendly, than passenger cars (\cite{Severengiz2020}, p.6, \cite{Hollingsworth2019}, p.8).
-    In addition to the advantage that it is more environmentally friendly seen by itself, it is often coupled with tram and bus usage, which makes it even more environmentally friendly if the trip is seen as a whole, depending on the occupancy of the public transit (\cite{Hollingsworth2019}, p.8).
+    Even if it is not clear whether e scooters or dockless bikes are more sustainable, it is generally assumed that these sharing systems are more environmentally friendly than passenger cars (\cite{Severengiz2020}, p.6, \cite{Hollingsworth2019}, p.8).
+    In addition to the advantage that shared mobility is more environmentally friendly seen by itself, it is often coupled with light rail and bus usage which makes it even more environmentally friendly if the trip is seen as a whole, depending on the occupancy of the public transit (\cite{Hollingsworth2019}, p.8).
     There are generally also the options of having the vehicles free floating or having stations for these vehicles, which is most often for bikes, because it alleviates some of the issues for the providers and makes their access easier depending on the distribution of the stations.
     But of course, stations for these shared mobility systems also have a similar first and last mile issue, because some rest distance to the destination still remains most of the time (\cite{Grosshuesch2020}, p.851).
-    Some cities especially in the US, try to campaign against these free floating vehicles, but this hampers innovation and makes it more difficult to solve the first and last mile issue and ultimately harm commuters (\cite{Grosshuesch2020}, p.867).
-    One could also say now that cities can fix the problem of too much traffic just by building more roads, unfortunately that is something which would only intuitively help (\cite{Lee1999}, p.68).
-    This is because more road building leads to the phenomenon of induced demand, it can be quickly described when looking at travel as being a cost function that's mostly dependent on time, if by more road building the cost to travel gets cheaper, more people will drive (\cite{Lee1999}).
-    This goes on as long as there is an equilibrium again, where the mean traffic makes the cost so expensive that switching to the car makes no sense anymore, but by then a larger share of the population uses cars to get around.
-    But this is exactly not what cities should encourage but there is also research that leads to believe that induced demand can also work for public rail networks.
+    Some cities especially in the US, try to campaign against these free floating vehicles, mostly because of the cityscape, but this hampers innovation and makes it more difficult to solve the first and last mile issue and ultimately harm commuters (\cite{Grosshuesch2020}, p.867).
+    One could also say now that cities can fix the problem of too much traffic just by building more roads.
+    Unfortunately, that is something which would only intuitively help (\cite{Lee1999}, p.68).
+    This is because more road building leads to the phenomenon of induced demand.
+    It can be quickly described when looking at travel as being a cost function that's mostly dependent on time.
+    When more road building leads to cheaper travel, more people will drive (\cite{Lee1999}).
+    This goes on as long as there is an equilibrium again, where the mean traffic makes the cost so expensive that switching to the car makes no sense anymore.
+    By then, a larger share of the population uses cars to get around.
+    This is exactly the opposite of what cities should encourage but there is also research that leads to believe that induced demand can also work for public rail networks.
     That means, it would make sense for cities to focus on encouraging this travel instead of building roads (\cite{Givoni2013}, p.737).
 
-    Furthermore, alternating investments from public transit to accommodating shared mobility, could alleviate some of the cities' mobility struggles (\cite{Grosshuesch2020}, p.849).
-    Due to ride hailing services relying on cars, they are not an end solution to the problem of urban transportation, but should be more used to accomodate public transit (\cite{Grosshuesch2020}, p.851).
+    Furthermore, alternating investments from public transit to accommodating shared mobility could alleviate some of the cities' mobility struggles (\cite{Grosshuesch2020}, p.849).
+    Due to ride hailing services relying on cars, they are not an end solution to the problem of urban transportation but should be more used to accomodate public transit (\cite{Grosshuesch2020}, p.851).
     Cities should focus more on making public transit better and solving the first and last mile through e scooters and bicycles.
 
-    In a paper by \citeauthor{Boecker2020}, they collected data consisting of 2 years ride data and also data about the riders themselves from the Norwegian city of Oslo.
+    In a paper by \citeauthor{Boecker2020}, data consisting of 2 years of rides and data about the riders themselves are collected from the Norwegian city of Oslo.
     They found that bike rental frequencies are much higher to get to public transport and from public transport (\cite{Boecker2020}, p.398).
-    This connection of bikes to get to public transportation and bikes to get from the public transportation stations to the final destination, these are typical first and last mile usages.
-    Furthermore, they found out that mostly younger people and males use bikes as a connection to public transit stations, especially middle aged people use them much less frequently.
-    They also found out that riders living in inner Oslo more often use the bikes to get from start to finish, while outer Oslo residents, use them more frequently to get to public transit stations.
-    They conclude that shared mobility has the potential to enhance public transit, with differences between start and stop, bikes especially make sense for egress (last mile) trips, perpendicular to the metro lines (\cite{Boecker2020}, p.399).
+    This connection of bikes to access public transportation and bikes to get from the public transportation stations to the final destination are typical first and last mile usages.
+    Furthermore, they found out that mostly younger people and males use bikes as a connection to public transit stations.
+    Especially middle aged people use them much less frequently.
+    They also found out that riders living in inner Oslo more often use the bikes to get from start to finish, while outer Oslo residents use them more frequently to get to public transit stations.
+    They conclude that shared mobility has the potential to enhance public transit, with differences between start and stop, bikes especially make sense for egress (last mile) trips perpendicular to the metro lines (\cite{Boecker2020}, p.399).
 
-    In another study by \citeauthor{Fan2019} they looked at how the introduction of bike sharing services in china impacts the urban mobility choices of people.
+    In another study \citeauthor{Fan2019} looked at how the introduction of bike sharing services in China impacts the urban mobility choices of people.
     They found out that around 5,5\% of automobile travelers changed to public transport after the introduction of bike sharing services.
-    This relatively low number is explained with the relatively low service level of public transportation services and the aspirations of many chinese people to one day own a car, as 42\% of chinese young people have no car available, but 91\% plan to purchase one within the next 10 years (\cite{Fan2019}, p.12).
-    This effect could also be explained, by the earlier discussed effect of displaying wealth and social status through car ownership, although this trend is going back in the western countries (\cite{Canzler2016}, p.10).
-    As sustainability concerns rise, it seems to generally grow in China, due to Chinas big economic growth (\cite{Zhu2012}, p.317).
+    This relatively low number is explained with the relatively low service level of public transportation services and the aspirations of many Chinese people to one day own a car as 42\% of chinese young people have no car available but 91\% plan to purchase one within the next 10 years (\cite{Fan2019}, p.12).
+    This effect could also be explained by the effect of displaying wealth and social status through car ownership, although this trend is going back in the western countries (\cite{Canzler2016}, p.10).
+    As sustainability concerns rise, it seems to generally grow in China, due to its big economic growth (\cite{Zhu2012}, p.317).
     To break these trends and to enhance the interconnections between public transit and shared mobility it is important that public service providers improve their service level.
 
-    To recap this section: Shared mobility and public transit are very sustainable, many young people are already willing to use shared mobility in tandem with public transit, but it is important to encourage other age groups to use shared mobility more often.
-    Also, older people should be encouraged to use public transit more often and leave the car as their status symbol, cities also have to support shared mobility especially the free floating kind, because it moderates positively on public transit usage.
+    To recap this section: Shared mobility and public transit are a more sustainable option of transport than cars, many young people are already willing to use shared mobility in tandem with public transit, but it is important to encourage other age groups to use shared mobility more often.
+    Also, older people should be encouraged to use public transit more often and leave the car as their status symbol.
+    Cities also have to support shared mobility especially the free floating kind, because it moderates positively on public transit usage.
     Cities should also generally try to make shared mobility use easier, since it leads to more public transport use and less car use.
 
     \subsection{Ongoing development of intermodality and multimodality in the context of urban mobility}
@@ -323,9 +338,9 @@
 
     \subsection{The need for information systems in shared mobility}
 
-    Since their establishment, information technology has been a driver of innovation and productivity in organizations and around the world (CIT:NEEDED).
+    Since their establishment, information systems have been a driver of innovation and productivity in organizations and around the world.
     Also, scientists are more and more interested in how to use information systems to create a greener, more sustainable future and tackle the challenge of climate change (\cite{Brocke2013}, p.510).
-    It is also important to note that Green IS is not only about things like energy efficiency and equipment utilization of IT, but they also contribute to designing systems that change processes to be more efficient lean and sustainable (\cite{Brocke2013}, p.510).
+    Green IS are not only about things like energy efficiency and equipment utilization of IT, but they also contribute to designing systems that change processes to be more efficient lean and sustainable (\cite{Brocke2013}, p.510).
     A part of this are systems that further enable the sharing economy, which would not have been possible without information systems (\cite{Puschmann2016}, p.93).
 
     The services especially for bike sharing already exist for some time, but only in recent years, they have gained popularity, a big part of this success can be attributed to information systems (\cite{Chen2020}, p.334).
@@ -386,28 +401,30 @@
 
     \section{Method and Hypotheses}
 
-    To answer the research question, more detailed and have some easier approachable statements to follow, it makes sense to subdivide the research question using some hypotheses that are extracted from the background we have.
+    To answer the research question more detailed and have some easier approachable statements to follow, it makes sense to subdivide the research question using some hypotheses that are extracted from the background we have.
 
     The first hypothesis is about cars.
     In the literature review, it has been shown that car trips tend to be longer in the sharing economy.
-    Because of that, car users generally have a bigger range, thus I would argue that car users are probably more influenced by the schedules of regional trains, since they have a bigger range as well, and cars less frequently need the connections by bus and light rail if they want to go far.
+    Because of that, car users generally have a bigger range.
+    Therefore, I would argue that car users are probably more influenced by the schedules of regional trains, since they have a bigger range as well, and less frequently need the connections by bus and light rail if they want to go far.
 
     \begin{center}
-        Hypothesis 1 (H1): Cars are influenced more by regional train schedules, than other modes of transport.
+        Hypothesis 1 (H1): Cars are moderated more strongly by regional train schedules, than other modes of transport.
     \end{center}
 
     Similar to H1, H2 approaches the demand from the other way around.
-    If users are utilizing their bikes and kick scooter rides to connect to public transit, it would make more sense if they were to use it for light rail and bus access.
-    This is due to the generally lower trip distance for light scooters and rail, and because regional train stations are spaced out more, it would make more sense for these trips to connect to bus and regional train stations.
-    Due to light rail generally being fast and having a higher range I would further hypothesize that bike and scooter trips are used more frequently to access light rail stations, than bus stations.
+    If users are utilizing their bikes and kick scooter rides to connect to public transit, it would make more sense if they use it for light rail and bus access.
+    This is due to the generally lower trip distance for light scooters and rail.
+    Because regional train stations are spaced out more, it would make more sense for those trips to connect to bus and regional train stations.
+    Due to light rail generally being fast and having a higher range I would further hypothesize that bike and scooter trips are used more frequently to access light rail stations than bus stations.
 
     \begin{center}
-        Hypothesis 2 (H2): Bikes and Scooter are moderated more strongly by higher bus and light rail schedules than cars, but higher light rail schedules moderate Bike and Scooter trips more heavily than bus schedules.
+        Hypothesis 2 (H2): Bikes and Scooters are moderated more strongly by higher bus and light rail schedules than cars, but higher light rail schedules moderate Bike and Scooter trips more heavily than bus schedules.
     \end{center}
 
     Coming back to the access and egress trip differences for micro mobility.
-    Due to looking at free floating vehicles that are not station bound, the general likelihood of a vehicle being in the near vicinity of a station, is not guaranteed, but because access trip drivers already rented the vehicle, they should be more likely to park directly near the station.
-    So I would theorize that these access trips are more likely to end near a station, than the egress trips, since the vehicle does not have to be acquired anymore, so it is easier to map the vehicle to a station, from these thoughts emerges H3:
+    Due to looking at free floating vehicles that are not station bound, the general likelihood of a vehicle being in the near vicinity of a station is not guaranteed, but because access trip drivers already rented the vehicle, they should be more likely to park directly near the station.
+    Therefore, I would theorize that these access trips are more likely to end near a station, than the egress trips, since the vehicle does not have to be acquired anymore, so it is easier to map the vehicle to a station, from these thoughts emerges H3:
 
     \begin{center}
         Hypothesis 3 (H3): Public Transit schedules moderate access trips more strongly than egress trips.
@@ -418,32 +435,34 @@
     \subsection{Data Description and Collection}
 
     The data of the public transit, the shared mobility usage, as well as the cumulated service areas are provided by the chair.
-    The ride data is 05.11.2019-29.02.2019 with exceptions from the 06.11.2019 - 17.11.2019 and 15.01.2019 - 16.01.2019 for a total of 103 days.
+    The ride data is 05.11.2019-29.02.2019 with exceptions from November 6, 2019 to November 17, 2019 and January 15, 2019 to January 16, 2019 for a total of 103 days.
     It was scraped via the API of different FFV providers, in an interval of every 5 minutes.
     Because it was scraped by reverse engineering their providers API's unfortunately there is also incomplete data for some providers.
     The final providers whose data was used for the model are Circ (Kick Scooters), Tier (Kick Scooters), KVB (Bikes), Fordpass (Bikes) and Car2Go (Cars).
-    After the cleaning step about 500000 rides remain which are on average roughly 5000 on each day.
+    After the cleaning step about 500,000 rides remain which are on average roughly 5,000 on each day.
     The data set consists of nearly all data points one would find helpful for my use case when looking at such a dataset.
     It has fuel data, datetime data, location of start and end, distance as well as pricing data although the pricing data will not be used since the influences of pricing are no part of the research goal.
     The other data points are used for the various calculations carried out to clean the data.
 
-    The public transit data is provided in the GTFS (General Transit Feed Specification), GTFS is a standard for transportation data, which is used by thousands of public transportation providers (\cite{GTFS}).
+    The public transit data is provided in the GTFS (General Transit Feed Specification).
+    GTFS is a standard for transportation data which is used by thousands of public transportation providers (\cite{GTFS}).
     Generally, it is comprised of a database like structure that links the different entities for example stops, routes and trips together via unique IDs.
-    The GTFS data is contained in 2 data sets one ranging from the 20.10.2019 \- 14.12.2019 and the other one 14.12.2019 \- 12.12.2020.
-    The GTFS data contains about 5000 stops, 500 routes and 100000 trips, although most of these are irrelevant, since the data set consists of the whole region and not only Cologne, but the shared mobility data consists solely of Cologne trips.
-    The particular GTFS providers used here is depending on the mode, for the light rail trips and for the bus trips the provider is the KVB (Kölner Verkehrs Betriebe).
-    The KVB is one of the biggest public transit providers in Germany, servicing
-    The KVB already has a joint venture with a shared mobility company, Nextbike called KVB Bike.
+    The GTFS data is contained in 2 data sets one ranging from the October 20, 2019 to December 14, 2019 and the other one December 14, 2019 to December 12, 2020.
+    The GTFS data contains about 5,000 stops, 500 routes and 100,000 trips, although most of these are irrelevant, since the data set consists of the whole region and not only Cologne, but the shared mobility data consists solely of Cologne trips.
+    The GTFS providers used here are depending on the mode.
+    For the light rail trips and for the bus trips the provider is the KVB (Kölner Verkehrs Betriebe).
+    The KVB is one of the largest public transit providers in Germany.
+    It already has a joint venture with the shared mobility company Nextbike, called KVB Bike.
     KVB Bike was launched 2015 and offers 3000 bikes available for rent (\cite{WikiNextbike}).
-    The regional trains are provided by the Deutsche Bahn, which is the regional and interregional train provider for Germany.
+    The regional trains are provided by the DB (Deutsche Bahn), which is the regional and interregional train provider for Germany.
 
-    The service area data, is two comprised of two GeoJSON files, the first is a union of all the service areas for Cologne.
-    The second one is a set of the different GeoJSON coordinates for every single provider in Cologne.
-    The union GeoJSON file will be used to evaluate all of the data together and the single data will be used to split the different modes of transport (Car, Kick Scooters and Bikes), to better understand the individual dynamics of these modes.
-    Unfortunately the single GeoJSON data was not possible to get for every single provider, so some GeoJSON serviceareas for the mode of transport specific analysis had to be approximated from other similar providers (\ref{tab:serviceareas}).
+    The service area data, is comprised of two GeoJSON files.
+    The first is a union of all the service areas for Cologne for many different providers, while the second one is a set of the different GeoJSON coordinates for every single provider in Cologne.
+    The union GeoJSON file will be used to evaluate the data together and the single GeoJSON regions will be used to split the different modes of transport (Car, Kick Scooters and Bikes) to better understand the individual dynamics of these modes.
+    Unfortunately, the single GeoJSON regions were not possible to get for every single provider, so some GeoJSON service areas for the mode of transport specific analysis had to be approximated from other similar providers (\ref{tab:serviceareas}).
 
     Furthermore, temperature and precipitation data is collected from the DWD (\url{https://dwd.de}), because it is a relevant factor for the usage of micro mobility as shown by other research (\cite{Babar2017}, p.18 and \cite{Demircan2021}, p.9).
-    This temperature is collected hourly from the Cologne weather station and consists of 3 relevant datapoints: a variable saying if there has been precipitation within the hour, a variable stating how much precipitation there was in mm per $ m ^ 2 $ and a variable that states the average temperature within the hour.
+    This temperature is collected hourly from the Cologne weather station and consists of three relevant datapoints: a variable saying if there has been precipitation within the hour, a variable stating how much precipitation there was in mm per $ m ^ 2 $ and a variable that states the average temperature within the hour.
 
     \begin{figure}[H]
         \centering
@@ -455,11 +474,14 @@
 
     \subsection{Data Preparation}
 
-    To achieve the goals of the developed model, the data has to be prepared accordingly, to achieve this goal, the programming language Python (\cite{Python}) is used for the data preparation and analysis.
-    Most of the packages are commonly used in research projects, so do not have to be explained, but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data, and make the data easily usable for the analysis.
-    For the spatial categorization, H3 is used, it is a concept developed by Uber to categorize points in the world spatially (\cite{h3}).
-    H3 divides the world into hexagons, and as mathematically, a hexagon can always contain 7 smaller hexagons, it can scale up and down as needed, and that is referred to as the H3 resolution.
-    For the project I chose the resolution H3 09, which has an area of roughly 0,1km2 with an edge length of about 0,17km.
+    To achieve the goals of the developed model, the data has to be prepared accordingly.
+    The programming language Python (\cite{Python}) is used for the data preparation and analysis.
+    Most of the packages are commonly used in research projects but because GTFS data is difficult to handle, a package called GTFS Kit (\cite{GTFS_Kit}) is used to handle the data and make the data easily usable for the analysis.
+    For the spatial categorization H3 is used.
+    It is a concept developed by Uber to categorize points in the world spatially (\cite{h3}).
+    H3 divides the world into hexagons which can scale up and down as mathematically a hexagon can always contain 7 smaller hexagons.
+    This is referred to as the H3 resolution.
+    For the project I chose the resolution H3 09, which has an area of roughly 0.1km2 with an edge length of about 0.17km.
     In the following text these hexagons will be referred to as hex and a hex that contains a station will be called station hex.
 
     Firstly, according to the research objective the data was looked at, to get a better understanding of it, some first key oddities were:
@@ -467,44 +489,50 @@
     \begin{enumerate}
         \item Some of the provided shared mobility data is really inconsistent, and has missing days for some providers.
         \item GTFS supports unusual time formats like 27:13:00 that also can not be parsed with the python date library (\cite{Python}).
-        \item On the 06.11.2019 the data collection stopped and only resumed on 18.11.2019, so there were many too long "skewed" trips, also there was an outage between the 15.01.2019 - 16.01.2019.
+        \item On November 6, 2019 the data collection stopped and only resumed on November 18, 2019, so there were many too long "skewed" trips, also there was an outage between January 15, 2019 to January 16, 2019.
     \end{enumerate}
 
-    These issues were fixed by firstly removing Lime, Bird, Driveby and Drivenow from the dataset, which is very unfortunate, because they had a lot of data points which are lost because of this, but it has to be done, otherwise the different days are not comparable.
-    Lime had around 10000 datapoints per day, but there's only available data till 15.12.19.
-    Furthermore, their trip volume was 5 to 10 times larger than any other kick scooter provider, depending on the day, which makes the data more questionable, and suggests errors in the data fetching.
+    These issues were fixed by firstly removing Lime, Bird, Driveby and Drivenow from the dataset.
+    By this a lot of data points are lost but otherwise the different days are not comparable.
+    Lime had around 10,000 datapoints per day, but there is only available data till December 15, 2019.
+    Furthermore, their trip volume was five to ten times larger than any other kick scooter provider, depending on the day, which makes the data more questionable and suggests errors in the data fetching.
     Bird only had datapoints in November, so they had to be removed as well.
-    For Drivenow and Driveby it was a bit more complex because Drivenow had data till the 14.01.19, larger depending on the day which is a lot longer and also had much volume, but still not the whole duration so I removed it.
-    Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers drop significantly, about tenfold, so I removed the data, since this drop probably stems from technical difficulties in the data fetching.
+    For Drivenow and Driveby it was a bit more complex because Drivenow had data till January 14, 2019, and also had a large volume of trips, but since there were roughly 45 days missing, they had to be removed as well.
+    Driveby had roughly 200 rides per day in Cologne on average, but in the beginning of 2020 the ride numbers dropped significantly (about tenfold).
+    This drop probably stems from technical difficulties in the data fetching, so I removed the data.
 
-    For the GTFS time problem, I always included the hours 24:00:00-28:00:00 from the last day in the first time bucket, so that the numbers are accurate.
+    For the GTFS time problem, I always included the hours 24:00:00-28:00:00 from the last day in the first timebucket, so that the numbers are accurate.
     The problem stems from the KVB and DB counting their service days from 03am to 03am the following day, this then also translates to the GTFS data, meaning that KVB service days are not equal to normal days.
 
-    For the last problem, all trips that are longer than 24 hours are removed, so that these trips don't get counted, since because of the scraping, it is not possible to know if this was still the same trip.
-    Because the scraping relies on matching the IDs of the vehicles every 5 minutes, if the scraping halts, the data gets very unreliable, so it were not the same trips.
+    For the last problem, all trips that are longer than 24 hours are removed, so that these trips don't get counted.
+    Because of the scraping, it is not possible to know if this was still the same trip.
+    Because the scraping relies on matching the internal IDs of the vehicles every 5 minutes, if the scraping halts the data gets very unreliable, since a wrong start is then matched to the wrong end.
+    Generally the reason for this can be explained as the scraper "scanning" all the vehicles every 5 minutes and then creating the trips themselves, since the location data of the vehicles is the only data publicly accessible, so then if the scraping halts, the wrong starts get matched to the ends it scans, for example a couple of hours later.
 
-    Furthemore, the way to look at the trips was changed: Instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip 2 separate datapoints: a start and a stop event.
+    Furthermore, the way to look at the trips was changed: Instead of a trip with a defined start and stop, for the planned analysis, it makes more sense to look at a trip as two separate datapoints: a start and a stop event.
     This generates more datapoints that can be used for the model.
     Depending on the regression that has been carried out (Table \ref{tab:models}), only start, end or both events were looked at.
-    This is to be able to see differences between those two different approaches and comparing the public transit schedules impact on FFV usage for different as researchers like \cite{Boecker2020} have found differences in start and stops in a similar case.
+    This is done to be able to see differences between those two different approaches and comparing the public transit schedules impact on FFV usage for different cases as researchers like \citeauthor{Boecker2020} have found differences in start and stops in a similar case.
 
-    The city center is chosen as the Cologne main station, which is a really big traffic center for cologne, and is right next the the Kölner Dom, which is the most well known structure of Cologne.
+    The city center is chosen as the Cologne main station, which is a really big traffic center for cologne and is located right next the the Kölner Dom, which is the most well-known structure of Cologne.
     It is used to calculate the distance from the start stop event to the city center, to filter out spatial dynamics.
-    Although, it is not in the mid of most of the service areas, it is generally a middle point the service areas, since it is an important traffic center.
-    This variable is calculated as an airline, so that has some inaccuracies, especially when crossing the Rhine.
+    Although, it is not in the mid of most of the service areas, it is generally a middle point the in service areas, since it is an important traffic center.
+    This variable is calculated as an airline, so inaccuracies, especially occur when crossing the Rhine.
 
-    After cleaning the above-mentioned easy errors, the data had to be improved and needed to be brought in shape for the 12 regressions.
-    Firstly, I removed further errors like round trips, or extremely short trips by removing all trips that had the same start and stop fuel for kick scooters since they have to be extremely short then.
-    Then, all of the stations and start stop events were removed that are not in the service area, because they are not relevant to the analysis, this was done by calculating a point and checking if it is on the respective modes service area or in the union service area when looking at all modes.
+    After cleaning the above-mentioned errors, the data had to be improved and needed to be brought in shape for the 12 regressions.
+    Firstly, I removed further errors like round trips or extremely short trips by removing all trips that had the same start and stop fuel for kick scooters since they have to be extremely short.
+    Then, all the stations and start stop events were removed that are not in the service area because they are not relevant to the analysis.
+    This was done by calculating a point and checking if it is on the respective modes service area or in the union service area when looking at all modes.
     To reduce the overlap between stations and have more accurate data, all start and stop events that did not occur inside of a station hex, were removed, because it is difficult to pair them with a station that way.
-    Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
+    Furthermore, the temperature data was assigned to the timeframes and was calculated the following ways: I took the maximum of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and averaged the average hourly temperature and the amount of precipitation.
+    Therefore, for every timebucket there is also these three temperature variables.
 
-    Lastly, the following stop stats are calculated per timebucket (Meaning in six intervals per day) and consist of: number of bus trips, number of light rail trips, number of regional train trips and number of routes for this specific timebucket.
+    Lastly, the following stop stats are calculated per timebucket (Meaning in six intervals per day) and consist of number of bus trips, number of light rail trips, number of regional train trips and number of routes for this specific timebucket.
     The stop stats are then grouped by hex and timebucket.
     This is to provide for the overlap of the close stations in a single hex, where it is very difficult to say which station the trip belongs to, so it is averaged by hex, and lastly grouped by hex and timbucket.
 
-    The final, prepared data, consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put in to the regression.
-    Although, these are the final datapoints, the results are standardized according to the MinMax Scaling principle, meaning all of the values get divided by the highest value, so that they reach from 0 to 1 and are more comparable and less dependant on the used units.
+    The final, prepared data, consists of the rows of dependent and independent variables put together for the entire timeframe this is the final output that is then put into the regression.
+    Although, these are the final datapoints, the results are standardized according to the MinMax Scaling principle, meaning all the values get divided by the highest value, so that they reach from 0 to 1 and are more comparable and less dependant on the used units.
     This makes the resulting model much easier to compare to other models, since they can have other maxima in their number of FFV trips or public transit trips for example.
 
     \subsection{Model Development}
@@ -782,7 +810,7 @@
     Although I conducted the research very thoroughly there are some points that remain unclear and need to be researched further.
     Firstly, I will going in to the points that are influenced by the data that I used for the research.
 
-    The GTFS data only contains plan data and no live data, which is a problem since delays and cancellations are a common occurrence among public transportation (CIT:NEEDED) and it would have been especially interesting to analyze data that factors in delays and cancellations.
+    The GTFS data only contains plan data and no live data, which is a problem since delays and cancellations are a common occurrence among public transportation and it would have been especially interesting to analyze data that factors in delays and cancellations.
     With this data it would be possible to learn if people switch spontaneously from their planned public transportation trip to an unplanned FFV trip but this is unfortunately not possible to answer without real-time data.
     Also, because of no actual data and just the plan data being there it's difficult to tell if the numbers of the stop stats calculations are really accurate.
     The model might have been more accurate with these actual numbers, since then the public transit variables are more exact.
@@ -814,7 +842,7 @@
     But further research is necessary to better predict the FFV demand and it will also require different data, best through the year and many data points in a big city.
 
     Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
-    Naturally as other research has already shown, the demand for FFV is higher in the city centers and as Cologne only has one very clear city center, the demand tends to be the strongest there (CIT:NEEDED).
+    Naturally as other research has already shown, the demand for FFV is higher in the city centers and as Cologne only has one very clear city center, the demand tends to be the strongest there (\cite{Tang2021}, p.2-3).
     For example, the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne, since it has the highest number of bus and light rail routes in a single station.
     This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping street and the traffic that's there because Neumarkt is a traffic center.
     A variable to help this: Distance to City Center was introduced, but it is only a rough estimate of the desirability of the nearby amenities.
