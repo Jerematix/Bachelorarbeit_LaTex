@@ -508,6 +508,41 @@
   doi    = {https://www.bahn.de/angebot/urlaub/mietwagen/carsharing-flinkster},
 }
 
+@InProceedings{Ciociola2020,
+  author    = {Alessandro Ciociola and Michele Cocca and Danilo Giordano and Luca Vassio and Marco Mellia},
+  booktitle = {2020 {IEEE}/{ACM} 24th International Symposium on Distributed Simulation and Real Time Applications ({DS}-{RT})},
+  title     = {E-Scooter Sharing: Leveraging Open Data for System Design},
+  year      = {2020},
+  month     = {sep},
+  publisher = {{IEEE}},
+  doi       = {10.1109/ds-rt50469.2020.9213514},
+}
+
+@Article{Ceder2002,
+  author    = {Avishai Ceder},
+  journal   = {Journal of Urban Planning and Development},
+  title     = {Urban Transit Scheduling: Framework, Review and Examples},
+  year      = {2002},
+  month     = {dec},
+  number    = {4},
+  pages     = {225--244},
+  volume    = {128},
+  doi       = {10.1061/(asce)0733-9488(2002)128:4(225)},
+  publisher = {American Society of Civil Engineers ({ASCE})},
+}
+
+@Article{Tribby2012,
+  author    = {Calvin P. Tribby and Paul A. Zandbergen},
+  journal   = {Applied Geography},
+  title     = {High-resolution spatio-temporal modeling of public transit accessibility},
+  year      = {2012},
+  month     = {may},
+  pages     = {345--355},
+  volume    = {34},
+  doi       = {10.1016/j.apgeog.2011.12.008},
+  publisher = {Elsevier {BV}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
 
 %! Author = jerem
