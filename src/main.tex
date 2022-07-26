@@ -154,6 +154,18 @@
     \clearpage
     \listoftables
     \clearpage
+    \section*{List of Abbreviations}
+    \begin{table}[H]
+        \begin{tabular}{ll}
+            FFV & Free Floating Vehicles \\
+            FFVS & Free Floating Vehicle Sharing \\
+            IS & Information Systems \\
+            IT & Information Technology \\
+            DWD & Deutscher Wetter Dienst (German Weather Service) \\
+        \end{tabular}
+    \end{table}
+
+    \clearpage
 
     \pagenumbering{arabic}
 
@@ -168,7 +180,7 @@
     The rise of the car in many regions has made the cities more uninhabitable through pollution and transit worse due to congestion (\cite{Fan2019}, p.1).
 
     To solve these challenges, society has to look at alternative ways of transportation, to move away from car centric transportation.
-    This means encouraging inhabitants of cities to go multimodal (use multiple types of transport in general) and intermodal (use multiple types of transport in one trip).
+    This means encouraging inhabitants of cities to go multimodal (use multiple types of transport in their general transport) and intermodal (use multiple types of transport in one trip).
     One way to encourage multimodality, is fostering public transit, since it is one alternative, which has already been established for a while.
     It is an efficient way to transport many people in a short amount of time, but because of its shortcomings it is not very well liked (\cite{Fan2019}, p.1).
     One of these shortcomings is that it is not always possible to use public transit, because of its schedule, or delays and cancellations, that delay transportation that would have otherwise happened.
@@ -190,9 +202,9 @@
     Germany is known for regions like the Rheinland, or Ruhrgebiet, where there is high density population with very much concentrated, economic power.
     Because these regions are so dense, intercity/regional transit is also something that has to be looked at.
     This research could help public transit providers with better understanding the interconnections their service has with shared mobility and thus improve their schedules and efficiency.
-    Furthermore, it could help shared mobility providers to learn more about the interconnections of public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
+    Furthermore, it could help shared mobility providers to learn more about the interconnections between public transit and shared mobility, which could lead to better revenue planning and a better market and customer understanding.
 
-    In this research I proceed as follows:
+    In this research, I proceed as follows:
     I begin by reviewing prior literature on the interconnections of shared mobility and public transit, then I go into detail about the ongoing development of intermodality and multimodality in the context of urban mobility and I finish the literature review by explaining the importance of information systems for shared mobility.
     I then set up further hypotheses that break down the main research question, look at the empirical data and set up a model to validate these hypotheses.
     Lastly, I analyze the empirical results and conclude by discussing managerial implications, research implications, limitations, and contributions of my research.
@@ -201,7 +213,7 @@
 
     The research objective is to find out if there is any link between public transit schedules and shared mobility usage, especially if a more or less frequent public transit schedule leads to a higher usage of shared mobility.
     To evaluate that, I got historical data from the public transit schedules and shared mobility usage from November of 2019 till February of 2020.
-    The research question is phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the various modes react differently to fluctuations in public transit and if so how?".
+    The research question is phrased as "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the various modes react differently to fluctuations in public transit and if so, how?".
     To reach the answer the question, the research will be divided it in the following substeps:
 
     \begin{enumerate}
@@ -489,7 +501,7 @@
     To reduce the overlap between stations and have more accurate data, all start and stop events, that did not occur inside of a station hex, were removed, because it is difficult to pair them with a station that way.
     Furthermore the temperature data was assigned to the timeframes and was calculated the following ways: I took the max of the precipitation variable, so it states 1 if there was any rain in any of the hourly datapoints, and I averaged the average temperature and the amount of precipitation, so for every timebucket there is also these 3 temperature variables.
 
-    Lastly, the following stop stats are calculated per timebucket (Meaning in 6 intervals per day) and consist of: number of bus trips, number of light rail trips, number of regional train trips and number of routes for this specific timebucket.
+    Lastly, the following stop stats are calculated per timebucket (Meaning in six intervals per day) and consist of: number of bus trips, number of light rail trips, number of regional train trips and number of routes for this specific timebucket.
     The stop stats are then grouped by hex and timebucket.
     This is to provide for the overlap of the close stations in a single hex, where it is very difficult to say which station the trip belongs to, so it is averaged by hex, and lastly grouped by hex and timbucket.
 
@@ -507,7 +519,7 @@
     So H3 resolution 9 gives the most believable numbers, while minimizing the overlap between stations as you see with the ratio value of 90,97\% of Table \ref{tab:h3}.
     Now it is important to go in to detail as why the dependent variable is not only split up spatially, but also temporally.
     Because we mainly want to explain to compare public transit schedules to FFV rentals, I want to have as clear of a picture as possible as to how these relate.
-    To factor out time dependent factors, which I introduce 6 timebuckets, that are 4 hours long each(0-4am, 4-8am, 8-12am, 12-4-pm, 4-8pm and 8-12pm).
+    To factor out time dependent factors, which I introduce six timebuckets, that are four hours long each (0-4am, 4-8am, 8-12am, 12-4-pm, 4-8pm and 8-12pm).
     This makes our regression coefficients more dependable because our public transit variables, then do not have to explain time dependent factors.
     In the following I will also show more of these independent variables, mostly focused on trip comfort and I will mention time dependent factors again.
 
@@ -695,7 +707,7 @@
             $R^2$ Adj.              & 0,1107         & 0,2182        & 0,2106            & 0,2892         \\
             \bottomrule
         \end{tabular}
-        * p<.1, ** p<.05, ***p<.01
+        p<.1 *, p<.05 **, p<.01 ***
         \caption{Comparison of the regressions from all modes, including both start events and end events, More detailed are (Table \ref{tab:reg2} and Table \ref{tab:r1})}
         \label{tab:both_results}
     \end{table}
@@ -773,89 +785,102 @@
     Firstly, I will going in to the points that are influenced by the data that I used for the research.
 
     The GTFS data only contains plan data and no live data, which is a problem since delays and cancellations are a common occurrence among public transportation (CIT:NEEDED) and it would have been especially interesting to analyze data that factors in delays and cancellations.
-    With this data it would be possible to learn if people switch spontaneously from their planned public transportation trip to an unplanned FFV trip and because of no actual data and just the plan data being there it's difficult to tell if the numbers of the stop stats calculations are really accurate.
+    With this data it would be possible to learn if people switch spontaneously from their planned public transportation trip to an unplanned FFV trip but this is unfortunately not possible to answer without real-time data.
+    Also, because of no actual data and just the plan data being there it's difficult to tell if the numbers of the stop stats calculations are really accurate.
+    The model might have been more accurate with these actual numbers, since then the public transit variables are more exact.
+    But due to the temporal component being seen in 4 hour buckets, the only real inaccuracy stems from cancellations, as late arrivals of the vehicles are mostly filtered out due to the four hour increments.
 
-    The trip data only contains winter months, and my own as well as other research also shows that these comfort factors like temperature and precipitation can influence the amount of FFV usage, this effect is even stronger for uncovered vehicles (\cite{Demircan2021}, p. 9).
+    The trip data only contains winter months, and my own as well as other research also shows that these comfort factors like temperature and precipitation can influence the amount of FFV usage, this effect is even stronger for uncovered vehicles (\cite{Demircan2021}, p.9).
     It would be thus very interesting to have summer and winter data to compare, and see if in the summer passengers are more willing to use FFV platforms.
     Furthermore, the trip data is only retrieved every 5 minutes from the different providers, which can especially for short trips make a big difference, but because only trips that are longer than 24 hours are removed from the dataset, this is not a big problem.
 
     Another point is the general quality of the data, because the number of observations is comparatively low for the research method that has been carried out, meaning spatio temporal analysis.
-    For the union model, where everything is put together, with 432-436 stations with 6 timeframes and 103 days which equals to 266.976 spatio temporal divisions, and 685.968 ride datapoints.
+    For the union model, where everything is put together, with 432-436 stations with six timeframes and 103 days which equals to 266.976 spatio temporal divisions, and 685.968 ride datapoints.
     This is a generally pretty low number, but it is still much higher, in comparison to for example the bike model, where 50.000 observations are distributed on 213.828 datapoints.
     This is a very low distribution and you can generally say, that also the $R^2$ value is very low for the bike models compared to the other models with about 0,11, all other models have above 0,2.
     So it is generally difficult to say if this effect comes from the fact, that bike traffic is more difficult to explain for bikes, or if we just need more data.
-    Also the difference between starts and stops would be easier to examine, with more data points.
-    One way to get these data points would be to either get ride data directly from providers, or improve the web scraping in such a way that it is more reliable and the data is trustworthier.
+    Also, the difference between starts and stops would be easier to examine, with more data points.
+    One way to get these data points would be to either get ride data directly from providers or improve the web scraping in such a way that it is more reliable and the resulting data is trustworthier.
     This would lead to less data needing to be cleaned in the data preparation steps of the method and then more usable data would remain.
     Another point where the data quality is lacking is the service areas, they are unfortunately not available for every provider and within the timeframes.
     The shared mobility providers unfortunately try to keep them away and keep their APIs a secret to guard themselves from their competition.
     Further research could try to find a way to estimate the service areas from just having the data.
-    But unfortunately service areas are needed, otherwise the comparability of the distinct stations fades in the regression itself since there are other outside factors (The Service Areas) that make the ride numbers much lower.
+    But unfortunately, service areas are needed, otherwise the comparability of the distinct stations fades in the regression itself since there are other outside factors (The Service Areas) that make the ride numbers much lower.
 
-    Also another thing about the $R^2$ value is that they are generally pretty low for a big data oriented model, this can at least partly be attributed to missing data, but it also has to be said, that the goal of the thesis is not to generate a model, that is as accurate as possible.
-    The goal was, to extract the major variables that have an impact on FFVS to look at the resulting model to see if they have if the public transit variables have an impact and that has been done.
+    Also, another thing about the $R^2$ value is that they are generally pretty low for a big data oriented model, this can at least partly be attributed to missing data, but it also has to be said, that the goal of the thesis is not to generate a model, that is as accurate as possible.
+    The goal was, to extract the major variables that have an impact on FFVS to look at the resulting model to see if they have if the public transit variables have an impact.
     The goal was not, to construct a model, that as precisely as possible can predict how much FFV demand will be at a given place at a given time.
     The assumptions made in the model are not suited to answer these questions and it would have needed many more variables to fully explain this effect.
-    Thus the $R^2$ value is no focus of the analysis and is only partly used to explain the merit of the single models when comparing to one another, if it was extremely low, it could be said, that the general variables seem to have a very low impact.
-    The goal was more to reproduce statistically significant coefficients that could explain the demand well enough and whose impact could then be discussed.
+    Thus, the $R^2$ value is no focus of the analysis and is only partly used to explain the merit of the single models when comparing to one another, if it was extremely low, it could be said, that the general variables seem to have a very low impact.
+    The goal was to reproduce statistically significant coefficients that could explain the demand well enough and whose impact could then be discussed.
     But further research is necessary to better predict the FFV demand and it will also require different data, best through the year and many data points in a big city.
 
     Also, the positive connection between public transit and FFV demand is just a correlation, and it is very difficult to really attribute a causality to it.
-    Naturally as other research has already shown, the demand for FFV is higher in the city centers and as Cologne only has one very clear city center, the demand tends to be the strongest there.
-    For example the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne, since it has the highest number of bus and light rail routes in a single station.
+    Naturally as other research has already shown, the demand for FFV is higher in the city centers and as Cologne only has one very clear city center, the demand tends to be the strongest there (CIT:NEEDED).
+    For example, the stop Neumarkt is next to one of the 10 biggest shopping streets in Germany, and also the traffic center of the communal public transit of cologne, since it has the highest number of bus and light rail routes in a single station.
     This makes it of course difficult to differentiate between the traffic that is intrinsic to this shopping street and the traffic that's there because Neumarkt is a traffic center.
     A variable to help this: Distance to City Center was introduced, but it is only a rough estimate of the desirability of the nearby amenities.
     But of course this variable is nothing more than an estimation and the research is not fully controlled for these factors.
+    In addition to that, the 100\% of the distance variable are far smaller for areas with a smaller service area like kick scooters.
+    This makes the comparability between the modes, of the variable more difficult.
+    Further research could look just at services with very similar service areas to account for this.
 
     Coming to the uses of this research: For managers of public transit providers this research has very high relevance.
-    Especially for the KVB, that is the transit provider of the GTFS data I looked at, because it has already a joint venture with nextbike, so they already dabbled in to the market.
+    Especially for the KVB, that is the transit provider of the GTFS data I looked at, because it has already a joint venture with Nextbike, so they already dabbled in to the market.
     But from the results I have gathered, it seems like free floating scooter rentals are influenced most by light rail rentals, and cars are the second place, last are bikes.
-    Although it has to be said, that bus trips seem to have a heavier impact on bikes than for any other vehicle type.
+    Although it has to be noted, that bus trips seem to have a heavier impact on bikes than for any other vehicle type.
     But it can be said from the data, that the KVB should at least consider a scooter joint venture, since their public transit seems to have less of an impact on bikes than on scooters.
-    Because of the higher impact on scooter sharing, it could be a more enticing service than the KVB Rad venture.
-    The most interesting part about the research is, that KVB bike data is even in the bike data for the analysis, but sadly the KVB bike data has only very little rides, about 30 per day, which is not enough to say anything about that.
+    Because of the higher impact on scooter sharing, it could be a more enticing service than the "KVB Rad" venture.
+    One interesting part about the research is, that KVB bike data is even in the bike data for the analysis, but sadly the KVB bike data has only very little rides, about 30 per day, which is not enough to say anything about that.
     Further research would be necessary with viable KVB Bike data to further compare the effectiveness of the KVB bike venture with a potential KVB E-Scooter venture.
     But generally for providers like the KVB it could make sense to generally integrate their services more with shared mobility providers.
-    With exact scooter API they data, when you search for a trip in the app it could be sped up by offering near shared mobility services at access or egress points of the user, the customer could then even reserve one of the shared mobility vehicles.
-    This could improve the service for customers and give more revenue to shared mobility providers aswell, thus it could alleviate the first and last mile problem and make mutlimodal travel for users easier.
+    With exact scooter API data, when you search for a trip in the app, the trip could be sped up by offering near shared mobility services at egress points of the user, or at their current location for access.
+    The customer could then even reserve one of the shared mobility vehicles, to save them for usage till they arrive there.
+    This could improve the service for customers and give more revenue to shared mobility providers as well, thus it could alleviate the first and last mile problem and make multimodal travel for users easier.
     The fact that KVB rad already exists and is integrated with a normal public transit subscription, is another very interesting point for further research.
     Further research could systematically look at the ways how integrated subscriptions with bike sharing services are used and if public transit schedules have an impact on them more than other shared mobility services.
-    This could make shared mobility more efficient and help understand more in depth how these free additions operate and how people use them.
+    This could make shared mobility more efficient and help understand more in depth about how these free additions operate and how people make use of them.
 
-    Furthermore about the implications for Deutsche Bahn (DB), who operate their call a bike infrastructure, it has to be said, that bike data was analyzed and regional trains had just a very tiny impact on bikes.
+    Furthermore, about the implications for Deutsche Bahn (DB), who operate their "Call a Bike" infrastructure, it has to be said, that bike data was analyzed and regional trains had a comparatively low impact on bikes.
     This could imply, that DB should think about if there is a big value add to their service, if the impact from regional transit is so small on bikes overall.
-    But the DB already has a car sharing program called Flinkster, but compared to share now it is much smaller and also dock based.
-    So far the DB markets it mostly as a regular car service in no affiliation with their normal public transit activites (\cite{Flinkster}).
-    Since car rentals are especially strongly influenced by regional trains, it could make sense to to try connect these two things to facilitate synergy effects.
+    But the DB already has a car sharing program called Flinkster but compared to share now it is much smaller and also dock based.
+    So far, the DB markets it mostly as a regular car service in no affiliation with their normal public transit activities (\cite{Flinkster}).
+    Since car rentals are especially strongly influenced by regional trains, it could make sense to to try connect these0 two modes to facilitate synergy effects.
     When starting with a Flinkster vehicle for example, the DB could offer lower priced tickets, to entice users to take the car for only a part of the trip and use the DB for the rest.
     Further research with data specifically from call a bike could be helpful, because unfortunately call a bike had to be removed completely in this thesis due to huge lacks of data for some days.
-    Flinkster data could also be especially analysed to try to see if it is already more influenced by regional trains scheduling than other car sharing providers.
+    Flinkster data could also be especially analysed to try to see if it is already more highly influenced by regional trains scheduling than other car sharing providers.
 
-    The contributions of this work to science are, a close look at the effects of public transit schedules on shared mobility rentals.
+    The contributions of this work to science are a close look at the effects of public transit schedules on shared mobility rentals.
     Although the connections have also partly been discussed already and in the papers themselves connections are discussed, no paper has the focus on public transit schedules.
     They are always pretty unclear about how especially they have gotten their public transit metrics in their models.
     In this thesis I established a precise way of how to look at public transit schedules that could be reused in other research.
-    I could successfully establish a connection between public transit schedules and micromobility usage, further research could go more into detail about this connection using better data.
+    I could successfully establish a connection between public transit schedules and micro mobility usage, further research could go more into detail about this connection using better data.
+
+    Further research could also look at the trips as a whole to find out, which points of start are most strongly influenced by public transit schedules, meaning home, work, or leisure.
+    Also another component, local events could have some interesting further results, because with events many people are very concentrated at a small space and the impacts of free floating vehicles would be interesting, since they could act as a substitution.
+    To understand this further, there could also be smaller timebucket increments made, so that the hours more closely reflect work and leisure times to better understand the time dependant demand patterns.
+    But this research would need even more data, since its focus is on another dimension, which takes even more data then.
 
 
     \section{Conclusion}
 
     In this thesis I have looked at the question of how public transit schedules affect shared mobility.
     Generally, climate change introduces many problems for humanity and the transport sector is one of the major factors for $co^2$ emissions and urban mobility is a big part of that.
-    This means that more people should move more efficiently, and that car based travel generally should be kept to a minimum, one solution is public transit, but it has the first and last mile problem.
-    To takle this problem, the research question "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the different modes react differently to differences in public transit and if so how?"
-    I then looked at relevant literature that helps to answer this question, about shared mobility as well as public transit and public transit schedules on themselves and found ways to promote multimodality.
-    With having gathered and presented relevant knowledge about the topic, I introduce 3 hypotheses, that further help to go into detail about the research question.
+    This means that more people should move more efficiently, and that car-based travel generally should be kept to a minimum, one solution is public transit, but it has the first and last mile problem.
+    To tackle this problem, the research question "Will a difference in public transit schedules lead to an increase/decrease in shared mobility usage and do the different modes react differently to differences in public transit and if so, how?" is introduced.
+    I then present relevant literature that helps to answer this question.
+    It is about shared mobility as well as public transit and public transit schedules on themselves and found ways to promote multimodality.
+    With having gathered and presented relevant knowledge about the topic, I introduce three hypotheses, that further help to go into detail about the research question.
     After that, I present the GTFS and FFVS data and introduce an econometric model, that answered the questions.
 
     The results of the model present strong evidence, that in general public transit influences free floating vehicle usage quite strongly.
     The strongest overall influence is seen by light rail with a coefficient of about 0,08, the second strongest by regional trains with a coefficient of about 0,04 and the weakest generally by busses with a coefficient of about 0,03.
     The differences between the single modes is quite strong, regional trains have the highest relative influence on cars, presumably because of the higher range of cars.
-    Scooters and Bikes are also much heavier influenced by light rail and bus trips, presumably because of their rather short range.
-    I also looked at the difference between access and egress trips and it all results I could find indicated, that public transit schedules have a higher impact on access than on egress trips.
+    Scooters and Bikes are also much heavier influenced by light rail and bus trips, presumably because of their rather short range, and slower ride than light rail.
+    I also looked at the difference between access and egress trips and all results I could find indicated, that public transit schedules have a higher impact on access than on egress trips.
 
     These results could help providers of public transit, to firstly understand who is also using other mobility services as well as understanding which possible ventures could make sense for them.
-    The contributions of this research to science are the method of how to analyze public transit, because in other research public transit, was just a dimension and the schedules, meaning the frequency was not accounted for.
+    The contributions of this research to science are the method of how to analyze public transit, because in other research, public transit, was just a dimension and the schedules, meaning the frequency was not accounted for.
 
     \pagebreak
 
@@ -975,7 +1000,7 @@
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
-        Standard errors below the coefficients, * p<.1, ** p<.05, ***p<.01
+        Standard errors below the coefficients, p<.1 *, p<.05 **, p<.01 ***
         \caption{Regression Summary for Bikes and Cars}
         \label{tab:r1}
     \end{table}
@@ -1024,7 +1049,7 @@
                 \bottomrule
             \end{tabular}
         \end{adjustbox}
-        Standard errors below the coefficients, * p<.1, ** p<.05, ***p<.01
+        Standard errors below the coefficients, p<.1 *, p<.05 **, p<.01 ***
         \caption{Regression Summary for Scooters and Rest}
         \label{tab:reg2}
     \end{table}
